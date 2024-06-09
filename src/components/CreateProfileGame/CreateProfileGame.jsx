@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Bar from "../Bar/Bar";
 import "./CreateProfile.css";
 import carry from "../../assets/karry.svg";
@@ -24,6 +24,8 @@ const CreateProfileGame = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleCheckboxChange = (option) => {
+    setSelectedOptions(selectedOptions.filter(opt => opt !== option)); 
+    if (selectedOptions.length >= 5) return;
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((x) => x !== option));
     } else {
@@ -42,6 +44,9 @@ const CreateProfileGame = () => {
     setSearchResults(results);
   }, [searchTerm]);
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(()=>{
+
+  },[])
   return (
     <div className="createProfile">
       <div className="title">Создание профиля</div>
@@ -144,7 +149,7 @@ const CreateProfileGame = () => {
         </div>
       </div>
       <div className="buttons">
-        <button className="createBut confirm" children={<>Сохранить</>} />
+        <button className="createBut confirm" children={<a href="/profile">Сохранить</a>}  />
         <button className="createBut" children={<>Отменить</>} />
       </div>
     </div>
