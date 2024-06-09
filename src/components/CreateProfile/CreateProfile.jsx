@@ -10,7 +10,7 @@ import { retrieveLaunchParams } from '@tma.js/sdk';
 
 
 const CreateProfile = () => {
-
+  const { initDataRaw, initData } = retrieveLaunchParams();
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
   const [appState, setAppState] = useState();
