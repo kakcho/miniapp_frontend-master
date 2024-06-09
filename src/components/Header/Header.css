@@ -1,0 +1,16 @@
+.header{
+
+    position: absolute;
+    width: 100vw;
+    justify-content: center;
+}
+.popupIcon{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.notify{
+    position: absolute;
+    left: 0;
+    top: 0;
+}

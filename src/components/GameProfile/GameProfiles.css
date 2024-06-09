@@ -1,0 +1,9 @@
+.GameProfiles{
+    width: 90%;
+    background-color: white;
+    margin-left: 5%;
+    border-radius: 30px;
+}
+.gameProfilesName-heder{
+    display: flex;
+}
