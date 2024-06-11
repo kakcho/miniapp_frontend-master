@@ -8,7 +8,7 @@ const Header = ({title}) => {
     <div className='header'>
         <img src={notify} alt=""  className='notify'/>
     <div className='title'>{title}</div>
-    <img src={popup} alt="" className='popupIcon'/>
+    <a href="/"><img src={popup} alt="" className='popupIcon'/></a>
     </div>
   )
 }

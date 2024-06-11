@@ -2,7 +2,8 @@
     margin-top: 100px;
     border-radius: 50px;
     border-style: none;
-    height: 40px;
+    max-height: 40px;
+    min-height: 40px;
     padding-left: 30px;
     font-size: 14px;
     margin-left: 20px;
@@ -12,7 +13,7 @@
 
 .nickname:focus {
     outline: none;
-    border:  solid #8E8BFF;
+    outline:  solid #8E8BFF;
 }
 
 .nick {
@@ -30,6 +31,7 @@
     position: absolute;
     right: 10px;
     display: flex;
+    min-height: 50px;
     align-items: center;
     overflow: scroll;
     max-height: 300px;
