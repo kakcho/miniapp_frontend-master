@@ -8,6 +8,9 @@ import rang from '../../utils/iconsRank/SeasonalRank0-0.webp'
 import trash from '../../assets/TrashBinTrash.svg'
 import line from '../../assets/Line.svg'
 import linetop from '../../assets/Linetop.svg'
+import gosearch from '../../assets/gosearch.svg'
+import add from '../../assets/add.svg'
+import sharebutton from '../../assets/sharebutton.svg'
 
 
 const Command = ({ commandName, commandOwner, playersCount, teammates }) => {
@@ -54,7 +57,13 @@ const Command = ({ commandName, commandOwner, playersCount, teammates }) => {
                 </div>
           </div>
 
-        </div>
+      </div>
+      <div className="pagButtons">
+          <img src={gosearch} className="pagButton"  />
+          <img src={sharebutton} className="pagButton" />
+          <img src={add}  className="pagButton" />
+          <img src={trash} className="trash"/>
+      </div>
     </div>}
     </div>
 

@@ -43,6 +43,9 @@
     width: 80%;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+    display: flex;
+    flex-direction: column;
+
 }
 .command{
     display: flex;
@@ -106,4 +109,19 @@
 .teammeteHeroes{
     display: flex;
     margin-top: -15px;
+}
+.pagButtons{
+    display: flex;
+    margin-top: auto;
+    min-width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.trash{
+    height:40px;
+    margin-left: 10px;
+}
+.pagButton{
+    padding-left: 10px;
 }
