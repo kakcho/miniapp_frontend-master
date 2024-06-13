@@ -6,12 +6,9 @@ import { ranks } from "../../utils/Ranks";
 import Bar from '../Bar/Bar'
 import GameProfile from "../GameProfile/GameProfile";
 import axios from "axios";
-import { retrieveLaunchParams } from '@tma.js/sdk';
 
-
-const { initDataRaw, initData } = retrieveLaunchParams();
 const CreateProfile = () => {
-  
+  console.log()
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
   const [appState, setAppState] = useState();
@@ -43,7 +40,7 @@ const CreateProfile = () => {
   }
   return (
     <div className="createProfile">
-      <Header title={"Заполните свой профиль"} />
+      <Header title={window.Telegram.WebApp.initData} />
       <p className="star nick">*</p>
       <input
         type="text"
@@ -108,7 +105,7 @@ const CreateProfile = () => {
       <input type="text" placeholder="Коротко о себе" className="bioCreate" /> 
 
       <a href="/createprofilegame" > <button className="confirmCreate" type="submit">Создать игровой профиль</button></a>
-      {initData}
+            
       <Bar/>
     </div>
   );
