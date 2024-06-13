@@ -7,16 +7,14 @@ import Bar from '../Bar/Bar'
 import GameProfile from "../GameProfile/GameProfile";
 import axios from "axios";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-import {hash} from '../../api/auth'
 
+
+const { initDataRaw, initData } = retrieveLaunchParams();
 const CreateProfile = () => {
   
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
   const [appState, setAppState] = useState();
-
-
-
 
 
 
@@ -56,7 +54,7 @@ const CreateProfile = () => {
         required
       />
       <div className="popup" onClick={handleClick}>
-        <label className="helpLable">{hash}</label>
+        <label className="helpLable">Страна</label>
         <div className="country-item contary">{selectedCountry}</div>
         <img src={popupOpen} className="popupOpen" />
         <div
@@ -110,6 +108,7 @@ const CreateProfile = () => {
       <input type="text" placeholder="Коротко о себе" className="bioCreate" /> 
 
       <a href="/createprofilegame" > <button className="confirmCreate" type="submit">Создать игровой профиль</button></a>
+      {initData}
       <Bar/>
     </div>
   );
