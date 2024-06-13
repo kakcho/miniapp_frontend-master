@@ -10,7 +10,7 @@ import { retrieveLaunchParams } from '@tma.js/sdk';
 import {hash} from '../../api/auth'
 
 const CreateProfile = () => {
-  alert(hash)
+  
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
   const [appState, setAppState] = useState();
@@ -56,7 +56,7 @@ const CreateProfile = () => {
         required
       />
       <div className="popup" onClick={handleClick}>
-        <label className="helpLable">Страна</label>
+        <label className="helpLable">{hash}</label>
         <div className="country-item contary">{selectedCountry}</div>
         <img src={popupOpen} className="popupOpen" />
         <div
