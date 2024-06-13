@@ -1,6 +1,4 @@
 .bar{
-
-
     width: calc(100% - 30px);
     background-color: #26242d;
     height: 60px;
@@ -9,7 +7,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    z-index: 50;
+    z-index: 12;
 }
 .bar-icon{
     min-height: 50px;
@@ -23,7 +21,8 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    position: absolute;
-    margin-bottom: 20px;
+    margin-top: auto;
+    margin-bottom: 10px;
     bottom: 0;
+    position: relative;
 }

@@ -7,21 +7,14 @@ import Bar from '../Bar/Bar'
 import GameProfile from "../GameProfile/GameProfile";
 import axios from "axios";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-
+import {hash} from '../../api/auth'
 
 const CreateProfile = () => {
-
+  alert(hash)
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
   const [appState, setAppState] = useState();
 
-  useEffect(() => {
-    const apiUrl = 'http://176.123.164.97:4242/docs#/api/users/current';
-    axios.get(apiUrl).then((resp) => {
-      const allPersons = resp.data;
-      setAppState(allPersons);
-    });
-  }, [setAppState]);
 
 
 

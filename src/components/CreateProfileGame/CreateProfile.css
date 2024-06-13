@@ -80,14 +80,14 @@
 .dropdown {
     overflow: scroll;
     overflow-x: hidden;
-    height: 180px;
+    height: 185px;
     list-style: none;
     width: 95%;
     margin-left: 2.5%;
     display: flex;
     padding-left: 0;
     flex-direction: column;
-    background-color: #ECEDF5;
+    background: linear-gradient(rgb(190, 195, 226, 0.8), rgb(206, 211, 239, 0.8));
     opacity: 80%;
     bottom: 10px;
     border-radius: 18px;
@@ -95,7 +95,7 @@
     position: absolute;
     box-shadow: blur(22.92) #C5C4ED;
     z-index: 20;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(11px);
     align-items: center;
 }
 
@@ -124,6 +124,7 @@
 }
 
 .find {
+    margin-top: 5px;
     width: 90%;
     min-height: 30px;
     border-radius: 50px;

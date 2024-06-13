@@ -1,18 +1,20 @@
-.findContainer{
+.findContainer {
     color: #615c7e;
-    height: 100vh;
+    min-height: 100vh;
     text-align: center;
     display: flex;
     flex-direction: column;
     background-color: #d5d7e5;
     border-radius: 30px;
 }
-.Finder{
-    margin-top: 100px !important; 
+
+.Finder {
+    margin-top: 100px !important;
 }
-.command-container{
+
+.command-container {
     background-color: #F5F3FD;
-    height:  40px;
+    height: 40px;
     width: 90%;
     margin-top: 10px;
     border-radius: 30px;
@@ -20,26 +22,31 @@
     display: flex;
 
 }
-.nicknameCommand{
+
+.nicknameCommand {
     display: flex;
     font-weight: 700;
     margin-left: 20px;
 }
-.imagesPag{
+
+.imagesPag {
     display: flex;
     right: 10%;
     position: absolute;
 
 }
-.numberPlayer{
+
+.numberPlayer {
     padding-top: 2px;
 }
-.people{
+
+.people {
     margin-right: 10px;
 }
-.pagConteiner{
+
+.pagConteiner {
     height: 300px;
-    background-color: #F5F3FD ;
+    background-color: #F5F3FD;
     width: 80%;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -47,70 +54,84 @@
     flex-direction: column;
 
 }
-.command{
+
+.command {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
-.descriptionTitle{
+
+.descriptionTitle {
     display: flex;
     margin-left: 20px;
     margin-top: 10px;
 
-}    
-.teammateRank{
+}
+
+.teammateRank {
     background-color: white;
     border-radius: 100%;
     width: 50px;
     height: 50px;
-    
+
 }
-.teammates{
+
+.teammates {
     margin-top: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-.teammateRankImg{
+
+.teammateRankImg {
     width: 50px;
     margin-top: 3px;
 }
-.teammateInfo{
+
+.teammateInfo {
     background-color: white;
     width: 75%;
     height: 60px;
     border-radius: 14px;
     margin-left: 10px;
 }
-.teammateName{
+
+.teammateName {
     float: left;
     font-weight: 600;
     margin: 5px;
 }
-.redact{
+
+.redact {
     display: flex;
     float: right;
     margin: 5px;
 }
-.teammatesHr{
+
+.teammatesHr {
     z-index: 523;
 }
-.teammatesHr{
+
+.teammatesHr {
     width: 100%;
     position: relative;
     top: -10px;
     color: #000;
 }
-.teammeteHeroe{
+
+.teammeteHeroe {
     height: 30px;
 }
-.teammeteHeroes{
+
+.teammeteHeroes {
     display: flex;
     margin-top: -15px;
 }
-.pagButtons{
+
+.pagButtons {
     display: flex;
     margin-top: auto;
     min-width: 100%;
@@ -118,10 +139,83 @@
     justify-content: center;
     margin-bottom: 10px;
 }
-.trash{
-    height:40px;
+
+.trash {
+    height: 40px;
     margin-left: 10px;
 }
-.pagButton{
+
+.pagButton {
     padding-left: 10px;
+}
+
+.addComandIcon {
+    position: absolute;
+    bottom: 100px;
+    right: 10vw;
+    height: 50px;
+
+}
+
+.modal {
+    width: 95%;
+    background: linear-gradient(rgb(190, 195, 226, 0.8), rgb(206, 211, 239, 0.8));
+    margin-left: 2.5%;
+    position: absolute;
+    height: 220px;
+    box-shadow: inset 0 0 22px #C5C4ED;
+    bottom: 10px;
+    z-index: 13;
+    border-radius: 30px;
+
+    backdrop-filter: blur(11px);
+}
+.nickname-modal{
+    border-radius: 50px;
+    border-style: none;
+    max-height: 40px;
+    min-height: 40px;
+    padding-left: 30px;
+    font-size: 16px;
+    width: 80%;
+    margin-top: 20px;
+
+}
+.nickname-modal:focus {
+    outline: none;
+    outline:  solid #8E8BFF;
+}
+.modal-chooseProfile{
+    width: 80%;
+    padding-left: 30px;
+    border-radius: 12px;
+    max-height: 40px;
+    min-height: 40px;
+    margin-top: 20px;
+    border-style: none;
+
+}
+.modal-chooseProfile:focus {
+    outline: none;
+    outline:  solid #8E8BFF;
+}
+.modal-chooseProfileLable{
+    position: absolute;
+    top: 77px;
+    left: 15%;
+    font-size: 10px;
+}
+.dwn{
+    position: absolute;
+    top: 95px;
+    left: 85%;
+
+}
+.modal-button{
+     width: 80%;
+     margin-top: 30px;
+     height: 50px;
+     border-radius: 30px;
+     border: none;
+     background-color: #8e8bff;
 }

@@ -14,7 +14,7 @@ const GameChoose = () => {
     <div className='GameChoose'>
         <h1 className='title'>Выбрать игру</h1>
         <div className="games">
-        <div className="game complete"><a href={"/createprofile"}><img src={dota} alt="" /></a></div>
+        <a href={"/createprofile"} className='game complete'><img src={dota} alt="" /></a>
         <div className="game"><img src={CS2} alt="" /></div>
         <div className="game"><img src={valorant}/></div>
         <div className="game"><img src={pubg}  /></div>
