@@ -7,11 +7,12 @@ import Bar from '../Bar/Bar'
 import GameProfile from "../GameProfile/GameProfile";
 import axios from "axios";
 
+
 const CreateProfile = () => {
-  console.log()
+
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
-  const [appState, setAppState] = useState();
+
 
 
 
@@ -40,7 +41,7 @@ const CreateProfile = () => {
   }
   return (
     <div className="createProfile">
-      <Header title={window.Telegram.WebApp.initData} />
+      <Header title={"Заполните свой профиль"} />
       <p className="star nick">*</p>
       <input
         type="text"
