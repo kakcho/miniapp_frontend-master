@@ -6,7 +6,6 @@ import pubg from '../../assets/Pubg.svg'
 import MobileLegens from '../../assets/MobileLegens.svg'
 import CS2 from '../../assets/CS2.svg'
 import axios from 'axios'
-import config from '../../api/auth'
 
 
 const GameChoose = () => {
@@ -24,7 +23,7 @@ const GameChoose = () => {
         authorization: window.Telegram.WebApp.initData
       }});
   }, []);
-
+  console.log(ok)
   return (
     <div className='GameChoose'>
      
