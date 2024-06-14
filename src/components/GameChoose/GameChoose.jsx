@@ -27,7 +27,7 @@ const GameChoose = () => {
   return (
     <div className='GameChoose'>
      
-        <h1 className='title'> Выбрать игру</h1>
+        <h1 className='title'> {ok}</h1>
         <div className="games">
         <a href={ok === 'OK' ? "/createprofile" : '/profile'} className='game complete'><img src={dota} alt="" /></a>
         <div className="game"><img src={CS2} alt="" /></div>
