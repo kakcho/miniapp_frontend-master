@@ -12,6 +12,7 @@ const GameChoose = () => {
 
   const [ok, setOk] = useState();
 
+
   useEffect(() => {
     const apiUrl = (`${import.meta.env.VITE_BASE_API_URL}/api/auth/jwt_by_init_data`);
     axios.get(apiUrl).then((resp) => {
@@ -23,7 +24,7 @@ const GameChoose = () => {
         authorization: window.Telegram.WebApp.initData
       }});
   }, []);
-  console.log(ok)
+  console.log(parseInitData(window.Telegram.WebApp.initData))
   return (
     <div className='GameChoose'>
      
