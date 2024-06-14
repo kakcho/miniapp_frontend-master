@@ -13,12 +13,15 @@
     "@jest/globals": "^29.7.0",
     "@tma.js/sdk": "^2.5.0",
     "axios": "^1.7.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
     "pactum": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "swiper": "^8.4.7",
-    "three": "^0.165.0"
+    "three": "^0.165.0",
+    "vite-plugin-env-compatible": "^2.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

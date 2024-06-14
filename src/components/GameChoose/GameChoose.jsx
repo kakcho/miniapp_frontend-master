@@ -6,26 +6,29 @@ import pubg from '../../assets/Pubg.svg'
 import MobileLegens from '../../assets/MobileLegens.svg'
 import CS2 from '../../assets/CS2.svg'
 import axios from 'axios'
+import config from '../../api/auth'
+
 
 const GameChoose = () => {
 
   const [ok, setOk] = useState();
 
-  
   useEffect(() => {
-    const apiUrl = import.meta.env.REACT_API;
+    const apiUrl = (`${import.meta.env.VITE_BASE_API_URL}/api/auth/jwt_by_init_data`);
     axios.get(apiUrl).then((resp) => {
-      const ok = resp.statusText;
-      setAppState(ok);
+      const okey = resp.statusText;
+      setOk(okey);
+
     }, {
       headers: {
         authorization: window.Telegram.WebApp.initData
       }});
-  }, [setOk]);
-  console.log(window.Telegram.WebApp.initData)
+  }, []);
+
   return (
     <div className='GameChoose'>
-        <h1 className='title'>Выбрать игру</h1>
+     
+        <h1 className='title'> {ok}</h1>
         <div className="games">
         <a href={ok === 'OK' ? "/createprofile" : '/profile'} className='game complete'><img src={dota} alt="" /></a>
         <div className="game"><img src={CS2} alt="" /></div>
