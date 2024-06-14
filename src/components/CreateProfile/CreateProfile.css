@@ -22,8 +22,10 @@
     margin-left: 130px;
 }
 
+    
 .popup {
     width: 90px;
+    border: #8E8BFF 1px solid;
     border-radius: 12px;
     top: 100px;
     max-height: 50px;
@@ -35,6 +37,7 @@
     align-items: center;
     overflow: scroll;
     max-height: 300px;
+
     flex-direction: column;
     z-index: 12;
 }

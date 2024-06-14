@@ -4,7 +4,7 @@ import owner from "../../assets/owner.svg";
 import people from "../../assets/peopl.svg";
 import pag from "../../assets/pag.svg";
 import pen from '../../assets/RulerPen.svg'
-import rang from '../../utils/iconsRank/SeasonalRank0-0.webp'
+
 import trash from '../../assets/TrashBinTrash.svg'
 import line from '../../assets/Line.svg'
 import linetop from '../../assets/Linetop.svg'
@@ -49,10 +49,7 @@ const Command = ({ commandName, commandOwner, playersCount, teammates }) => {
                 </div>
                 <img src={line} className="teammatesHr"/>
                 <div className="teammeteHeroes">
-                  <img src={rang} className="teammeteHeroe"/>
-                  <img src={rang} className="teammeteHeroe"/>
-                  <img src={rang} className="teammeteHeroe"/>
-                  <img src={rang} className="teammeteHeroe"/>
+
                   <img src={linetop} alt="" />
                 </div>
           </div>
