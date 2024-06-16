@@ -18,8 +18,8 @@
 
 .nick {
     position: absolute;
-    top: 115px;
-    margin-left: 130px;
+    top: 110px;
+    margin-left: 120px;
 }
 
     
@@ -86,7 +86,7 @@
 }
 .steam-id{
     position: absolute;
-    left: 120px;
+    left: 105px;
     top: 185px;
 }
 .steam-id-input{

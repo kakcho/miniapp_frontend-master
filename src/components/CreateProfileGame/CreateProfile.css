@@ -17,6 +17,9 @@
     background-color: #8e8bff;
     border-style: none;
 }
+.confirm:disabled{
+    opacity: 0.5;
+}
 
 .star {
     color: red;
