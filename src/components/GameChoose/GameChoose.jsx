@@ -12,7 +12,7 @@ const GameChoose = () => {
   const data = useContext(ApiDataContext);
   const [user, setUser] = useState();
 
-
+  console.log(window.Telegram.WebApp.initData)
 
   useEffect(() => {
     if (data) {
