@@ -24,7 +24,7 @@ const GameChoose = () => {
             'Content-Type':  'application/json',
           },
           method: "GET",
-          url: `${import.meta.env.VITE_BASE_API_URL}/api/users/current`,
+          url: `${import.meta.env.VITE_BASE_API_URL}/api/users/current/`,
         })
         .then((response) => {
           setUser(response.data);
