@@ -28,7 +28,7 @@
     border: #8E8BFF 1px solid;
     border-radius: 12px;
     top: 100px;
-    height: 50px;
+    min-height: 50px;
     background-color: white;
     position: absolute;
     right: 10px;
@@ -37,7 +37,6 @@
     align-items: center;
     overflow: scroll;
     max-height: 300px;
-
     flex-direction: column;
     z-index: 12;
 }
