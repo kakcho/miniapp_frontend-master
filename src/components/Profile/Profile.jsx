@@ -11,6 +11,9 @@ import './Profile.css'
 import trash from '../../assets/Trash Bin Trash.svg'
 import rulepen from '../../assets/RulerPen.svg'
 import pag from '../../assets/pag.svg'
+import linetop from '../../assets/Linetop.svg'
+import GameProfileInfo from "./GameProfileInfo";
+import addcomand from '../../assets/addComand.svg'
 
 const CreateProfile = () => {
   const data = useContext(ApiDataContext);
@@ -28,7 +31,7 @@ const CreateProfile = () => {
     },
     is_profile_filled: user?.is_profile_filled,
     steam_id: user?.steam_id})
-  const [gameprofileInfo, setGameProfileInfo] = useState(false)
+
   useEffect(() => {
     if (user?.game_data.rank) {
       const rangUrl = filterCountry(ranks, user?.game_data.rank)[0].url;
@@ -91,9 +94,7 @@ const CreateProfile = () => {
         },
       }
     )
-    .then( (response) => {
-      console.log( response ) ;
-    } )
+
   }
   function handleClickApiSendRank(rank){
     axios
@@ -106,9 +107,7 @@ const CreateProfile = () => {
         },
       }
     )
-    .then( (response) => {
-      console.log( response ) ;
-    } )
+
   }
   function handleBlur() {
 
@@ -126,10 +125,9 @@ const CreateProfile = () => {
         console.log( response ) ;
       } )
   }
-  function handleCliclRangAndCountry(e) {
-    handleSelectRank(e.url)
-  }
 
+
+  const [gameProfiles, setGameProfiles] = useState()
 
   useEffect(() => {
     if (data) {
@@ -142,10 +140,11 @@ const CreateProfile = () => {
           url: `${import.meta.env.VITE_BASE_API_URL}/api/game_profiles/all`,
         })
         .then((response) => {
-          console.log(response.data.response)
+          setGameProfiles(response.data.response)
         });
     }
-  }, [data]);
+  }, [data, gameProfiles]);
+
   if (!loading) {
     return (
       <div className="createProfile profile">
@@ -239,17 +238,14 @@ const CreateProfile = () => {
           onChange={(e) => {setUserData({...userData, game_data:{bio: e.target.value}})}}
         />
         <a></a>
+
         <p className="gameprofileTitle">Игровые Профили:</p>
-        <div className="gameProfiles">
-          <h4 className="gameProfilesH4">Рояль на миду</h4>
-          <div className="iconsGameProfile">
-            <img src={trash} alt="" className="trashGame"/>
-            <img src={rulepen} alt="" className="penGame"/>
-            <img src={pag}  className="pagGame"/>
-            
-            {/* {gameprofileInfo && } */}
-          </div>
+        <div className="gameProfilesContainer">
+       {gameProfiles?.map((profile, id) =>  (
+        <GameProfileInfo  profile={profile} key={id}/>
+       ))}
         </div>
+        <a href="createprofilegame"><img src={addcomand} className="addComand" /></a>
         <Bar />
       </div>
     );

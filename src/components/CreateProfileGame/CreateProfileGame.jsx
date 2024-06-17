@@ -10,6 +10,7 @@ import "./CreateProfile.css";
 import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
 
+
 const CreateProfileGame = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [gameNick, setGameNick] = useState();
@@ -207,7 +208,8 @@ const CreateProfileGame = () => {
           className="createBut confirm"
           disabled={butActive}
         >
-            {butActive ?   <p>Сохранить</p>: <a href="/profile">Сохранить</a>}
+            {butActive ?   <p>Сохранить</p>:
+             <a href="/profile">Сохранить</a>}
         </button>
         <a href="/profile"><button className="createBut" children={<>Отменить</>} /></a>
       </div>

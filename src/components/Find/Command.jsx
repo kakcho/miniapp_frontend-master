@@ -40,7 +40,7 @@ const Command = ({ commandName, commandOwner, playersCount, teammates }) => {
       </div>
       <div className="teammates">
           <div className="teammateRank">
-          <img src={rang} alt="" className="teammateRankImg"/>
+          <img  alt="" className="teammateRankImg"/>
           </div>
           <div className="teammateInfo">
             <div className="">

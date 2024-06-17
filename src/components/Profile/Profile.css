@@ -1,11 +1,13 @@
 .gameProfiles{
-    width: 90%;
+    width: 95%;
     background-color: white;
     z-index: 200;
     display: flex;
-    margin-left: 5%;
+    margin-left: 2.5%;
     border-radius: 30px;
-    margin-top: 5px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    min-height: 40px;
     
 }
 .gameprofileTitle{
@@ -20,14 +22,16 @@
     display: flex;
     margin-left: 20px;
     text-wrap: nowrap;
+    margin-top: 10px;
+
 }
 .iconsGameProfile{
-    position: absolute;
     right: 10%;
     height: 10px;
-    display: flex;
-    align-items: center;
+    text-align: right;
     margin-top: 4px;
+    width: 100%;
+
 }
 .penGame{
     min-height: 20px;
@@ -39,6 +43,39 @@
 }
 .pagGame{
     min-height: 10px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+.gameProfileHeroes{
+    height: 22px;
+    padding: 5px;
+}
+.gameProfilePag{
+    width: 100%;
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+.gameProfileUnPag{
+    min-width: 100%;
+    display: flex;
 
+}
+.gameProfilesContainer{
+    overflow: scroll;
+    max-height: 35vh;
+    border-radius: 5%;
+}
+.lineTopGame{
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 30px;
     
+}
+.addComand{
+    height: 40px;
+    position: absolute;
+    right: 30px;
+    bottom: 100px;
 }

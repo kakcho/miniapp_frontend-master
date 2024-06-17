@@ -7,6 +7,7 @@ import Profile from '../components/Profile/Profile'
 import CreateProfileGame from '../components/CreateProfileGame/CreateProfileGame'
 import CreateProfile from '../components/CreateProfile/CreateProfile'
 import GameChoose from '../components/GameChoose/GameChoose'
+import GameProfile from '../components/GameProfile/GameProfile'
 
 
 const RoutesSwitch = () => {
@@ -17,6 +18,7 @@ const RoutesSwitch = () => {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/createprofilegame' element={<CreateProfileGame/>}/>
         <Route path='/createprofile' element={<CreateProfile/>}/>
+        <Route path="/profilegame/:profilegameId" element={<GameProfile/>}/>
     </Routes>
   )
 }

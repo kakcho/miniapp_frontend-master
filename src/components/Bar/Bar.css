@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     z-index: 12;
+
 }
 .bar-icon{
     min-height: 50px;
@@ -22,7 +23,7 @@
     text-align: center;
     justify-content: center;
     margin-top: auto;
-    margin-bottom: 10px;
-    bottom: 0;
-    position: relative;
+    bottom: 20px;
+    position: absolute;
+    z-index: 1000;
 }
