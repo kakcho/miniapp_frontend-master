@@ -14,6 +14,7 @@ const GameChoose = () => {
 
   console.log(window.Telegram.WebApp.initData)
 
+
   useEffect(() => {
     if (data) {
       axios
