@@ -46,7 +46,7 @@ const CreateProfile = ({title}) => {
       setStarSteam(true)
     }
   },[steamId])
-
+console.log(data)
   function sendData() {
     axios
       .patch(
