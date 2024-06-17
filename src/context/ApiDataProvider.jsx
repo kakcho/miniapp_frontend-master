@@ -12,7 +12,7 @@ const ApiDataProvider = ({children}) => {
             Authorization:  testInit
         }}
         useEffect(() => {
-          const apiUrl = (`${import.meta.env.VITE_BASE_API_URL}/api/auth/jwt_by_init_data/`);
+          const apiUrl = (`${import.meta.env.VITE_BASE_API_URL}/api/auth/jwt_by_init_data`);
 
           axios.get(apiUrl, config)
           .then((resp) => {setData(resp.data.response)});
