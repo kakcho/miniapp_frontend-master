@@ -144,6 +144,7 @@ const CommandFind = (profile) => {
       search_team_id: profile.command._id,
     },
   };
+  const [token, setToken] = useState()
   function InviteToken() {
     axios({
       method: "get",
@@ -155,14 +156,14 @@ const CommandFind = (profile) => {
         search_team_id: profile.command._id,
       },
     }).then(function (response) {
-      console.log(response.data);
+      setToken(response.data.response);
     });
   }
   InviteToken();
   const shareData = {
-    title: "MDN",
+    title: "YOUNITE",
     text: "Вас пригласили в команду!",
-    url: "https://developer.mozilla.org",
+    url: `https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`,
   };
   const handleShare = () => {
     navigator.share(shareData);
