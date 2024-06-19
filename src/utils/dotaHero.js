@@ -3,7 +3,7 @@ export const heroes = [
 		"name": "antimage",
 		"id": 1,
 		"localized_name": "Anti-Mage",
-		"url": `${import.meta.env.PUBLIC_URL}./src/assets/Anti-Mage_minimap_icon.webp`
+		"url": `https://minnniapp.netlify.app/src/assets/Anti-Mage_minimap_icon.webp`
 	},
 	{
 		"name": "axe",
