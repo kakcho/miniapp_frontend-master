@@ -10,6 +10,7 @@
 
 .Finder {
     margin-top: 100px !important;
+    color: #615C7E;
 }
 
 .command-container {
@@ -31,8 +32,9 @@
 
 .imagesPag {
     display: flex;
-    right: 10%;
-    position: absolute;
+    margin-left: auto;
+    margin-right: 10px;
+    position: relative;
 
 }
 
@@ -45,14 +47,15 @@
 }
 
 .pagConteiner {
-    height: 300px;
+    min-height: 300px;
     background-color: #F5F3FD;
     width: 80%;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     display: flex;
     flex-direction: column;
-
+    overflow: scroll;
+    z-index: 1000;
 }
 
 .command {
@@ -67,6 +70,7 @@
     display: flex;
     margin-left: 20px;
     margin-top: 10px;
+    font-weight: 500;
 
 }
 
@@ -84,6 +88,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .teammateRankImg {
@@ -123,7 +128,9 @@
 }
 
 .teammeteHeroe {
-    height: 30px;
+    max-height: 20px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .teammeteHeroes {
@@ -138,23 +145,25 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    
 }
-
-.trash {
-    height: 40px;
+.pagButtonfind{
     margin-left: 10px;
 }
 
-.pagButton {
-    padding-left: 10px;
+.trash {
+    height: 30px;
+    margin-left: 10px;
 }
+
+
 
 .addComandIcon {
     position: absolute;
-    bottom: 100px;
-    right: 10vw;
-    height: 50px;
-
+    bottom: 80px;
+    right: 0px;
+    height: 35px;
+    z-index: 1299;
 }
 
 .modal {
@@ -165,10 +174,10 @@
     height: 220px;
     box-shadow: inset 0 0 22px #C5C4ED;
     bottom: 10px;
-    z-index: 13;
+    z-index: 1300;
     border-radius: 30px;
-
-    backdrop-filter: blur(11px);
+    text-align: center;
+    backdrop-filter: blur(10px);
 }
 .nickname-modal{
     border-radius: 50px;
@@ -183,21 +192,26 @@
 }
 .nickname-modal:focus {
     outline: none;
-    outline:  solid #8E8BFF;
 }
 .modal-chooseProfile{
+    margin-left: 10%;
     width: 80%;
+    color: black;
+    display: flex;
+    align-items: center;
     padding-left: 30px;
     border-radius: 12px;
     max-height: 40px;
     min-height: 40px;
     margin-top: 20px;
     border-style: none;
-
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 .modal-chooseProfile:focus {
     outline: none;
-    outline:  solid #8E8BFF;
 }
 .modal-chooseProfileLable{
     position: absolute;
@@ -218,4 +232,38 @@
      border-radius: 30px;
      border: none;
      background-color: #8e8bff;
+     font-weight: 600;
+     font-size: 14px;
+}
+.modal-button:disabled{
+    opacity: 80%;
+}
+.descriptionContent{
+    display: flex;
+    margin-left: 20px;
+    color: #000;
+    font-size: 11pt;
+    outline: none;
+    border: none;
+    background-color: #F5F3FD;
+    font-weight: 500;
+    width: 90%;
+    height: 20px;
+}
+.descriptionHR{
+    width: 90%;
+    height: 0;
+    margin-left: 5%;
+    border-top: 3px solid #8E8BFF;
+    color: pink;
+}
+.modalP{
+    color: black;
+}
+.GameNot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
 }

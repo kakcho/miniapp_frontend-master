@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Bar from '../Bar/Bar'
+import './Command.css'
 import Header from '../Header/Header'
-import './Find.css'
-import CommandFind from './CommandFind'
+import Bar from '../Bar/Bar'
+import { Modal } from '../Find/Modal'
+import CommandFind from '../Find/CommandFind' 
+
 import add from '../../assets/add.svg'
-import { Modal } from './Modal'
+import CommandItem from './CommandItem'
 import { ApiDataContext } from '../../context/ApiDataContext'
 import axios from 'axios'
 
-const Find = () => {
+
+
+const Command = () => {
   const [openModal, setOpenModal] = useState(false)
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
@@ -18,18 +22,16 @@ const Find = () => {
       axios
         .request({
           headers: {
-            Authorization: `Bearer ${data?.access}`,
-            'Content-Type':  'application/json',
+            Authorization: `Bearer ${data?.access}`
           },
           method: "GET",
           url: `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/all`,
         })
         .then((response) => {
-          console.log(response)
           setCommand(response.data);
         });
     }
-  }, [data]);
+  }, [data, openModal]);
 
   useEffect(() => {
     if (data) {
@@ -48,25 +50,28 @@ const Find = () => {
     }
   }, [data]);
 
-  function handleClick() {
-    setOpenModal(!openModal)
+  function handleClick(event) {
+      setOpenModal(false)
   }
-  return (
-    <div className='findContainer'>
+
+ if(command){ return (
+    <div className='findContainer'  >
+      <div onClick={()=>{setOpenModal(false)}}>
       <Header title={'Поиск'}/>
+
       <div className="sup Finder">Ваши команды</div>
       <div className="containerCommandBLock" >
-      {command?.response.map((profile)=>(
-        <CommandFind command={profile}/>
+      {command.response.map((profile)=>(
+        <CommandItem command={profile}/>
       ))}
 </div>
-
-        <img src={add} className='addComandIcon' onClick={handleClick}/>
+</div>
+        <img src={add} className='addComandIcon' onClick={()=>{setOpenModal(true)}}/>
         {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
         
       <Bar/>
     </div>
-  )
+  )}
 }
 
-export default Find
+export default Command

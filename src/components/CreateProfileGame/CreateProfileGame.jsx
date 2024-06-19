@@ -65,7 +65,7 @@ const CreateProfileGame = () => {
       setSelectedHero([...selectedHero, option.name]);
     }
   };
-  console.log(selectedHero)
+
   const [searchTerm, setSearchTerm] = React.useState("");
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -86,7 +86,6 @@ const CreateProfileGame = () => {
     return result
 }
   function handleSend() {
-    console.log(gameData)
     axios.post(
       `${import.meta.env.VITE_BASE_API_URL}/api/game_profiles/create`,
       gameData,

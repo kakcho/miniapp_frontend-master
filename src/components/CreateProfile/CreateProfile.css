@@ -38,7 +38,7 @@
     overflow: scroll;
     max-height: 300px;
     flex-direction: column;
-    z-index: 12;
+    z-index: 5;
 }
 
 .country-item {

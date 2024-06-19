@@ -46,7 +46,7 @@ const CreateProfile = ({title}) => {
       setStarSteam(true)
     }
   },[steamId])
-console.log(data)
+
   function sendData() {
     axios
       .patch(
@@ -90,6 +90,18 @@ console.log(data)
     setIsPopupOpenRank(!isPopupOpenRank);
   }
   
+  function handleChange(event) {
+    const newValue = event.target.value;
+
+    // Проверяем, что длина введенной строки равна 17
+    if (newValue.length <= 17) {
+      // Проверяем, что все символы в строке являются цифрами
+      if (/^\d+$/.test(newValue) ||  "" == newValue) {
+        console.log(newValue)
+        setSteamId(newValue);
+      }
+    }
+  }
   return (
     <div className="createProfile">
       <Header title={"Заполните свой профиль"} />
@@ -154,9 +166,7 @@ console.log(data)
         className="steam-id-input"
         required
         value={steamId}
-        onChange={(e) => {
-          setSteamId(e.target.value);
-        }}
+        onChange={handleChange}
       />{" "}
       {starSteam && <p className="star steam-id">*</p>}
       <div className="row">

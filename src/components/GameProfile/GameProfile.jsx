@@ -146,7 +146,7 @@ const GameProfile = () => {
     }
     return result;
   };
-  console.log(gameData)
+
   function handleSend() {
     axios
       .patch(

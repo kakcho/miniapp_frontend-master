@@ -12,16 +12,13 @@ const GameChoose = () => {
   const data = useContext(ApiDataContext);
   const [user, setUser] = useState();
 
-  console.log(window.Telegram.WebApp.initData)
-
 
   useEffect(() => {
     if (data) {
       axios
         .request({
           headers: {
-            Authorization: `Bearer ${data?.access}`,
-            'Content-Type':  'application/json',
+            Authorization: `Bearer ${data?.access}`
           },
           method: "GET",
           url: `${import.meta.env.VITE_BASE_API_URL}/api/users/current/`,

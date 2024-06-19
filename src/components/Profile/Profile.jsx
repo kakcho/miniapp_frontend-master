@@ -21,6 +21,7 @@ const CreateProfile = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
+  const [gameProfiles, setGameProfiles] = useState()
   const [userData, setUserData] = useState( { age: user?.age,
     country_code: user?.country_code,
     discord_nickname: user?.discord_nickname,
@@ -127,7 +128,9 @@ const CreateProfile = () => {
   }
 
 
-  const [gameProfiles, setGameProfiles] = useState()
+
+
+
 
   useEffect(() => {
     if (data) {
@@ -143,7 +146,17 @@ const CreateProfile = () => {
           setGameProfiles(response.data.response)
         });
     }
-  }, [data, gameProfiles]);
+  }, [data, user]);
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    // Проверяем, что длина введенной строки равна 17
+    if (newValue.length <= 17) {
+      // Проверяем, что все символы в строке являются цифрами
+      if (/^\d+$/.test(newValue) ||  "" == newValue) {
+        setUserData({...userData, steam_id: newValue})
+      } 
+  }}
 
   if (!loading) {
     return (
@@ -208,7 +221,7 @@ const CreateProfile = () => {
           className="steam-id-input"
           required
           value={userData?.steam_id}
-          onChange={(e) => {setUserData({...userData, steam_id: e.target.value})}}
+          onChange={handleChange}
           onBlur={handleBlur}
         />{" "}
         <div className="row">
@@ -240,7 +253,7 @@ const CreateProfile = () => {
         <a></a>
 
         <p className="gameprofileTitle">Игровые Профили:</p>
-        <div className="gameProfilesContainer">
+        <div className="gameProfilesContainer" >
        {gameProfiles?.map((profile, id) =>  (
         <GameProfileInfo  profile={profile} key={id}/>
        ))}

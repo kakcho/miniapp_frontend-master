@@ -15,11 +15,8 @@ import { Link } from "react-router-dom";
 import { ApiDataContext } from "../../context/ApiDataContext";
 import axios from "axios";
 
-const GameProfileInfo = ({ profile }) => {
-  const [gameprofileInfo, setGameProfileInfo] = useState(false);
-  const [position, setPosition] = useState([]);
-  const decode = decode_positions(profile.positions_code);
-  const data = useContext(ApiDataContext);
+const GameProfileInfo = ({ profile,}) => {
+
   function handleDelete() {
     axios
       .delete(
@@ -32,8 +29,16 @@ const GameProfileInfo = ({ profile }) => {
       )
       .then(function (response) {
         console.log(response);
+        window.location.reload();
       });
+
+
   }
+  const [gameprofileInfo, setGameProfileInfo] = useState(false);
+  const [position, setPosition] = useState([]);
+  const decode = decode_positions(profile.positions_code);
+  const data = useContext(ApiDataContext);
+ 
   function findUserByName(users, heroes) {
     const heroesUrl = [];
     for (let j = 0; j < heroes.length; j++) {

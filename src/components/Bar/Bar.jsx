@@ -26,7 +26,7 @@ const Bar = () => {
             <img src={isActive ? FindHover : Find} className="bar-icon Find" />
           )}
         </NavLink>
-        <NavLink to="/">
+        <NavLink to={'/command'}>
           {({ isActive }) => (
             <img
               src={isActive ? TutorHover : Tutor}
