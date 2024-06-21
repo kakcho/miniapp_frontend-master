@@ -5,6 +5,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+
+
 }
 .FindCommandH1{
     font-size: 28px;
@@ -24,6 +26,7 @@
     margin-left: calc(50% - 40px);
     align-items: center;
     justify-content: center;
+
 }
 .FindCommandContent{
     margin-top: 40px;
@@ -47,16 +50,45 @@
     height: 40px;
     background-color: #E3E4ED;
     border-radius: 24px;
-    display: flex;
+   display: flex;
     float:inline-start;
     margin-left: 40px;
     margin-top: 40px;
+    justify-content: center;
+    align-items: center;
 }
 .FindContentImg{
-    margin-top: 30px;
-    margin-left: calc(50% - 111px);
+    border: none;
+    margin-top: 20vh;
+    z-index: 0;
+    width: 300px;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    margin-left: calc(50% - 150px);
+    justify-content: center;
+    background-image: linear-gradient(#cfd1e1, #cfd1e1 ), url(../../assets/FindContent.png);
+    background-repeat: no-repeat;
+    
+    background-blend-mode: screen;
 }
 .FindCommandPeople{
     height: 24px;
     
+}
+.FindCommandBlockRangImg{
+height: 40px;
+margin-top: 5px;
+}
+.FindCancel{
+    width: 160px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 50px;
+    justify-content: center;
+}
+.aFind{
+    color: black;
 }

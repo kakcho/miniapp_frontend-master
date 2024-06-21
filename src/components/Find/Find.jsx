@@ -7,12 +7,16 @@ import add from '../../assets/add.svg'
 import { Modal } from './Modal'
 import { ApiDataContext } from '../../context/ApiDataContext'
 import axios from 'axios'
+import UserModal from '../Command/UserModal'
+import  {ChangeModal} from './ChangeModal'
+
 
 const Find = () => {
   const [openModal, setOpenModal] = useState(false)
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
   const [profiles, setProfiles] = useState()
+
   useEffect(() => {
     if (data) {
       axios
@@ -51,8 +55,10 @@ const Find = () => {
   function handleClick() {
     setOpenModal(!openModal)
   }
+
   return (
     <div className='findContainer'>
+
       <Header title={'Поиск'}/>
       <div className="sup Finder">Ваши команды</div>
       <div className="containerCommandBLock" >

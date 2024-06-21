@@ -28,6 +28,7 @@ export const Modal = ({ setOpenModal, create }) => {
       }}
     ).then(function (response) {
       console.log(response);
+      location.reload()
     })
     .catch(function (error) {
       console.log(error);
@@ -36,7 +37,7 @@ export const Modal = ({ setOpenModal, create }) => {
   }
 
   return (
-    <div className="modal">
+    <div className="modal" >
       <div className="blur">
         {create[0] ? (
           <>
@@ -82,7 +83,7 @@ export const Modal = ({ setOpenModal, create }) => {
           <div className="GameNot">
             <p className="modalP ">У вас нет игрового профиля</p>
             <a href="/createprofilegame" className="a">
-              <button className="modal-button" onClick={setOpenModal} >
+              <button className="modal-button" onClick={()=> setOpenModal()} >
                 Создать
               </button>
             </a>

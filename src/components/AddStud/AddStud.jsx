@@ -6,27 +6,36 @@ import mid from "../../assets/mid.svg";
 import semiSupport from "../../assets/semiSupport.svg";
 import fullSupport from "../../assets/support.svg";
 import { heroes } from "../../utils/dotaHero";
-import "./CreateProfile.css";
+import popupOpen from "../../assets/popupOpen.svg";
+import { ranks } from "../../utils/Ranks";
 import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
+import "./AddStud.css";
+import { useParams } from "react-router-dom";
 
-
-const CreateProfileGame = () => {
+const AddStud = () => {
+  const [isPopupOpenRank, setIsPopupOpenRank] = useState(false);
+  const [selectedRank, setSelectedRank] = useState();
   const [selectedImages, setSelectedImages] = useState([]);
   const [gameNick, setGameNick] = useState();
+  const { teamId } = useParams();
   const [gameData, setGameData] = useState({
     name: "",
     positions_code: [],
     heroes: [],
+    rank: "",
   });
   const [butActive, setButACtive] = useState(true);
   const [selectedHero, setSelectedHero] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
-
+  console.log(gameData);
 
   const data = useContext(ApiDataContext);
   useEffect(() => {
-    setGameData({ ...gameData, positions_code: code_positions(selectedImages) });
+    setGameData({
+      ...gameData,
+      positions_code: code_positions(selectedImages),
+    });
   }, [selectedImages]);
 
   useEffect(() => {
@@ -38,7 +47,7 @@ const CreateProfileGame = () => {
   }, [selectedHero]);
 
   useEffect(() => {
-    if (gameData.name && gameData.positions_code!=0) {
+    if (gameData.name && gameData.positions_code != 0) {
       setButACtive(false);
     } else {
       setButACtive(true);
@@ -81,36 +90,76 @@ const CreateProfileGame = () => {
   const code_positions = (positions) => {
     let result = 0;
     for (let i = 0; i < positions.length; ++i) {
-       result |= 1 << (positions[i] - 1)
+      result |= 1 << (positions[i] - 1);
     }
-    return result
-}
+    return result;
+  };
+  console.log(data?.access);  
   function handleSend() {
-    axios.post(
-      `${import.meta.env.VITE_BASE_API_URL}/api/game_profiles/create`,
-      gameData,
-      {
-        headers: {
-          Authorization: `Bearer ${data?.access}`,
+    axios
+      .post(
+        `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/add_stub`,
+        {
+          search_team_id: teamId,
+          stub: gameData,
         },
-      }
-    ).then(function (response) {
-    console.log(response);
-  })
-  }
 
+        {
+          headers: {
+            Authorization: `Bearer ${data.access}`,
+          },
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      });
+  }
+  function handleClickRank() {
+    setIsPopupOpenRank(!isPopupOpenRank);
+  }
+  function handleSelectRank(rank) {
+    setSelectedRank(rank);
+    setGameData({ ...gameData, rank: rank.name });
+  }
   return (
     <div className="createProfile">
-      <div className="title">Создание профиля</div>
+      <div className="title">Добавление игрока в команду</div>
+
       <label className="sup">
-        Название игрового профиля <p className="star">*</p>
+        Никнейм игрока <p className="star">*</p>
       </label>
-      <input
-        id="gameProfileName"
-        className="input"
-        value={gameNick}
-        onChange={(e) => setGameNick(e.target.value)}
-      />
+      <div className="studHeader">
+        <input
+          id="gameProfileName"
+          className="inputStud"
+          value={gameNick}
+          onChange={(e) => setGameNick(e.target.value)}
+        />
+        <div className="rankStud" onClick={handleClickRank}>
+          <label className="helpLable">Ранг</label>
+          <div className="country-item">
+            <img src={selectedRank?.url} className="rankImg" />
+          </div>
+          <img src={popupOpen} className="popupOpen" />
+          <div
+            className="popup__content"
+            style={{ display: isPopupOpenRank ? "block" : "none" }}
+          >
+            {ranks.map((ranks, index) => (
+              <div
+                key={index}
+                name={ranks.name}
+                onClick={() => {
+                  handleSelectRank(ranks);
+                }}
+                className="country-item"
+              >
+                <img src={ranks.url} className="rankImg" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       <label className="sup">
         Игровые позиции <p className="star">*</p>
       </label>
@@ -197,7 +246,7 @@ const CreateProfileGame = () => {
         )}
         <div>
           {selectedOptions.map((hero) => (
-            <img src={hero.url} className="selectedHero" key={hero.name}/>
+            <img src={hero.url} className="selectedHero" key={hero.name} />
           ))}
         </div>
       </div>
@@ -207,13 +256,14 @@ const CreateProfileGame = () => {
           className="createBut confirm"
           disabled={butActive}
         >
-            {butActive ?   <p>Сохранить</p>:
-             <a href="/profile">Сохранить</a>}
+          {butActive ? <p>Сохранить</p> : <a href="/Find">Сохранить</a>}
         </button>
-        <a href="/profile"><button className="createBut" children={<>Отменить</>} /></a>
+        <a href="/Find">
+          <button className="createBut" children={<>Отменить</>} />
+        </a>
       </div>
     </div>
   );
 };
 
-export default CreateProfileGame;
+export default AddStud;

@@ -19,6 +19,9 @@ import { ApiDataContext } from "../../context/ApiDataContext";
 import Member from "../Command/Member";
 import { heroes } from "../../utils/dotaHero";
 import { ranks } from "../../utils/Ranks";
+import UserModal from "../Command/UserModal";
+import { ChangeModal } from "./ChangeModal";
+import useSse from "../hook/UseSse";
 
 const CommandFind = (profile) => {
   const [open, setOpen] = useState(false);
@@ -31,6 +34,7 @@ const CommandFind = (profile) => {
     profile.command.owner_game_profile.positions_code
   );
   const [position, setPosition] = useState([]);
+
   function handleDelete() {
     axios
       .delete(
@@ -45,8 +49,11 @@ const CommandFind = (profile) => {
       )
       .then(function (response) {
         console.log(response);
+        window.location.reload();
       });
   }
+
+  
 
   useEffect(() => {
     for (let i = 0; i < decode.length; i++) {
@@ -139,13 +146,9 @@ const CommandFind = (profile) => {
     heroes,
     profile.command.owner_game_profile.heroes
   );
-  const params = {
-    params: {
-      search_team_id: profile.command._id,
-    },
-  };
+ 
   const [token, setToken] = useState()
-  function InviteToken() {
+  useEffect(()=> {
     axios({
       method: "get",
       url: `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/invite_token`,
@@ -158,8 +161,8 @@ const CommandFind = (profile) => {
     }).then(function (response) {
       setToken(response.data.response);
     });
-  }
-  InviteToken();
+  },[data])
+
   const shareData = {
     title: "YOUNITE",
     text: "Вас пригласили в команду!",
@@ -168,9 +171,30 @@ const CommandFind = (profile) => {
   const handleShare = () => {
     navigator.share(shareData);
   };
+  function handleRemove() {
 
+    if (data) {
+      axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${id}/remove_member`,{
+        game_profile_id: profile._id
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${data.access}`,
+          },
+        }
+      )
+        .then((response) => {
+          console.log(response.data);
+          window.location.reload();
+        });
+    }
+  }
+  const [openModal, setOpenModal] = useState(false)
+  const [openChangeModal,setOpenChangeModal] = useState(false)
   return (
     <div className="command">
+      {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
+        {openModal && <UserModal profile={profile.command} setOpenModal={setOpenModal}/>}
       <div className="command-container">
         <div className="nicknameCommand">
           {profile.command.name}{" "}
@@ -204,22 +228,22 @@ const CommandFind = (profile) => {
             />
             {edit && <hr className="descriptionHR" />}
           </div>
-          <div className="teammates">
+          <div className="teammates" >
             <div className="teammateRank">
-              <img src={UserRank} alt="" className="teammateRankImg" />
+              <img src={UserRank} alt="" className="teammateRankImg" onClick={()=> setOpenModal(true)}/>
             </div>
             <div className="teammateInfo">
               <div className="">
-                <div className="teammateName">
+                <div className="teammateName" onClick={()=> setOpenModal(true)}>
                   {profile.command.owner_game_profile.name}{" "}
                   <img src={owner} alt="" />{" "}
                 </div>
                 <div className="redact">
-                  <img src={trash} alt="" />
+                  {profile.command.owner_game_profile.is_you ? <img src={pen} onClick={()=>{setOpenChangeModal(!openChangeModal)}} /> : <img src={trash} onClick={handleRemove}/>}
                 </div>
               </div>
               <img src={line} className="teammatesHr" />
-              <div className="teammeteHeroes">
+              <div className="teammeteHeroes" onClick={()=> setOpenModal(true)}>
                 {heroesUrl.map((url) => (
                   <img src={url} className="teammeteHeroe" />
                 ))}
@@ -230,17 +254,17 @@ const CommandFind = (profile) => {
               </div>
             </div>
           </div>
-          {profile.command.members_game_profiles.map((profile, id) => (
-            <Member profile={profile} id={id} />
+          {profile.command.members_game_profiles.map((member, id) => (
+            <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal}/>
           ))}
           <div className="pagButtons">
-            <img src={gosearch} className="pagButton" />
+            <a href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton" onClick={()=>useSse(profile.command._id)}/></a>
             <img
               src={sharebutton}
               className="pagButtonfind"
               onClick={handleShare}
             />
-            <img src={add} className="pagButtonfind" />
+            <a href={`/addStud/${profile.command._id}`}><img src={add} className="pagButtonfind" /></a>
             <img src={trash} className="trash" onClick={handleDelete} />
           </div>
         </div>

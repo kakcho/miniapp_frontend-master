@@ -11,17 +11,17 @@ import { ApiDataContext } from "../../context/ApiDataContext";
 const GameChoose = () => {
   const data = useContext(ApiDataContext);
   const [user, setUser] = useState();
-
-
+  console.log(window.Telegram.WebApp)
+  console.log(data)
   useEffect(() => {
     if (data) {
       axios
         .request({
           headers: {
-            Authorization: `Bearer ${data?.access}`
+            Authorization: `Bearer ${data.access}`
           },
           method: "GET",
-          url: `${import.meta.env.VITE_BASE_API_URL}/api/users/current/`,
+          url: `${import.meta.env.VITE_BASE_API_URL}/api/users/current`,
         })
         .then((response) => {
           setUser(response.data);
@@ -30,12 +30,12 @@ const GameChoose = () => {
   }, [data]);
 
 
-  return (
+  if (user){return (
     <div className="GameChoose">
       <h1 className="title">Выбрать игру</h1>
       <div className="games">
         <a
-          href={user?.response.is_profile_filled? "/profile" : "/createprofile"}
+          href={user?.response.is_profile_filled ? "/profile" : "/createprofile"}
           className="game complete"
         >
           <img src={dota} alt="" />
@@ -54,7 +54,7 @@ const GameChoose = () => {
         </div>
       </div>
     </div>
-  );
+  );}
 };
 
 export default GameChoose;

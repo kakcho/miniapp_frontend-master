@@ -9,6 +9,7 @@ import add from '../../assets/add.svg'
 import CommandItem from './CommandItem'
 import { ApiDataContext } from '../../context/ApiDataContext'
 import axios from 'axios'
+import UserModal from './UserModal'
 
 
 
@@ -48,7 +49,7 @@ const Command = () => {
           setProfiles(response.data);
         });
     }
-  }, [data]);
+  }, [data, openModal]);
 
   function handleClick(event) {
       setOpenModal(false)
@@ -56,6 +57,7 @@ const Command = () => {
 
  if(command){ return (
     <div className='findContainer'  >
+
       <div onClick={()=>{setOpenModal(false)}}>
       <Header title={'Поиск'}/>
 

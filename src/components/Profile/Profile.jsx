@@ -14,6 +14,7 @@ import pag from '../../assets/pag.svg'
 import linetop from '../../assets/Linetop.svg'
 import GameProfileInfo from "./GameProfileInfo";
 import addcomand from '../../assets/addComand.svg'
+import UserModal from "../Command/UserModal";
 
 const CreateProfile = () => {
   const data = useContext(ApiDataContext);
@@ -157,10 +158,16 @@ const CreateProfile = () => {
         setUserData({...userData, steam_id: newValue})
       } 
   }}
-
+  function handleAgeChange(event) {
+    const newValue = event.target.value;
+    if (/^\d+$/.test(newValue)) {
+      setUserData({...userData, age: newValue});
+    }
+   }
   if (!loading) {
     return (
       <div className="createProfile profile">
+
         <Header title={"Профиль"} />
         <input
           type="text"
@@ -238,7 +245,7 @@ const CreateProfile = () => {
             placeholder="Возраст"
             className="ageCreate"
             value={userData?.age}
-            onChange={(e) => {setUserData({...userData, age: e.target.value})}}
+            onChange={handleAgeChange}
             onBlur={handleBlur}
           />{" "}
         </div>

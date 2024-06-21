@@ -59,7 +59,7 @@
 
 .input:focus {
     outline: none;
-    border: 2px solid #8E8BFF;
+    outline: 2px solid #8E8BFF;
 }
 
 .position {

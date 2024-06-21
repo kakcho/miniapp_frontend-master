@@ -99,12 +99,12 @@ const GameProfile = () => {
   }, [selectedHero]);
 
   useEffect(() => {
-    if (gameData.name && gameData.positions_code) {
+    if (gameNick && selectedImages) {
       setButACtive(false);
     } else {
       setButACtive(true);
     }
-  }, [gameData.name, gameData.positions_code]);
+  }, [gameNick, selectedImages]);
   const handleSelectImage = (id) => {
     if (selectedImages.includes(id)) {
       // Если изображение уже выбрано, удаляем его из списка выбранных

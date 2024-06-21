@@ -22,8 +22,11 @@ import { ranks } from "../../utils/Ranks";
 import callGame from "../../assets/CallGame.svg";
 import exit from "../../assets/exit.svg";
 import VolumeUp from "../../assets/VolumeUp.svg";
+import UserModal from "./UserModal";
+
 
 const CommandItem = (profile) => {
+
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState(
@@ -48,11 +51,27 @@ const CommandItem = (profile) => {
       )
         .then((response) => {
           console.log(response.data);
+          window.location.reload();
         });
     }
   }
-
+  function handleDelete() {
+    if (data) {
+      axios.delete(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${profile.command._id}/delete`, null,
+        {
+          headers: {
+            Authorization: `Bearer ${data.access}`,
+          },
+        }
+      )
+        .then((response) => {
+          console.log(response.data);
+          window.location.reload();
+        });
+    }
+  }
   useEffect(() => {
+
     for (let i = 0; i < decode.length; i++) {
       const element = decode[i];
       switch (element) {
@@ -145,8 +164,12 @@ const CommandItem = (profile) => {
     profile.command.owner_game_profile.heroes
   );
   console.log(profile)
+  const [openModal, setOpenModal] = useState(false)
   return (
+    <>          
     <div className="command">
+
+              {openModal && <UserModal profile={profile.command} setOpenModal={setOpenModal}/>}
       <div className="command-container">
         <div className="nicknameCommand">
           {profile.command.name}{" "}
@@ -182,22 +205,22 @@ const CommandItem = (profile) => {
           </div>
           <div className="teammates">
             <div className="teammateRank">
-              <img src={UserRank} alt="" className="teammateRankImg" />
+              <img src={UserRank} alt="" className="teammateRankImg" onClick={()=> setOpenModal(true)}/>
             </div>
             <div className="teammateInfo">
               <div className="">
-                <div className="teammateName">
+                <div className="teammateName" onClick={()=> setOpenModal(true)}>
                   {profile.command.owner_game_profile.name}{" "}
                   <img src={owner} alt="" />{" "}
                 </div>
                 <div className="redact">
-                  <img src={trash} alt="" />
+                {profile.command.owner_game_profile.is_you ?   <img src={pen}/>: <img src={trash} />}
                 </div>
               </div>
               <img src={line} className="teammatesHr" />
-              <div className="teammeteHeroes">
+              <div className="teammeteHeroes"  onClick={()=> setOpenModal(true)}>
                 {heroesUrl.map((url) => (
-                  <img src={url} className="teammeteHeroe" />
+                  <img src={url} className="teammeteHeroe"/>
                 ))}
                 {heroesUrl[0] && <img src={linetop} alt="" />}
                 {position.map((url) => (
@@ -207,7 +230,7 @@ const CommandItem = (profile) => {
             </div>
           </div>
           {profile.command.members_game_profiles.map((profile, id) => (
-            <Member profile={profile} id={id} />
+            <Member profile={profile} id={profile._id} setOpenModal={setOpenModal}/>
           ))}
           <div className="pagButtons">
             <img src={callGame} className="pagButton" />
@@ -220,7 +243,8 @@ const CommandItem = (profile) => {
           </div>
         </div>
       )}
-    </div>
+
+    </div></>
   );
 };
 

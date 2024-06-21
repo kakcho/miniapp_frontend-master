@@ -102,6 +102,12 @@ const CreateProfile = ({title}) => {
       }
     }
   }
+  function handleAgeChange(event) {
+    const newValue = event.target.value;
+    if (/^\d+$/.test(newValue)) {
+      setAge(newValue);
+    }
+   }
   return (
     <div className="createProfile">
       <Header title={"Заполните свой профиль"} />
@@ -184,9 +190,7 @@ const CreateProfile = ({title}) => {
           placeholder="Возраст"
           className="ageCreate"
           value={age}
-          onChange={(e) => {
-            setAge(e.target.value);
-          }}
+          onChange={handleAgeChange}
         />{" "}
       </div>
       <input
