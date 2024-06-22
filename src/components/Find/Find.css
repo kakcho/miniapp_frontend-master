@@ -54,7 +54,7 @@
     border-bottom-right-radius: 30px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
     z-index: 1000;
 }
 
