@@ -22,7 +22,7 @@ export function handleUrlParams() {
             });
         }
       }, [data]);
-    if (location.search) {
+    if (location.search && gameProfiles) {
         const token = location.search.split("_").at(-1 )
     axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/join`,{
         invite_token: token,
