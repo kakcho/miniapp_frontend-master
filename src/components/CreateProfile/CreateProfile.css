@@ -35,7 +35,7 @@
     display: flex;
     min-height: 50px;
     align-items: center;
-    overflow: scroll;
+    overflow: auto;
     max-height: 300px;
     flex-direction: column;
     z-index: 5;

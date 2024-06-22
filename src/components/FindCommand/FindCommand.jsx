@@ -13,14 +13,18 @@ const FindCommand = () => {
   const { CommandId } = useParams();
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState();
+  const [info, setInfo] = useState();
 
+  useSse(CommandId)
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/team_info`, {
-      headers: {
-        Authorization: `Bearer ${data?.access}`
-      },
-    }).then((res)=> console.log(res));
-  }, [data]);
+    axios
+      .get(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/team_info`, {
+        headers: {
+          Authorization: `Bearer ${data?.access}`,
+        },
+      })
+      .then((res) => setInfo(res.data.response));
+  }, [useSse]);
 
   useEffect(() => {
     if (data) {
@@ -205,7 +209,8 @@ const FindCommand = () => {
           {pickedCommand?.members_game_profiles.length + 1}
         </div>
         <div className="FindCommandBlockAge">
-          <img src={age} className="FindCommandPeople" />- 18
+          <img src={age} className="FindCommandPeople" />-{" "}
+          {info ? info.average_age : "?"}
         </div>
         <div className="FindCommandBlockRang">
           {minRankUrl == maxRankUrl ? (
@@ -220,7 +225,7 @@ const FindCommand = () => {
         <div className="FindContentImg" />
       </div>
       <div className="FindCancel">
-        <a href="/Find" className="aFind">
+        <a  className="aFind">
           {" "}
           Отмена
         </a>

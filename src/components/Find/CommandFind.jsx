@@ -191,6 +191,7 @@ const CommandFind = (profile) => {
   }
   const [openModal, setOpenModal] = useState(false)
   const [openChangeModal,setOpenChangeModal] = useState(false)
+
   return (
     <div className="command">
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
@@ -258,7 +259,7 @@ const CommandFind = (profile) => {
             <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal}/>
           ))}
           <div className="pagButtons">
-            <a href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton" onClick={()=>useSse(profile.command._id)}/></a>
+            <a href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton"/></a>
             <img
               src={sharebutton}
               className="pagButtonfind"

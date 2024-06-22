@@ -180,7 +180,7 @@ const CreateProfile = () => {
           required
           onBlur={handleBlur}
         />
-        <div className="popup" onClick={handleClick}>
+        <div className="popup" style={{overflow: 'hidden'}} onClick={handleClick}>
           <label className="helpLable">Страна</label>
           <div className="country-item contary">{selectedCountry}</div>
           <img src={popupOpen} className="popupOpen" />

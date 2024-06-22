@@ -7,12 +7,12 @@ import MobileLegens from "../../assets/MobileLegens.svg";
 import CS2 from "../../assets/CS2.svg";
 import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
+import { handleUrlParams } from "../hook/UrlParams";
 
 const GameChoose = () => {
+  console.log(handleUrlParams())
   const data = useContext(ApiDataContext);
   const [user, setUser] = useState();
-  console.log(window.Telegram.WebApp)
-  console.log(data)
   useEffect(() => {
     if (data) {
       axios
