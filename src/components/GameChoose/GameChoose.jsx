@@ -10,9 +10,9 @@ import { ApiDataContext } from "../../context/ApiDataContext";
 import { handleUrlParams } from "../hook/UrlParams";
 
 const GameChoose = () => {
-  console.log(handleUrlParams())
+  handleUrlParams()
   const data = useContext(ApiDataContext);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(); 
   useEffect(() => {
     if (data) {
       axios
