@@ -77,8 +77,9 @@
     
 }
 .FindCommandBlockRangImg{
+    height: 30px;
 
-margin-top: 5px;
+padding: 5px;
 }
 .FindCancel{
     width: 160px;

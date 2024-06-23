@@ -21,7 +21,7 @@ import { heroes } from "../../utils/dotaHero";
 import { ranks } from "../../utils/Ranks";
 import UserModal from "../Command/UserModal";
 import { ChangeModal } from "./ChangeModal";
-import useSse from "../hook/UseSse";
+
 
 const CommandFind = (profile) => {
   const [open, setOpen] = useState(false);
@@ -195,7 +195,7 @@ const CommandFind = (profile) => {
   return (
     <div className="command">
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
-        {openModal && <UserModal profile={profile.command} setOpenModal={setOpenModal}/>}
+        {openModal && <UserModal profile={profile.command.owner_game_profile} setOpenModal={setOpenModal}/>}
       <div className="command-container">
         <div className="nicknameCommand">
           {profile.command.name}{" "}
@@ -256,7 +256,7 @@ const CommandFind = (profile) => {
             </div>
           </div>
           {profile.command.members_game_profiles.map((member, id) => (
-            <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal}/>
+            <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} setOpen={setOpenModal}/>
           ))}
           <div className="pagButtons">
             <a href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton"/></a>

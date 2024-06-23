@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { ApiDataContext } from "../../context/ApiDataContext";
 import axios from "axios";
 import { ranks } from "../../utils/Ranks";
-import useSse from "../hook/UseSse";
+import {useSse} from "../hook/UseSse";
 
 const FindCommand = () => {
   const { CommandId } = useParams();
@@ -15,16 +15,25 @@ const FindCommand = () => {
   const [command, setCommand] = useState();
   const [info, setInfo] = useState();
 
-  useSse(CommandId)
+  const {start_search, closeSSE} = useSse(CommandId)
+
+
+  
+  useEffect(()=>{
+    start_search()
+  },[data])
   useEffect(() => {
-    axios
+    setTimeout(() => {
+      axios
       .get(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/team_info`, {
         headers: {
           Authorization: `Bearer ${data?.access}`,
         },
       })
       .then((res) => setInfo(res.data.response));
-  }, [useSse]);
+    }, 1000);
+   
+  }, [data]);
 
   useEffect(() => {
     if (data) {
@@ -52,7 +61,7 @@ const FindCommand = () => {
   const id = CommandId;
 
   const pickedCommand = findCommandByid(command, CommandId);
-
+ 
   function calculateAverageAge(array1, owner) {
     // Суммируем все возраста из обоих массивов
     let totalAges = 0;
@@ -67,29 +76,43 @@ const FindCommand = () => {
 
     return averageAge;
   }
-
+  
   function findMaxRank() {
-    const maxRank = Math.max(
-      pickedCommand?.members_game_profiles.map((person) =>
-        peopleRankToNumber(person.rank)
-      ),
-      peopleRankToNumber(pickedCommand?.owner_game_profile.rank)
-    );
-    return maxRank;
+
+    if (pickedCommand) {
+      const maxRank = Math.max(
+        ...pickedCommand?.members_game_profiles.map((person) =>
+          peopleRankToNumber(person.rank)
+        ),
+        peopleRankToNumber(pickedCommand?.owner_game_profile.rank)
+      );
+      if (maxRank == 0) {
+        return peopleRankToNumber(pickedCommand?.owner_game_profile.rank);}
+      return maxRank;
+    }
+
+
+
   }
 
   // Функция для нахождения миниpeopleRankToNumber(pickedCommand?.owner_game_profile.rank)мального звания
   function findMinRank() {
-    const minRank = Math.min(
-      pickedCommand?.members_game_profiles.map((person) =>
-        peopleRankToNumber(person.rank)
-      ),
-      peopleRankToNumber(pickedCommand?.owner_game_profile.rank)
-    );
-    if (minRank == 0) {
-      return peopleRankToNumber(pickedCommand?.owner_game_profile.rank);
+    if (pickedCommand) {
+      const minRank = Math.min(
+        ...pickedCommand?.members_game_profiles.map((person) =>
+          peopleRankToNumber(person.rank)
+        ),
+        peopleRankToNumber(pickedCommand?.owner_game_profile.rank)
+      );
+            if (minRank == 0) {
+        return peopleRankToNumber(pickedCommand?.owner_game_profile.rank);}
+      return minRank;
+
     }
-    return minRank;
+
+    
+
+
   }
 
   function peopleNumberToRank(rank) {
@@ -205,7 +228,7 @@ const FindCommand = () => {
       <p className="FindCommandName">{pickedCommand?.name}</p>
       <div className="FindCommandContent">
         <div className="FindCommandBlock">
-          <img src={people} className="FindCommandPeople" />-{" "}
+          <img src={people} className="FindCommandPeople" />-
           {pickedCommand?.members_game_profiles.length + 1}
         </div>
         <div className="FindCommandBlockAge">
@@ -224,8 +247,8 @@ const FindCommand = () => {
         </div>
         <div className="FindContentImg" />
       </div>
-      <div className="FindCancel">
-        <a  className="aFind">
+      <div className="FindCancel" onClick={closeSSE}>
+        <a href="/Find" className="aFind">
           {" "}
           Отмена
         </a>

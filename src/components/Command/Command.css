@@ -60,7 +60,7 @@
 .userModalDescription{
     background-color: #fff;
     width: 90%;
-    height: 80px;
+    max-height: 80px;
     margin-top: 25px;
     border-radius: 15px;
     color: black;
@@ -70,8 +70,12 @@
     overflow: scroll;
     padding: 10px;
 }
-.userModalInfo{
+.userModalInfoContainer{
     width: 90%;
+    margin-top: 20px;
+}
+.userModalInfo{
+    width: 100%;
     background-color: #fff;
     margin-top: 12px;
     height: 34px;
