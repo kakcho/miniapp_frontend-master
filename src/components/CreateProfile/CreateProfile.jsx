@@ -104,9 +104,12 @@ const CreateProfile = ({title}) => {
   }
   function handleAgeChange(event) {
     const newValue = event.target.value;
-    if (/^\d+$/.test(newValue)) {
-      setAge(newValue);
+    if (newValue.length < 3) {
+      if (/^\d+$/.test(newValue)  ||  "" == newValue) {
+        setAge(newValue);
+      }
     }
+    
    }
   return (
     <div className="createProfile">
