@@ -22,6 +22,7 @@ const FindCommand = () => {
   useEffect(()=>{
     start_search()
   },[data])
+
   useEffect(() => {
     setTimeout(() => {
       axios
@@ -31,7 +32,7 @@ const FindCommand = () => {
         },
       })
       .then((res) => setInfo(res.data.response));
-    }, 1000);
+    }, 1500);
    
   }, [data]);
 

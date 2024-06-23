@@ -4,10 +4,10 @@ import { EventSource } from "extended-eventsource";
 
 export const useSse = (searchID) => {
   const data = useContext(ApiDataContext);
-  const [message, setMessage] = useState(null);
+  const [events, setEvents] = useState([]); // Массив для хранения полученных событий
   const [sseConnection, setSSEConnection] = useState();
-  
-	function start_search(stop) {
+
+  function start_search() {
     if (data) {
       const event_sourse = new EventSource(
         `${
@@ -17,23 +17,26 @@ export const useSse = (searchID) => {
           headers: {
             Authorization: `Bearer + ${data?.access}`,
           },
-        })
-        setSSEConnection(event_sourse)
+        }
+      )
+      event_sourse.onmessage= (event)=>{
+        if (event.data.includes('confirmation')) {
+          // Добавляем событие в массив
+          setEvents((prevEvents) => [...prevEvents, event]);
+        }}
+      setSSEConnection(event_sourse);
     }
   }
-    
+
   const closeSSE = () => {
     if (sseConnection) {
       sseConnection.close();
       setSSEConnection(null);
-      console.log(sseConnection)
+      console.log(sseConnection);
     }
   };
 
-    
-	
+  
 
-  return {start_search, closeSSE};
-};
-
-
+  return { start_search, closeSSE};
+}
