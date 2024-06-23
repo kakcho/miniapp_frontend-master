@@ -233,7 +233,7 @@ const FindCommand = () => {
         </div>
         <div className="FindCommandBlockAge">
           <img src={age} className="FindCommandPeople" />-{" "}
-          {info ? info.average_age : "?"}
+          {info?.average_age ? info.average_age : "?"}
         </div>
         <div className="FindCommandBlockRang">
           {minRankUrl == maxRankUrl ? (
