@@ -24,15 +24,18 @@ const FindCommand = () => {
   },[data])
 
   useEffect(() => {
-    setTimeout(() => {
-      axios
-      .get(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/team_info`, {
-        headers: {
-          Authorization: `Bearer ${data?.access}`,
-        },
-      })
-      .then((res) => setInfo(res.data.response));
-    }, 1500);
+    if (data) {
+      setTimeout(() => {
+        axios
+        .get(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/team_info`, {
+          headers: {
+            Authorization: `Bearer ${data.access}`,
+          },
+        })
+        .then((res) => setInfo(res.data.response));
+      }, 1500);
+    }
+  
    
   }, [data]);
 

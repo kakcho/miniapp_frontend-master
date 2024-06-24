@@ -18,7 +18,7 @@ export const useSse = (searchID) => {
         }/api/search_engine/search_stream?search_team_id=${searchID}`,
         {
           headers: {
-            Authorization: `Bearer + ${data?.access}`,
+            Authorization: `Bearer + ${data.access}`,
           },
         }
       )
