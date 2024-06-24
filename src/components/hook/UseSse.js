@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { ApiDataContext } from "../../context/ApiDataContext";
 import { EventSource } from "extended-eventsource";
+import { useNavigate } from "react-router-dom";
+
 
 export const useSse = (searchID) => {
   const data = useContext(ApiDataContext);
   const [events, setEvents] = useState([]); // Массив для хранения полученных событий
   const [sseConnection, setSSEConnection] = useState();
+  const navigate = useNavigate();
 
   function start_search() {
     if (data) {
@@ -19,11 +22,10 @@ export const useSse = (searchID) => {
           },
         }
       )
-      event_sourse.onmessage= (event)=>{
-        if (event.data.includes('confirmation')) {
-          // Добавляем событие в массив
-          setEvents((prevEvents) => [...prevEvents, event]);
-        }}
+      event_sourse.addEventListener('confirmation', (event)=>{
+        const data = JSON.parse(event.data)
+        navigate('/commandMerge', { state: { data: data } })
+      })
       setSSEConnection(event_sourse);
     }
   }

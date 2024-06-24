@@ -62,21 +62,7 @@ const FindCommand = () => {
   const id = CommandId;
 
   const pickedCommand = findCommandByid(command, CommandId);
- 
-  function calculateAverageAge(array1, owner) {
-    // Суммируем все возраста из обоих массивов
-    let totalAges = 0;
-    array1.forEach((item) => (totalAges += item.age));
-    totalAges += owner.age;
 
-    // Вычисляем общий размер выборки (количество элементов в обоих массивах)
-    const totalCount = array1.length + 1;
-
-    // Вычисляем средний возраст
-    const averageAge = totalAges / totalCount;
-
-    return averageAge;
-  }
   
   function findMaxRank() {
 

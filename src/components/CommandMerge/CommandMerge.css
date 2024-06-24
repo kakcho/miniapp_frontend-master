@@ -1,0 +1,59 @@
+.CommandMergeTime{
+    position: absolute;
+    bottom: 20px;
+    font-size: 42px;
+    font-weight: bold;
+}
+.CommandMergeDescriptionTitle{
+    display: flex;
+    position: absolute;
+    left: 40px;
+    bottom: 210px;
+    font-weight: 700;
+    font-size: 16px;
+}
+.CommandMergeDescription{
+    display: flex;
+    position: absolute;
+    width: calc(100% - 80px);
+    height: 90px;
+    overflow: auto;
+    text-wrap: wrap;
+    bottom: 110px;
+}
+.CommandMergeButtons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 60px;
+}
+.CommandMergeButton{
+    display: flex;
+    align-items: center;
+}
+.CommandMergeButtonAdd{
+    height: 35px;
+    padding: 10px;
+}
+.CommandMergeHeroes{
+    height: 200px;
+    width: 70px;
+    top: 240px;
+    background-color: #E3E4ED;
+    position: absolute;
+    left: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.CommandMergePosition{
+    height: 200px;
+    width: 70px;
+    top: 240px;
+    background-color: #E3E4ED;
+    position: absolute;
+    right: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}

@@ -41,7 +41,7 @@
     display: flex;
     float:inline-end;
     margin-right: 40px;
-    margin-top: 40px;
+    margin-top: 25px;
     align-items: center;
     justify-content: center;
 }
@@ -53,7 +53,7 @@
    display: flex;
     float:inline-start;
     margin-left: 40px;
-    margin-top: 40px;
+    margin-top: 25px;
     justify-content: center;
     align-items: center;
 }

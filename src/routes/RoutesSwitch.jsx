@@ -11,6 +11,7 @@ import GameProfile from '../components/GameProfile/GameProfile'
 import Command from "../components/Command/Command";
 import FindCommand from '../components/FindCommand/FindCommand'
 import AddStud from '../components/AddStud/AddStud'
+import CommandMerge from '../components/CommandMerge/CommandMerge'
 
 
 const RoutesSwitch = () => {
@@ -26,6 +27,7 @@ const RoutesSwitch = () => {
         <Route path='/command' element={<Command/>}/>
         <Route path='/FindCommand/:CommandId' element={<FindCommand/>}/>
         <Route path='/addStud/:teamId' element={<AddStud/>}/>
+        <Route path='/commandMerge' element={<CommandMerge/>}/>
     </Routes>
   )
 }
