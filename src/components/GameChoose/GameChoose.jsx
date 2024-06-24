@@ -35,7 +35,7 @@ const GameChoose = () => {
       <h1 className="title">Выбрать игру</h1>
       <div className="games">
         <a
-          href={user?.response.is_profile_filled ? "/profile" : "/createprofile"}
+          href={user.response.is_profile_filled ? "/profile" : "/createprofile"}
           className="game complete"
         >
           <img src={dota} alt="" />

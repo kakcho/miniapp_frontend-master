@@ -10,6 +10,7 @@ import CommandItem from './CommandItem'
 import { ApiDataContext } from '../../context/ApiDataContext'
 import axios from 'axios'
 import UserModal from './UserModal'
+import { useSse } from '../hook/UseSse'
 
 
 
@@ -18,6 +19,7 @@ const Command = () => {
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
   const [profiles, setProfiles] = useState()
+  const { confirm } = useSse()
   useEffect(() => {
     if (data) {
       axios
@@ -61,15 +63,17 @@ const Command = () => {
       <div onClick={()=>{setOpenModal(false)}}>
       <Header title={'Поиск'}/>
 
-      <div className="sup Finder">Ваши команды</div>
-      <div className="containerCommandBLock" >
+
+     {confirm ? <>
+           <div className="sup Finder">Ваши команды</div>
+           <div className="containerCommandBLock" >
       {command.response.map((profile)=>(
         <CommandItem command={profile}/>
       ))}
+</div></> : <div className="commandError">У вас нет активных команд</div>}
+
 </div>
-</div>
-        <img src={add} className='addComandIcon' onClick={()=>{setOpenModal(true)}}/>
-        {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
+
         
       <Bar/>
     </div>

@@ -58,7 +58,7 @@ const Find = () => {
 
   return (
     <div className='findContainer'>
-
+      <div onClick={()=> setOpenModal(false)}>
       <Header title={'Поиск'}/>
       <div className="sup Finder">Ваши команды</div>
       <div className="containerCommandBLock" >
@@ -66,7 +66,7 @@ const Find = () => {
         <CommandFind command={profile}/>
       ))}
 </div>
-
+</div>
         <img src={add} className='addComandIcon' onClick={handleClick}/>
         {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
         

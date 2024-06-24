@@ -66,9 +66,7 @@ const CreateProfile = ({title}) => {
           },
         }
       )
-      .then( (response) => {
-        console.log( response ) ;
-      } )
+     
   }
 
 
@@ -97,7 +95,6 @@ const CreateProfile = ({title}) => {
     if (newValue.length <= 17) {
       // Проверяем, что все символы в строке являются цифрами
       if (/^\d+$/.test(newValue) ||  "" == newValue) {
-        console.log(newValue)
         setSteamId(newValue);
       }
     }

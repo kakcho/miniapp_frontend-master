@@ -28,7 +28,7 @@ const AddStud = () => {
   const [butActive, setButACtive] = useState(true);
   const [selectedHero, setSelectedHero] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  console.log(gameData);
+
 
   const data = useContext(ApiDataContext);
   useEffect(() => {
@@ -94,8 +94,8 @@ const AddStud = () => {
     }
     return result;
   };
-  console.log(data?.access);  
   function handleSend() {
+
     axios
       .post(
         `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/add_stub`,
@@ -110,9 +110,6 @@ const AddStud = () => {
           },
         }
       )
-      .then(function (response) {
-        console.log(response);
-      });
   }
   function handleClickRank() {
     setIsPopupOpenRank(!isPopupOpenRank);
@@ -253,10 +250,11 @@ const AddStud = () => {
       <div className="buttons">
         <button
           onClick={handleSend}
+
           className="createBut confirm"
           disabled={butActive}
         >
-          {butActive ? <p>Сохранить</p> : <a href="/Find">Сохранить</a>}
+          {butActive ? <p>Сохранить</p> : <a href="/Find" onClick={()=> setButACtive(true)}>Сохранить</a>}
         </button>
         <a href="/Find">
           <button className="createBut" children={<>Отменить</>} />

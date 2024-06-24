@@ -15,7 +15,7 @@ import { ranks } from "../../utils/Ranks";
 import { ChangeModal } from "../Find/ChangeModal";
 import UserModal from "./UserModal";
 
-const Member = ({ profile, id, setOpenModal }) => {
+const Member = ({ profile, id, setOpenModal, find }) => {
   const data = useContext(ApiDataContext);
   const decode = decode_positions(profile.positions_code);
   const [position, setPosition] = useState([]);
@@ -105,8 +105,8 @@ const Member = ({ profile, id, setOpenModal }) => {
 
   const [openModalInfo, setOpenModalInfo] = useState(false);
   return (
-    <div className="teammates">
-      {openModalInfo && (
+    true &&  ( <div className="teammates">
+      {openModalInfo && !find && (
         <UserModal profile={profile} setOpenModal={setOpenModalInfo} />
       )}
       <div className="teammateRank">
@@ -147,7 +147,7 @@ const Member = ({ profile, id, setOpenModal }) => {
           ))}
         </div>
       </div>
-    </div>
+    </div>)
   );
 };
 

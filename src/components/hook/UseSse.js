@@ -8,6 +8,7 @@ export const useSse = (searchID) => {
   const data = useContext(ApiDataContext);
   const [events, setEvents] = useState([]); // Массив для хранения полученных событий
   const [sseConnection, setSSEConnection] = useState();
+  const [confirm, setConfirm] = useState(false)
   const navigate = useNavigate();
 
   function start_search() {
@@ -25,6 +26,7 @@ export const useSse = (searchID) => {
       event_sourse.addEventListener('confirmation', (event)=>{
         const data = JSON.parse(event.data)
         navigate('/commandMerge', { state: { data: data } })
+        setConfirm(true)
       })
       setSSEConnection(event_sourse);
     }
@@ -40,5 +42,5 @@ export const useSse = (searchID) => {
 
   
 
-  return { start_search, closeSSE};
+  return { start_search, closeSSE, confirm};
 }

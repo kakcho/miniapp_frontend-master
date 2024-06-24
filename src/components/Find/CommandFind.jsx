@@ -19,7 +19,7 @@ import { ApiDataContext } from "../../context/ApiDataContext";
 import Member from "../Command/Member";
 import { heroes } from "../../utils/dotaHero";
 import { ranks } from "../../utils/Ranks";
-import UserModal from "../Command/UserModal";
+
 import { ChangeModal } from "./ChangeModal";
 
 
@@ -48,7 +48,6 @@ const CommandFind = (profile) => {
         }
       )
       .then(function (response) {
-        console.log(response);
         window.location.reload();
       });
   }
@@ -109,13 +108,8 @@ const CommandFind = (profile) => {
           },
         }
       )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    setOpenModal();
+
+
   }
   function findUserByName(users, heroes) {
     const heroesUrl = [];
@@ -184,18 +178,17 @@ const CommandFind = (profile) => {
         }
       )
         .then((response) => {
-          console.log(response.data);
           window.location.reload();
         });
     }
   }
-  const [openModal, setOpenModal] = useState(false)
+
   const [openChangeModal,setOpenChangeModal] = useState(false)
 
   return (
     <div className="command">
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
-        {openModal && <UserModal profile={profile.command.owner_game_profile} setOpenModal={setOpenModal}/>}
+
       <div className="command-container">
         <div className="nicknameCommand">
           {profile.command.name}{" "}
@@ -231,11 +224,11 @@ const CommandFind = (profile) => {
           </div>
           <div className="teammates" >
             <div className="teammateRank">
-              <img src={UserRank} alt="" className="teammateRankImg" onClick={()=> setOpenModal(true)}/>
+              <img src={UserRank} alt="" className="teammateRankImg"/>
             </div>
             <div className="teammateInfo">
               <div className="">
-                <div className="teammateName" onClick={()=> setOpenModal(true)}>
+                <div className="teammateName" >
                   {profile.command.owner_game_profile.name}{" "}
                   <img src={owner} alt="" />{" "}
                 </div>
@@ -244,7 +237,7 @@ const CommandFind = (profile) => {
                 </div>
               </div>
               <img src={line} className="teammatesHr" />
-              <div className="teammeteHeroes" onClick={()=> setOpenModal(true)}>
+              <div className="teammeteHeroes" >
                 {heroesUrl.map((url) => (
                   <img src={url} className="teammeteHeroe" />
                 ))}
@@ -256,7 +249,7 @@ const CommandFind = (profile) => {
             </div>
           </div>
           {profile.command.members_game_profiles.map((member, id) => (
-            <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} setOpen={setOpenModal}/>
+            <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
           ))}
           <div className="pagButtons">
             <a href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton"/></a>

@@ -123,9 +123,7 @@ const CreateProfile = () => {
           },
         }
       )
-      .then( (response) => {
-        console.log( response ) ;
-      } )
+
   }
 
 

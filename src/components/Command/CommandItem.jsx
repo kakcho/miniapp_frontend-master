@@ -33,7 +33,7 @@ const CommandItem = (profile) => {
     profile.command.description
   );
   const data = useContext(ApiDataContext);
-  console.log(data)
+
   const decode = decode_positions(
     profile.command.owner_game_profile.positions_code
   );
@@ -50,7 +50,6 @@ const CommandItem = (profile) => {
         }
       )
         .then((response) => {
-          console.log(response.data);
           window.location.reload();
         });
     }
@@ -65,7 +64,6 @@ const CommandItem = (profile) => {
         }
       )
         .then((response) => {
-          console.log(response.data);
           window.location.reload();
         });
     }
@@ -126,12 +124,6 @@ const CommandItem = (profile) => {
           },
         }
       )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
     setOpenModal();
   }
   function findUserByName(users, heroes) {
@@ -163,7 +155,7 @@ const CommandItem = (profile) => {
     heroes,
     profile.command.owner_game_profile.heroes
   );
-  console.log(profile)
+
   const [openModal, setOpenModal] = useState(false)
   return (
     <>          
@@ -232,16 +224,13 @@ const CommandItem = (profile) => {
           {profile.command.members_game_profiles.map((profile, id) => (
             <Member profile={profile} id={profile._id} setOpenModal={setOpenModal}/>
           ))}
-          <div className="pagButtons">
-            <img src={callGame} className="pagButton" />
-            <div className="purpleCurcle">
-              <img src={VolumeUp} className="pagButton" />
-            </div>
+
+
             <div className="purpleCurcle">
               <img src={exit} className="pagButton" onClick={handleLeave} />
             </div>
           </div>
-        </div>
+
       )}
 
     </div></>

@@ -6,7 +6,14 @@ import copy from '../../assets/Copy.svg'
 
 
 const UserModal = ({setOpenModal, profile}) => {
-  console.log(profile)
+  const [steamValue, setSteamValue] = useState('232')
+  const [discordValue, setDiscrodValue] = useState('2312432')
+  const handleCopySteam = () => {
+    navigator.clipboard.writeText(steamValue);
+}  
+const handleCopyDiscord = () => {
+  navigator.clipboard.writeText(steamValue);
+}  
   return (
     <div className="UserModal">
       <div className="userModalContent">
@@ -27,13 +34,13 @@ const UserModal = ({setOpenModal, profile}) => {
         <div className="userModalInfoContainer">
         <div className="userModalInfo">
             <img src={discord} className="userModalIcon" />
-            <p className="userModalInfoP">1215154153</p>
-            <img src={copy}  className="userModalInfoCopy"/>
+            <div className="userModalInfoP" >{steamValue}</div>
+            <a className="userModalInfoCopy"><img src={copy} onClick={handleCopySteam}   className="userModalInfoCopy"/></a>
             </div>
             <div className="userModalInfo">
             <img src={steam} className="userModalIcon" />
-            <p className="userModalInfoP">1215154153</p>
-            <img src={copy}  className="userModalInfoCopy"/>
+            <p className="userModalInfoP" >{discordValue}</p>
+            <a className="userModalInfoCopy"><img src={copy}  className="userModalInfoCopy"onClick={handleCopyDiscord} /></a> 
             </div>
       </div>
       </div>
