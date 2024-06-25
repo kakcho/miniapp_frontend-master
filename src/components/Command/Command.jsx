@@ -10,7 +10,7 @@ import CommandItem from './CommandItem'
 import { ApiDataContext } from '../../context/ApiDataContext'
 import axios from 'axios'
 import UserModal from './UserModal'
-import { useSse } from '../hook/UseSse'
+
 
 
 
@@ -19,7 +19,7 @@ const Command = () => {
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
   const [profiles, setProfiles] = useState()
-  const { confirm } = useSse()
+
   useEffect(() => {
     if (data) {
       axios

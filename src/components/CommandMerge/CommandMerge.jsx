@@ -1,20 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './CommandMerge.css'
 import people from "../../assets/peopl.svg";
 import age from "../../assets/Age.svg";
 import add from '../../assets/addComand.svg'
 import refresh from '../../assets/refresh.svg'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ApiDataContext } from '../../context/ApiDataContext';
 
 const CommandMerge = () => {
+  const { searchID } = useParams()
+  console.log(searchID)
   const location = useLocation()
   const dataCommand = location.state.data
   const data = useContext(ApiDataContext);
-
-
-   
+  const navigate = useNavigate()
+  console.log(dataCommand)
+  useEffect(()=>{
+  if (dataCommand.remaining_time <= 1) {
+    deny()
+  }},[dataCommand.remaining_time]
+)
   function findMaxRank() {
 
     if (pickedCommand) {
@@ -68,7 +74,8 @@ function deny() {
           headers: {
             Authorization: `Bearer ${data?.access}`,
           },
-        })
+        }).then(()=>{navigate(`/FindCommand/${searchID}`)})
+
 }
   return (
     <div className="FindCommandContainer">

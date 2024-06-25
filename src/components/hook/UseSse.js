@@ -12,7 +12,7 @@ export const useSse = (searchID) => {
   const navigate = useNavigate();
 
   function start_search() {
-    if (data) {
+    if (data && !confirm) {
       const event_sourse = new EventSource(
         `${
           import.meta.env.VITE_BASE_API_URL
@@ -23,13 +23,23 @@ export const useSse = (searchID) => {
           },
         }
       )
+      event_sourse.addEventListener('serach', (event)=>{
+       setConfirm(false)
+
+      })
       event_sourse.addEventListener('confirmation', (event)=>{
         const data = JSON.parse(event.data)
-        navigate('/commandMerge', { state: { data: data } })
+        if (!confirm) {
+          navigate(`/commandMerge/${searchID}`, { state: { data: data } })
+        }
+
+       setConfirm(true)
+
       })
       event_sourse.addEventListener('merged', ()=>{
-        navigate('/command')
-        setConfirm(true)
+        navigate(`/command`)
+        event_sourse.close();
+
       })
       setSSEConnection(event_sourse);
     }

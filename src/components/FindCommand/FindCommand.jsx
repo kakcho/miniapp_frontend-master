@@ -15,14 +15,16 @@ const FindCommand = () => {
   const [command, setCommand] = useState();
   const [info, setInfo] = useState();
 
-  const {start_search, closeSSE} = useSse(CommandId)
+  const {start_search, closeSSE, confirm} = useSse(CommandId)
 
   useEffect(()=>{
     window.addEventListener("beforeunload", closeSSE());
   },[])
   
   useEffect(()=>{
-    start_search()
+    if (!confirm) {
+      start_search()
+    }
   },[data])
 
   useEffect(() => {
