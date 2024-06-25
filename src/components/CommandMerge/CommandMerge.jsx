@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './CommandMerge.css'
 import people from "../../assets/peopl.svg";
 import age from "../../assets/Age.svg";
@@ -6,10 +6,12 @@ import add from '../../assets/addComand.svg'
 import refresh from '../../assets/refresh.svg'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { ApiDataContext } from '../../context/ApiDataContext';
 
 const CommandMerge = () => {
   const location = useLocation()
-  const data = location.state.data
+  const dataCommand = location.state.data
+  const data = useContext(ApiDataContext);
 
 
    
@@ -71,7 +73,7 @@ function deny() {
   return (
     <div className="FindCommandContainer">
       <h1 className="FindCommandH1">Команда найдена</h1>
-      <p className="FindCommandName">{data?.suggested_team.name}</p>
+      <p className="FindCommandName">{dataCommand?.suggested_team.name}</p>
       <div className="FindCommandContent">
         <div className="FindCommandBlock">
           <img src={people} className="FindCommandPeople" />-
@@ -108,7 +110,7 @@ function deny() {
           <div className="CommandMergeButton">        <img src={refresh} onClick={deny} className='CommandMergeButtonAdd' /> Следующий</div>
           <div className="CommandMergeButton" >Принять <img src={add} onClick={approve} className='CommandMergeButtonAdd'/></div>
       </div>
-      <div className="CommandMergeTime">{data.remaining_time}</div>
+      <div className="CommandMergeTime">{dataCommand.remaining_time}</div>
     </div>
   )
 }
