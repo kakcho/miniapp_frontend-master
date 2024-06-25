@@ -17,7 +17,9 @@ const FindCommand = () => {
 
   const {start_search, closeSSE} = useSse(CommandId)
 
-  window.addEventListener("beforeunload", closeSSE());
+  useEffect(()=>{
+    window.addEventListener("beforeunload", closeSSE());
+  },[])
   
   useEffect(()=>{
     start_search()

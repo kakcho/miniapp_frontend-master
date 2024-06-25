@@ -53,7 +53,7 @@ const CommandMerge = () => {
   return (
     <div className="FindCommandContainer">
       <h1 className="FindCommandH1">Команда найдена</h1>
-      <p className="FindCommandName">{data.suggested_team.name}</p>
+      <p className="FindCommandName">{data?.suggested_team.name}</p>
       <div className="FindCommandContent">
         <div className="FindCommandBlock">
           <img src={people} className="FindCommandPeople" />-
