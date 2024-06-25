@@ -7,10 +7,11 @@ import refresh from '../../assets/refresh.svg'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ApiDataContext } from '../../context/ApiDataContext';
+import { useSse } from '../hook/UseSse';
 
 const CommandMerge = () => {
   const { searchID } = useParams()
-  console.log(searchID)
+  const {closeSSE} = useSse()
   const location = useLocation()
   const dataCommand = location.state.data
   const data = useContext(ApiDataContext);
@@ -74,7 +75,10 @@ function deny() {
           headers: {
             Authorization: `Bearer ${data?.access}`,
           },
-        }).then(()=>{navigate(`/FindCommand/${searchID}`)})
+        }).then(()=>{
+          closeSSE()
+          navigate(`/Find`)
+        })
 
 }
   return (
