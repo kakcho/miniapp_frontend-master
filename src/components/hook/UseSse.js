@@ -27,7 +27,7 @@ export const useSse = (searchID) => {
         const data = JSON.parse(event.data)
         navigate('/commandMerge', { state: { data: data } })
       })
-      event_sourse.addEventListener('confirmation', ()=>{
+      event_sourse.addEventListener('merged', ()=>{
         navigate('/command')
         setConfirm(true)
       })
