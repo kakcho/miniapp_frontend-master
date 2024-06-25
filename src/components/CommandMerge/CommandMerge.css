@@ -8,18 +8,22 @@
     display: flex;
     position: absolute;
     left: 40px;
-    bottom: 210px;
+    bottom: 140px;
     font-weight: 700;
     font-size: 16px;
 }
 .CommandMergeDescription{
+    background-color: transparent;
+    border: none;
+    color: black;
+    overflow: auto;
     display: flex;
     position: absolute;
     width: calc(100% - 80px);
-    height: 90px;
+    height: 40px;
     overflow: auto;
     text-wrap: wrap;
-    bottom: 110px;
+    bottom: 100px;
 }
 .CommandMergeButtons{
     width: 100%;
@@ -27,7 +31,7 @@
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
-    bottom: 60px;
+    bottom: 50px;
 }
 .CommandMergeButton{
     display: flex;
@@ -56,4 +60,7 @@
     right: 0;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
+}
+.CommandMergeDescription{
+
 }

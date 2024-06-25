@@ -26,6 +26,9 @@ export const useSse = (searchID) => {
       event_sourse.addEventListener('confirmation', (event)=>{
         const data = JSON.parse(event.data)
         navigate('/commandMerge', { state: { data: data } })
+      })
+      event_sourse.addEventListener('confirmation', ()=>{
+        navigate('/command')
         setConfirm(true)
       })
       setSSEConnection(event_sourse);

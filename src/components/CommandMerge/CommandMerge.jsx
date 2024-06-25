@@ -5,6 +5,7 @@ import age from "../../assets/Age.svg";
 import add from '../../assets/addComand.svg'
 import refresh from '../../assets/refresh.svg'
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const CommandMerge = () => {
   const location = useLocation()
@@ -49,7 +50,24 @@ const CommandMerge = () => {
 
   }
 
-
+function approve() {
+  axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/approve`, null
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${data?.access}`,
+          },
+        })
+}
+function deny() {
+  axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_engine/deny`, null
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${data?.access}`,
+          },
+        })
+}
   return (
     <div className="FindCommandContainer">
       <h1 className="FindCommandH1">Команда найдена</h1>
@@ -82,13 +100,13 @@ const CommandMerge = () => {
         <div className="FindContentImg" />
       </div>
       <div className="CommandMergeDescriptionTitle">Описание:</div>
-      <div className="CommandMergeDescription">
+      <textarea disabled className="CommandMergeDescription">
           Играю на саппорте fdghiojlu'dfhgiobpfdjlhgfdksnbhjdfgljghlfdjhglkjjdfljkhgl;sdfhgljkdfkljghfl jkdhgjnlkgdfjljkglkfjglijfdligjdflkgjlkifdjgklidfjklgjdfkljgkfdgklj  gkfjgfdkjgklfdj gdfhgdf hdgfhfgh gdf
-      </div>
+      </textarea>
       <div className="CommandMergeButtons">
 
-          <div className="CommandMergeButton">        <img src={refresh} className='CommandMergeButtonAdd' /> Следующий</div>
-          <div className="CommandMergeButton">Принять <img src={add}  className='CommandMergeButtonAdd'/></div>
+          <div className="CommandMergeButton">        <img src={refresh} onClick={deny} className='CommandMergeButtonAdd' /> Следующий</div>
+          <div className="CommandMergeButton" >Принять <img src={add} onClick={approve} className='CommandMergeButtonAdd'/></div>
       </div>
       <div className="CommandMergeTime">{data.remaining_time}</div>
     </div>
