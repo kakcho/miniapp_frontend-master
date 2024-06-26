@@ -39,7 +39,7 @@
     color: #615c7e;
     height: 100vh;
     text-align: center;
-
+    overflow: auto;
     display: flex;
     flex-direction: column;
     background-color: #d5d7e5;

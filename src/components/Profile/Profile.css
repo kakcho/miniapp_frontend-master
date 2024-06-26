@@ -8,7 +8,7 @@
     margin-top: 15px;
     flex-wrap: wrap;
     min-height: 40px;
-    
+    overflow: auto;
 }
 .gameprofileTitle{
     display: flex;
@@ -63,8 +63,8 @@
 
 }
 .gameProfilesContainer{
-    overflow: scroll;
-    max-height: 35vh;
+    overflow: auto;
+    max-height: 27vh;
     border-radius: 5%;
 }
 .lineTopGame{
@@ -76,6 +76,6 @@
 .addComand{
     height: 40px;
     position: absolute;
-    right: 30px;
-    bottom: 100px;
+    right: 5px;
+    bottom: 70px;
 }

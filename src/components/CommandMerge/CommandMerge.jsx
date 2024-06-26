@@ -14,6 +14,7 @@ import mid from "../../assets/mid.svg";
 import hard from "../../assets/hard.svg";
 import semiSup from "../../assets/semiSupport.svg";
 import support from "../../assets/support.svg";
+import { heroes } from '../../utils/dotaHero';
 
 const CommandMerge = () => {
   const { searchID } = useParams()
@@ -29,8 +30,32 @@ const CommandMerge = () => {
     dataCommand.suggested_team.game_profiles.map((profile) => 
       profile.positions_code)
   );
+  function findUserByName(users, heroes) {
+    const heroesUrl = [];
+    for (let j = 0; j < heroes.length; j++) {
+      const targetName = heroes[j];
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].name === targetName) {
+          heroesUrl.push(users[i].url);
+        }
+      }
+    }
+    return heroesUrl;
+  }
 
   const [position, setPosition] = useState([]);
+  const [heroesName, setHeroesName] = useState([])
+  useEffect(()=>{
+    const heroArray = dataCommand.suggested_team.game_profiles.map((profile)=>
+      profile.heroes
+    )
+    
+    for (let i = 0; i < heroArray.length; i++) {
+      const element = heroArray[i];
+      setHeroesName(heroesName.concat(element))
+    }
+  },[])
+  const heroesUrl = findUserByName(heroes, heroesName)
 
 
   useEffect(()=>{
@@ -73,11 +98,9 @@ function findUrlByName(profile, heroes) {
       return minRank;
 
     }
-
-    
-
-
   }
+
+
 
   function peopleRankToNumber(rank) {
     if (rank === "Unranked") return 1;
@@ -233,7 +256,8 @@ useEffect(() => {
         break;
     }
   }
-}, [data]);
+}, []);
+
   const maxRankUrl = findUrlByName(ranks,peopleNumberToRank(findMaxRank()))
   const minRankUrl = findUrlByName(ranks, peopleNumberToRank(findMinRank()))
 
@@ -244,7 +268,7 @@ useEffect(() => {
       <div className="FindCommandContent">
         <div className="FindCommandBlock">
           <img src={people} className="FindCommandPeople" />-
-          7
+          {dataCommand.suggested_team.game_profiles.length}
         </div>
         <div className="FindCommandBlockAge">
           <img src={age} className="FindCommandPeople" />-{" "}
@@ -261,10 +285,16 @@ useEffect(() => {
           )}
         </div>
         <div className="CommandMergeHeroes">
-
+        <div className="CommandMergePositionsContainer">
+          {heroesUrl.map((url)=>
+            <img src={url} className='CommandMergePosition'/>
+        )}</div>
         </div>
-        <div className="CommandMergePosition">
-          
+        <div className="CommandMergePositions">
+          <div className="CommandMergePositionsContainer">
+          {position.map((url)=>
+            <img src={url} className='CommandMergePosition'/>
+        )}</div>
           </div>
         <div className="FindContentImg" />
       </div>

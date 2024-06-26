@@ -51,7 +51,7 @@ const CommandFind = (profile) => {
         window.location.reload();
       });
   }
-
+  console.log(profile.command)
   
 
   useEffect(() => {
