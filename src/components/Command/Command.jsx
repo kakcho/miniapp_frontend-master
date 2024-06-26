@@ -18,7 +18,7 @@ const Command = () => {
   const [openModal, setOpenModal] = useState(false)
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
-  const [profiles, setProfiles] = useState()
+
 
   useEffect(() => {
     if (data) {
@@ -28,7 +28,7 @@ const Command = () => {
             Authorization: `Bearer ${data?.access}`
           },
           method: "GET",
-          url: `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/all`,
+          url: `${import.meta.env.VITE_BASE_API_URL}/api/final_teams/all`,
         })
         .then((response) => {
           setCommand(response.data);
@@ -36,22 +36,7 @@ const Command = () => {
     }
   }, [data, openModal]);
 
-  useEffect(() => {
-    if (data) {
-      axios
-        .request({
-          headers: {
-            Authorization: `Bearer ${data?.access}`,
-            'Content-Type':  'application/json',
-          },
-          method: "GET",
-          url: `${import.meta.env.VITE_BASE_API_URL}/api/game_profiles/all`,
-        })
-        .then((response) => {
-          setProfiles(response.data);
-        });
-    }
-  }, [data, openModal]);
+    console.log(command)
 
   function handleClick(event) {
       setOpenModal(false)

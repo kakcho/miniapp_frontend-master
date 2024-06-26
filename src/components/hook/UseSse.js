@@ -1,15 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { ApiDataContext } from "../../context/ApiDataContext";
+import { ApiDataContext, TransparencyContext, } from "../../context/ApiDataContext";
 import { EventSource } from "extended-eventsource";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 export const useSse = (searchID) => {
+  const {event, setEvent} = useContext(TransparencyContext)
+
   const data = useContext(ApiDataContext);
   const [events, setEvents] = useState([]); // Массив для хранения полученных событий
   const [sseConnection, setSSEConnection] = useState();
   const [confirm, setConfirm] = useState(false)
   const navigate = useNavigate();
+
 
   function start_search() {
     if (data && !confirm) {
@@ -30,27 +33,27 @@ export const useSse = (searchID) => {
       event_sourse.addEventListener('confirmation', (event)=>{
         const data = JSON.parse(event.data)
         if (!confirm) {
-          navigate(`/commandMerge/${searchID}`, { state: { data: data } })
+          navigate(`/commandMerge/${searchID}`, { state: { data: data} })
         }
-
-       setConfirm(true)
 
       })
       event_sourse.addEventListener('merged', ()=>{
         navigate(`/command`)
         event_sourse.close();
-
+        setConfirm(true)
       })
-      setSSEConnection(event_sourse);
+      setEvent(event_sourse);
+
     }
+
+
   }
 
   const closeSSE = () => {
-    if (sseConnection) {
-      sseConnection.close();
-      setSSEConnection(null);
-      console.log(sseConnection);
-    }
+
+      event?.close();
+      setEvent(null);
+
   };
 
   

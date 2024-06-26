@@ -29,15 +29,11 @@ const CommandItem = (profile) => {
 
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [descriptionValue, setDescriptionValue] = useState(
-    profile.command.description
-  );
+
   const data = useContext(ApiDataContext);
 
-  const decode = decode_positions(
-    profile.command.owner_game_profile.positions_code
-  );
-  const [position, setPosition] = useState([]);
+
+
 
 
   function handleLeave() {
@@ -68,41 +64,7 @@ const CommandItem = (profile) => {
         });
     }
   }
-  useEffect(() => {
-
-    for (let i = 0; i < decode.length; i++) {
-      const element = decode[i];
-      switch (element) {
-        case 1:
-          position.push(carry);
-          break;
-        case 2:
-          position.push(mid);
-          break;
-        case 3:
-          position.push(hard);
-          break;
-        case 4:
-          position.push(semiSup);
-          break;
-        case 5:
-          position.push(support);
-          break;
-        default:
-          break;
-      }
-    }
-  }, [data]);
-
-  function decode_positions(code) {
-    const positions = [];
-    for (let i = 1; i <= 5; ++i) {
-      if (code & (1 << (i - 1))) {
-        positions.push(i);
-      }
-    }
-    return positions;
-  }
+ 
   function handleOpen() {
     setOpen(!open);
   }
@@ -126,35 +88,7 @@ const CommandItem = (profile) => {
       )
     setOpenModal();
   }
-  function findUserByName(users, heroes) {
-    const heroesUrl = [];
-    for (let j = 0; j < heroes.length; j++) {
-      const targetName = heroes[j];
-      for (var i = 0; i < users.length; i++) {
-        if (users[i].name === targetName) {
-          heroesUrl.push(users[i].url);
-        }
-      }
-    }
-    return heroesUrl;
-  }
 
-  function findUrlByName(profile, heroes) {
-    for (var i = 0; i < profile.length; i++) {
-      if (profile[i].name === heroes) {
-        return profile[i].url;
-      }
-    }
-  }
-
-  const UserRank = findUrlByName(
-    ranks,
-    profile.command.owner_game_profile.rank
-  );
-  const heroesUrl = findUserByName(
-    heroes,
-    profile.command.owner_game_profile.heroes
-  );
 
   const [openModal, setOpenModal] = useState(false)
   return (
@@ -169,7 +103,7 @@ const CommandItem = (profile) => {
         </div>
         <div className="imagesPag">
           <div className="numberPlayer">
-            {1 + profile.command.members_game_profiles.length}
+            {profile.command.game_profiles.length}
           </div>
           <img src={people} alt="" className="people" />
           <img src={pag} className="pag" onClick={handleOpen} />
@@ -180,48 +114,21 @@ const CommandItem = (profile) => {
           <div className="description">
             <div className="descriptionTitle">
               Описание
-              <img src={pen} alt="" onClick={() => setEdit(true)} />
             </div>
 
             <textarea
               className="descriptionContent"
-              disabled={!edit}
-              value={descriptionValue}
+              disabled={true}
+              value={profile.command.description}
               onChange={(e) => {
                 setDescriptionValue(e.target.value);
               }}
-              autoFocus={edit}
               onBlur={handleBLur}
             />
             {edit && <hr className="descriptionHR" />}
           </div>
-          <div className="teammates">
-            <div className="teammateRank">
-              <img src={UserRank} alt="" className="teammateRankImg" onClick={()=> setOpenModal(true)}/>
-            </div>
-            <div className="teammateInfo">
-              <div className="">
-                <div className="teammateName" onClick={()=> setOpenModal(true)}>
-                  {profile.command.owner_game_profile.name}{" "}
-                  <img src={owner} alt="" />{" "}
-                </div>
-                <div className="redact">
-                {profile.command.owner_game_profile.is_you ?   <img src={pen}/>: <img src={trash} />}
-                </div>
-              </div>
-              <img src={line} className="teammatesHr" />
-              <div className="teammeteHeroes"  onClick={()=> setOpenModal(true)}>
-                {heroesUrl.map((url) => (
-                  <img src={url} className="teammeteHeroe"/>
-                ))}
-                {heroesUrl[0] && <img src={linetop} alt="" />}
-                {position.map((url) => (
-                  <img src={url} className="teammeteHeroe" />
-                ))}
-              </div>
-            </div>
-          </div>
-          {profile.command.members_game_profiles.map((profile, id) => (
+       
+          {profile.command.game_profiles.map((profile) => (
             <Member profile={profile} id={profile._id} setOpenModal={setOpenModal}/>
           ))}
 

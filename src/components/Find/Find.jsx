@@ -29,7 +29,6 @@ const Find = () => {
           url: `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/all`,
         })
         .then((response) => {
-          console.log(response)
           setCommand(response.data);
         });
     }
@@ -57,8 +56,9 @@ const Find = () => {
   }
 
   return (
-    <div className='findContainer'>
-      <div onClick={()=> setOpenModal(false)}>
+    <>
+    <div className='findContainer' onClick={()=> setOpenModal(false)}>
+      <div >
       <Header title={'Поиск'}/>
       <div className="sup Finder">Ваши команды</div>
       <div className="containerCommandBLock" >
@@ -67,11 +67,15 @@ const Find = () => {
       ))}
 </div>
 </div>
-        <img src={add} className='addComandIcon' onClick={handleClick}/>
-        {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
+
+
         
       <Bar/>
+
     </div>
+    <img src={add} className='addComandIcon' onClick={handleClick}/>
+    {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
+    </>
   )
 }
 
