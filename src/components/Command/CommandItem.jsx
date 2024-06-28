@@ -33,64 +33,26 @@ const CommandItem = (profile) => {
   const data = useContext(ApiDataContext);
 
 
-
-
-
-  function handleLeave() {
-    if (data) {
-      axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${profile.command._id}/leave`, null,
-        {
-          headers: {
-            Authorization: `Bearer ${data.access}`,
-          },
-        }
-      )
-        .then((response) => {
-          window.location.reload();
-        });
-    }
-  }
-  function handleDelete() {
-    if (data) {
-      axios.delete(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${profile.command._id}/delete`, null,
-        {
-          headers: {
-            Authorization: `Bearer ${data.access}`,
-          },
-        }
-      )
-        .then((response) => {
-          window.location.reload();
-        });
-    }
-  }
  
   function handleOpen() {
     setOpen(!open);
   }
 
 
-  function handleBLur() {
-    setEdit(false);
-    axios
-      .post(
-        `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${
+  const [openModal, setOpenModal] = useState(false)
+
+  function handleLeave() {
+    axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/final_teams/${
           profile.command._id
-        }/set_description`,
-        {
-          description: descriptionValue,
-        },
+        }/leave`, null,
         {
           headers: {
             Authorization: `Bearer ${data?.access}`,
           },
         }
-      )
-    setOpenModal();
+      ).then(()=> {window.location.reload()})
   }
 
-
-  const [openModal, setOpenModal] = useState(false)
   return (
     <>          
     <div className="command">
@@ -120,10 +82,6 @@ const CommandItem = (profile) => {
               className="descriptionContent"
               disabled={true}
               value={profile.command.description}
-              onChange={(e) => {
-                setDescriptionValue(e.target.value);
-              }}
-              onBlur={handleBLur}
             />
             {edit && <hr className="descriptionHR" />}
           </div>

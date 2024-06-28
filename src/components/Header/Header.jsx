@@ -8,17 +8,9 @@ const Header = ({title}) => {
   const [open, setOpen] = useState(false)
   return (
     <div className='header'>
-        <img src={notify} alt=""  className='notify'/>
+        <a href="/tutor" className='a'><img src={notify} alt=""  className='notify'/></a>
     <div className='title'>{title}</div>
-    <img src={popup} alt="" className='popupIcon' onClick={()=>{setOpen(!open)}}/>
-    {open && <div className="opacityDiv">
-    <div className="widget">
-      <div className="blackClose">
-        <img src={x} alt="" onClick={()=>{setOpen(!open)}}/>
-      </div>
-      <a href="/" className='a'><div className="widgetBut">Изменить игру</div></a>
-      <a href="/tutor" className='a'><div className="widgetBut">Смотреть туториал</div></a>
-    </div></div>}
+    <a href="/" className='a'><img src={popup} alt="" className='popupIcon' onClick={()=>{setOpen(!open)}}/></a>
     </div>
   )
 }

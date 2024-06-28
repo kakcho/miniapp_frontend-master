@@ -28,7 +28,6 @@ export const useSse = (searchID) => {
       )
       event_sourse.addEventListener('serach', (event)=>{
        setConfirm(false)
-
       })
       event_sourse.addEventListener('confirmation', (event)=>{
         const data = JSON.parse(event.data)
