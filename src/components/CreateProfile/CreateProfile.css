@@ -95,7 +95,7 @@
     background-color: transparent;
     font-size: 12pt;
     margin-left: 30px;
-    border-bottom: solid black;
+    border-bottom: solid #45444F;
     width: calc(100% - 150px);
 }
 .steam-id-input{
@@ -103,12 +103,12 @@
 }
 .ageCreate{
     position: absolute;
-    right: 20px;
+    right: 30px;
     border: none;
     background-color: transparent;
     font-size: 12pt;
-    margin-left: 30px;
-    border-bottom: solid black;
+    margin-left: 20px;
+    border-bottom: solid #45444F;
     width: 70px;
     margin-top: 45px;
 }
@@ -118,7 +118,7 @@
     background-color: transparent;
     font-size: 12pt;
     margin-left: 30px;
-    border-bottom: solid black;
+    border-bottom: solid #45444F;
     width: calc(100%-60px);
     margin-right: 30px;
 }

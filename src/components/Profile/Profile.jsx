@@ -266,7 +266,7 @@ const CreateProfile = () => {
         <GameProfileInfo  profile={profile} key={id}/>
        ))}
         </div>
-        <a href="createprofilegame"><img src={addcomand} className="addComand" /></a>
+        <a href="createprofilegame" className="addComand"><img src={addcomand} className="addComand" /></a>
         <Bar />
       </div>
     );

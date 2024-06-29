@@ -46,7 +46,7 @@ const Command = () => {
     <div className='findContainer'  >
 
       <div onClick={()=>{setOpenModal(false)}}>
-      <Header title={'Поиск'}/>
+      <Header title={'Команды'}/>
 
 
      {confirm ? <>
