@@ -22,8 +22,9 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-top: auto;
+    position: fixed;
     bottom: 10px;
-    position: absolute;
+
+
     z-index: 1000;
 }
