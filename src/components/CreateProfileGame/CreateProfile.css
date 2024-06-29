@@ -37,9 +37,8 @@
 
 .createProfile {
     color: #615c7e;
-    height:100vh;
+    min-height:100vh;
     text-align: center;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     background-color: #d5d7e5;
@@ -49,7 +48,7 @@
 .input {
     min-height: 40px;
     width: calc(100% - 80px);
-    margin-left: 20px;
+
     border-radius: 50px;
     border-style: none;
     margin-top: 15px;
@@ -157,4 +156,7 @@ input[type='checkbox'] {
 }
 a{
     color: white;
+}
+.closeModal{
+    height: 100vh;
 }

@@ -22,9 +22,8 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    position: fixed;
-    bottom: 10px;
-
-
+    margin-top: auto;
+ margin-bottom: 20px;
+    position: relative;
     z-index: 1000;
 }

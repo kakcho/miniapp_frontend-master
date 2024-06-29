@@ -252,13 +252,13 @@ const CommandFind = (profile) => {
             <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
           ))}
           <div className="pagButtons">
-            <a href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton"/></a>
+            <a className="pagA" href={`/FindCommand/${profile.command._id}`}><img src={gosearch} className="pagButton"/></a>
             <img
               src={sharebutton}
               className="pagButtonfind"
               onClick={handleShare}
             />
-            <a href={`/addStud/${profile.command._id}`}><img src={add} className="pagButtonfind" /></a>
+            <a href={`/addStud/${profile.command._id}`} className="pagA"><img src={add} className="pagButtonfind" /></a>
             <img src={trash} className="trash" onClick={handleDelete} />
           </div>
         </div>

@@ -101,6 +101,7 @@ const CreateProfileGame = () => {
 
   return (
     <div className="createProfile">
+      <div onClick={() => setIsOpen(false)}>
       <div className="title">Создание профиля</div>
       <label className="sup">
         Название игрового профиля <p className="star">*</p>
@@ -161,15 +162,20 @@ const CreateProfileGame = () => {
           }}
         />
       </div>
-      <label className="sup">
+      </div>
+      <label className="sup"           onClick={() => setIsOpen(!isOpen)}>
         Предпочитаемые герои
+
         <img
           src={addHeroImg}
-          style={{ paddingLeft: "10px" }}
+          style={{ paddingLeft: "10px", height: '30px' }}
           alt=""
-          onClick={() => setIsOpen(!isOpen)}
+
         />{" "}
-      </label>
+        </label>
+
+      <div onClick={() => setIsOpen(false)} className="closeModal">
+      </div>
       <div className="pickedHero">
         {isOpen && (
           <ul className="dropdown">

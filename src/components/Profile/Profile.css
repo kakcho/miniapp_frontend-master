@@ -64,8 +64,8 @@
 }
 .gameProfilesContainer{
     overflow: auto;
-    max-height: 27vh;
     border-radius: 5%;
+    margin-bottom: 10px;
 }
 .lineTopGame{
     margin-right: 10px;
@@ -74,8 +74,9 @@
     
 }
 .addComand{
-    height: 40px;
-    position: absolute;
-    right: 5px;
-    bottom: 70px;
+    height: 30px;
+    display: flex;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 10px;
 }
