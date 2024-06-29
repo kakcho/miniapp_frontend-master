@@ -62,7 +62,7 @@ const CreateProfile = () => {
         });
     }
   }, [data]);
-
+  console.log(user)
   function handleSelectRank(rank) {
     setSelectedRank(rank.url);
     setUserData({...userData, game_data:{rank: rank.name}})
@@ -163,7 +163,6 @@ const CreateProfile = () => {
         setUserData({...userData, age: newValue});
       } 
     }
-
    }
   if (!loading) {
     return (
@@ -176,7 +175,7 @@ const CreateProfile = () => {
           id="nickname"
           className="nickname"
           placeholder={`Никнейм`}
-          value={userData?.game_data.nickname}
+          value={user?.game_data.nickname}
           onChange={(e) => {setUserData({...userData, game_data:{nickname: e.target.value}})}}
           required
           onBlur={handleBlur}
@@ -228,7 +227,7 @@ const CreateProfile = () => {
           placeholder="Steam id"
           className="steam-id-input"
           required
-          value={userData?.steam_id}
+          value={user?.steam_id}
           onChange={handleChange}
           onBlur={handleBlur}
         />{" "}
@@ -237,7 +236,7 @@ const CreateProfile = () => {
             type="text"
             placeholder="Никнейм в Discord"
             className="steam-id-input"
-            value={userData?.discord_nickname}
+            value={user?.discord_nickname}
             onChange={(e) => {setUserData({...userData, discord_nickname: e.target.value})}}
             onBlur={handleBlur}
           />
@@ -245,7 +244,7 @@ const CreateProfile = () => {
             type="text"
             placeholder="Возраст"
             className="ageCreate"
-            value={userData?.age}
+            value={user?.age}
             onChange={handleAgeChange}
             onBlur={handleBlur}
           />{" "}
@@ -254,7 +253,7 @@ const CreateProfile = () => {
           type="text"
           placeholder="Коротко о себе"
           className="bioCreate"
-          value={userData?.game_data.bio}
+          value={user?.game_data.bio}
           onBlur={handleBlur}
           onChange={(e) => {setUserData({...userData, game_data:{bio: e.target.value}})}}
         />
