@@ -33,6 +33,18 @@ const CreateProfile = () => {
     },
     is_profile_filled: user?.is_profile_filled,
     steam_id: user?.steam_id})
+    useEffect(()=>{
+      setUserData({ age: user?.age,
+        country_code: user?.country_code,
+        discord_nickname: user?.discord_nickname,
+        game_data: {
+          nickname: user?.game_data.nickname,
+          rank: user?.game_data.rank,
+          bio: user?.game_data.bio,
+        },
+        is_profile_filled: user?.is_profile_filled,
+        steam_id: user?.steam_id})
+    },[user])
 
   useEffect(() => {
     if (user?.game_data.rank) {
@@ -175,7 +187,7 @@ const CreateProfile = () => {
           id="nickname"
           className="nickname"
           placeholder={`Никнейм`}
-          value={user?.game_data.nickname}
+          value={userData?.game_data.nickname}
           onChange={(e) => {setUserData({...userData, game_data:{nickname: e.target.value}})}}
           required
           onBlur={handleBlur}
@@ -227,7 +239,7 @@ const CreateProfile = () => {
           placeholder="Steam id"
           className="steam-id-input"
           required
-          value={user?.steam_id}
+          value={userData?.steam_id}
           onChange={handleChange}
           onBlur={handleBlur}
         />{" "}
@@ -236,7 +248,7 @@ const CreateProfile = () => {
             type="text"
             placeholder="Никнейм в Discord"
             className="steam-id-input"
-            value={user?.discord_nickname}
+            value={userData?.discord_nickname}
             onChange={(e) => {setUserData({...userData, discord_nickname: e.target.value})}}
             onBlur={handleBlur}
           />
@@ -244,7 +256,7 @@ const CreateProfile = () => {
             type="text"
             placeholder="Возраст"
             className="ageCreate"
-            value={user?.age}
+            value={userData?.age}
             onChange={handleAgeChange}
             onBlur={handleBlur}
           />{" "}
@@ -253,7 +265,7 @@ const CreateProfile = () => {
           type="text"
           placeholder="Коротко о себе"
           className="bioCreate"
-          value={user?.game_data.bio}
+          value={userData?.game_data.bio}
           onBlur={handleBlur}
           onChange={(e) => {setUserData({...userData, game_data:{bio: e.target.value}})}}
         />

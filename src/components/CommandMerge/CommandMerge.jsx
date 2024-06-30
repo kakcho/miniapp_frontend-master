@@ -17,7 +17,7 @@ import support from "../../assets/support.svg";
 import { heroes } from '../../utils/dotaHero';
 
 const CommandMerge = () => {
-  const { searchID } = useParams()
+  const { CommandMergeId } = useParams()
  const {closeSSE} = useSse()
   const location = useLocation()
   const dataCommand = location.state.data
@@ -59,7 +59,7 @@ const CommandMerge = () => {
 
 
   useEffect(()=>{
-  if (dataCommand.remaining_time <= 3) {
+  if (dataCommand.remaining_time <= 1) {
     deny()
   }},[dataCommand.remaining_time]
 )
@@ -215,8 +215,7 @@ function deny() {
             Authorization: `Bearer ${data?.access}`,
           },
         })
-        closeSSE()
-        navigate(`/Find`)
+        navigate(`/FindCommand/${CommandMergeId}`)
           
 
 }

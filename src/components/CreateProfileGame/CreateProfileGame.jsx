@@ -16,7 +16,7 @@ const CreateProfileGame = () => {
   const [gameNick, setGameNick] = useState();
   const [gameData, setGameData] = useState({
     name: "",
-    positions_code: [],
+    positions_code: null,
     heroes: [],
   });
   const [butActive, setButACtive] = useState(true);

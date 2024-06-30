@@ -20,7 +20,7 @@ const GameProfile = () => {
   const [gameNick, setGameNick] = useState();
   const [gameData, setGameData] = useState({
     name: "",
-    positions_code: [],
+    positions_code: null,
     heroes: [],
   });
   const [butActive, setButACtive] = useState(true);
@@ -144,6 +144,7 @@ const GameProfile = () => {
     for (let i = 0; i < positions.length; ++i) {
       result |= 1 << (positions[i] - 1);
     }
+    if(result===0){return null}
     return result;
   };
 
@@ -163,7 +164,7 @@ const GameProfile = () => {
       });
   }
 
-  
+  console.log(gameData)
 
   if (loading) {
     return (

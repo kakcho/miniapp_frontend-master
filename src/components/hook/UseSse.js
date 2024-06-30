@@ -26,8 +26,9 @@ export const useSse = (searchID) => {
           },
         }
       )
-      event_sourse.addEventListener('serach', (event)=>{
+      event_sourse.addEventListener('search', (event)=>{
        setConfirm(false)
+       navigate(`/FindCommand/${searchID}`)
       })
       event_sourse.addEventListener('confirmation', (event)=>{
         const data = JSON.parse(event.data)
@@ -41,6 +42,9 @@ export const useSse = (searchID) => {
         event_sourse.close();
         setConfirm(true)
       })
+      event_sourse.addEventListener("error", () => {
+        navigate(`/Find`)
+      });
       setEvent(event_sourse);
 
     }

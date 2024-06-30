@@ -27,7 +27,7 @@ const RoutesSwitch = () => {
         <Route path='/command' element={<Command/>}/>
         <Route path='/FindCommand/:CommandId' element={<FindCommand/>}/>
         <Route path='/addStud/:teamId' element={<AddStud/>}/>
-        <Route path='/commandMerge/:CommandId' element={<CommandMerge/>}/>
+        <Route path='/commandMerge/:CommandMergeId' element={<CommandMerge/>}/>
     </Routes>
   )
 }
