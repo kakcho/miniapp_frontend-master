@@ -174,8 +174,7 @@ const CreateProfileGame = () => {
         />{" "}
         </label>
 
-      <div onClick={() => setIsOpen(false)} className="closeModal">
-      </div>
+        <div onClick={() => setIsOpen(false)} className="closeModal"></div>
       <div className="pickedHero">
         {isOpen && (
           <ul className="dropdown">

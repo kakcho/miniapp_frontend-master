@@ -9,12 +9,12 @@ import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
 import { countries } from "../../utils/countries";
 
-const CreateProfile = ({title}) => {
-  const [nickname, setNickname] = useState();
+const CreateProfile = () => {
+  const [nickname, setNickname] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedRank, setSelectedRank] = useState("");
-  const [bio, setBio] = useState();
-  const [age, setAge] = useState();
+  const [bio, setBio] = useState("");
+  const [age, setAge] = useState("");
   const [steamId, setSteamId] = useState("");
   const [discordNickname, setDiscordNickname] = useState("");
   const [star, setStar] = useState(true)
@@ -102,13 +102,13 @@ const CreateProfile = ({title}) => {
   function handleAgeChange(event) {
     const newValue = event.target.value;
     if (newValue.length < 3) {
-      if (/^\d+$/.test(newValue)  ||  "" == newValue) {
+      if (/^\d+$/.test(newValue)  ||  ""  == newValue) {
         setAge(newValue);
       }
     }
     
    }
-  return (
+ return (
     <div className="createProfile">
       <Header title={"Заполните свой профиль"} />
       {star && <p className="star nick">*</p>}

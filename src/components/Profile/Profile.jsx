@@ -23,13 +23,13 @@ const CreateProfile = () => {
   const [selectedCountry, setSelectedCountry] = useState();
   const [selectedRank, setSelectedRank] = useState();
   const [gameProfiles, setGameProfiles] = useState()
-  const [userData, setUserData] = useState( { age: user?.age,
-    country_code: user?.country_code,
-    discord_nickname: user?.discord_nickname,
+  const [userData, setUserData] = useState( { age: "",
+    country_code: "",
+    discord_nickname: "",
     game_data: {
-      nickname: user?.game_data.nickname,
-      rank: user?.game_data.rank,
-      bio: user?.game_data.bio,
+      nickname: "",
+      rank: "",
+      bio: "",
     },
     is_profile_filled: user?.is_profile_filled,
     steam_id: user?.steam_id})

@@ -158,5 +158,7 @@ a{
     color: white;
 }
 .closeModal{
-    height: 100vh;
+    height: calc(100vh);
+    width: 100%;
+
 }

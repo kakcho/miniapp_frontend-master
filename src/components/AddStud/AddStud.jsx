@@ -120,12 +120,13 @@ const AddStud = () => {
   }
   return (
     <div className="createProfile">
-      <div className="title">Добавление игрока в команду</div>
 
-      <label className="sup">
+      <div className="title"           onClick={() => setIsOpen(false)}>Добавление игрока в команду</div>
+
+      <label className="sup" onClick={() => setIsOpen(false)}>
         Никнейм игрока <p className="star">*</p>
       </label>
-      <div className="studHeader">
+      <div className="studHeader" onClick={() => setIsOpen(false)}>
         <input
           id="gameProfileName"
           className="inputStud"
@@ -157,10 +158,10 @@ const AddStud = () => {
           </div>
         </div>
       </div>
-      <label className="sup">
+      <label className="sup" onClick={() => setIsOpen(false)}>
         Игровые позиции <p className="star">*</p>
       </label>
-      <div className="positions">
+      <div className="positions" onClick={() => setIsOpen(false)}>
         <img
           src={carry}
           className="position"
@@ -207,6 +208,8 @@ const AddStud = () => {
           }}
         />
       </div>
+      <div onClick={() => setIsOpen(false)} className="close"></div>
+
       <label className="sup">
         Предпочитаемые герои
         <img
