@@ -7,3 +7,13 @@
 .gameProfilesName-heder{
     display: flex;
 }
+.inputGameProfile{
+
+    min-height: 40px;
+    width: calc(100% - 80px);
+    border-radius: 50px;
+    border-style: none;
+    margin-top: 15px;
+    padding-left: 30px;
+    font-size: 14px;
+}

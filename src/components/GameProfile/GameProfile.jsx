@@ -98,17 +98,21 @@ const GameProfile = () => {
     setGameData({ ...gameData, heroes: selectedHero });
   }, [selectedHero]);
 
+
   useEffect(() => {
-    if (gameNick && selectedImages) {
+    if (gameNick && selectedImages[0]) {
       setButACtive(false);
     } else {
       setButACtive(true);
     }
-  }, [gameNick, selectedImages]);
+  }, [gameNick, selectedImages, selectedOptions]);
+
+  console.log(selectedImages)
+
   const handleSelectImage = (id) => {
     if (selectedImages.includes(id)) {
-      // Если изображение уже выбрано, удаляем его из списка выбранных
       setSelectedImages(selectedImages.filter((imgId) => imgId !== id));
+
     } else {
       // Если изображение еще не выбрано, добавляем его в список выбранных
       setSelectedImages([...selectedImages, id]);
@@ -132,12 +136,16 @@ const GameProfile = () => {
     setSearchTerm(event.target.value);
   };
   const [searchResults, setSearchResults] = React.useState([]);
+
+
   React.useEffect(() => {
     const results = heroes.filter((heroes) =>
       heroes.localized_name.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
   }, [searchTerm]);
+
+
   const [isOpen, setIsOpen] = useState(false);
   const code_positions = (positions) => {
     let result = 0;
@@ -164,18 +172,18 @@ const GameProfile = () => {
       });
   }
 
-  console.log(gameData)
 
   if (loading) {
     return (
       <div className="createProfile">
+              <div onClick={() => setIsOpen(false)} >
         <div className="title">Игровой профиль</div>
         <label className="sup">
           Название игрового профиля <p className="star">*</p>
         </label>
         <input
           id="gameProfileName"
-          className="input"
+          className="inputGameProfile"
           value={gameNick}
           onChange={(e) => setGameNick(e.target.value)}
         />
@@ -229,6 +237,7 @@ const GameProfile = () => {
             }}
           />
         </div>
+        </div>
         <label className="sup">
           Предпочитаемые герои
           <img
@@ -238,6 +247,7 @@ const GameProfile = () => {
             onClick={() => setIsOpen(!isOpen)}
           />{" "}
         </label>
+        <div onClick={() => setIsOpen(false)} className="closeModal"></div>
         <div className="pickedHero">
           {isOpen && (
             <ul className="dropdown">

@@ -50,7 +50,7 @@ export const ChangeModal = ({ setOpenModal, name, id }) => {
   }, [data]);
   useEffect(()=>{
     if (profiles) {
-      setSelected(profiles[0].name)
+      setSelected(profiles[0]?.name)
     }
   },[profiles])
 

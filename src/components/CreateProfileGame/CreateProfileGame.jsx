@@ -19,7 +19,7 @@ const CreateProfileGame = () => {
     positions_code: null,
     heroes: [],
   });
-  const [butActive, setButACtive] = useState(true);
+  const [butActive, setButACtive] = useState(false);
   const [selectedHero, setSelectedHero] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -101,7 +101,7 @@ const CreateProfileGame = () => {
 
   return (
     <div className="createProfile">
-      <div onClick={() => setIsOpen(false)}>
+      <div onClick={() => setIsOpen(false)} >
       <div className="title">Создание профиля</div>
       <label className="sup">
         Название игрового профиля <p className="star">*</p>
@@ -163,14 +163,14 @@ const CreateProfileGame = () => {
         />
       </div>
       </div>
-      <label className="sup"           onClick={() => setIsOpen(!isOpen)}>
+      <label className="sup"           >
         Предпочитаемые герои
 
         <img
           src={addHeroImg}
           style={{ paddingLeft: "10px", height: '30px' }}
           alt=""
-
+          onClick={() => setIsOpen(!isOpen)}
         />{" "}
         </label>
 
