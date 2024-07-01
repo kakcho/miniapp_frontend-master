@@ -14,7 +14,7 @@ export const useSse = (searchID) => {
   const navigate = useNavigate();
 
   function start_search() {
-    if (data && !confirm) {
+
       const event_sourse = new EventSource(
         `${
           import.meta.env.VITE_BASE_API_URL
@@ -46,7 +46,7 @@ export const useSse = (searchID) => {
       });
       setEvent(event_sourse);
 
-    }
+    
 
 
   }

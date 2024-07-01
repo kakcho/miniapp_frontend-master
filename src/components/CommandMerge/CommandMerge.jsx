@@ -15,19 +15,25 @@ import hard from "../../assets/hard.svg";
 import semiSup from "../../assets/semiSupport.svg";
 import support from "../../assets/support.svg";
 import { heroes } from '../../utils/dotaHero';
+import prev from '../../assets/prev.svg'
+import next from '../../assets/next.svg'
+
+
+
+
 
 const CommandMerge = () => {
   const { CommandMergeId } = useParams()
 
   const location = useLocation()
-  const dataCommand = location.state.data
+  const dataCommand = location.state?.data
 
 
   const data = useContext(ApiDataContext);
   const navigate = useNavigate()
 
   const decode = decode_positions(
-    dataCommand.suggested_team.game_profiles.map((profile) => 
+    dataCommand?.suggested_team.game_profiles.map((profile) => 
       profile.positions_code)
   );
   function findUserByName(users, heroes) {
@@ -46,11 +52,11 @@ const CommandMerge = () => {
   const [position, setPosition] = useState([]);
   const [heroesName, setHeroesName] = useState([])
   useEffect(()=>{
-    const heroArray = dataCommand.suggested_team.game_profiles.map((profile)=>
+    const heroArray = dataCommand?.suggested_team.game_profiles.map((profile)=>
       profile.heroes
     )
     
-    for (let i = 0; i < heroArray.length; i++) {
+    for (let i = 0; i < heroArray?.length; i++) {
       const element = heroArray[i];
       setHeroesName(heroesName.concat(element))
     }
@@ -59,9 +65,9 @@ const CommandMerge = () => {
 
 
   useEffect(()=>{
-  if (dataCommand.remaining_time <= 1) {
+  if (dataCommand?.remaining_time <= 1) {
     deny()
-  }},[dataCommand.remaining_time]
+  }},[dataCommand?.remaining_time]
 )
 
 function findUrlByName(profile, heroes) {
@@ -221,7 +227,7 @@ function deny() {
 }
 function decode_positions(code) {
   const positions = [];
-  for (let j = 0; j < code.length; j++) {
+  for (let j = 0; j < code?.length; j++) {
     for (let i = 1; i <= 5; ++i) {
       if (code[j] & (1 << (i - 1))) {
         positions.push(i);
@@ -259,15 +265,15 @@ useEffect(() => {
 
   const maxRankUrl = findUrlByName(ranks,peopleNumberToRank(findMaxRank()))
   const minRankUrl = findUrlByName(ranks, peopleNumberToRank(findMinRank()))
-  console.log(dataCommand.suggested_team)
+
   return (
     <div className="FindCommandContainer">
       <h1 className="FindCommandH1">Команда найдена</h1>
-      <p className="FindCommandName">{dataCommand?.suggested_team.name}</p>
+      <div className="mergeHeader"><img src={prev} className='prev' /><p className="FindCommandName">{dataCommand?.suggested_team.name}</p><img src={next} className='next' /></div>
       <div className="FindCommandContent">
         <div className="FindCommandBlock">
           <img src={people} className="FindCommandPeople" />-
-          {dataCommand.suggested_team.game_profiles.length}
+          {dataCommand?.suggested_team.game_profiles.length}
         </div>
         <div className="FindCommandBlockAge">
           <img src={age} className="FindCommandPeople" />-{" "}
@@ -306,7 +312,7 @@ useEffect(() => {
           <div className="CommandMergeButton">        <img src={refresh} onClick={deny} className='CommandMergeButtonAdd' /> Следующий</div>
           <div className="CommandMergeButton" >Принять <img src={add} onClick={approve} className='CommandMergeButtonAdd'/></div>
       </div>
-      <div className="CommandMergeTime">{dataCommand.remaining_time}</div>
+      <div className="CommandMergeTime">{dataCommand?.remaining_time}</div>
     </div>
   )
 }
