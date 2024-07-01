@@ -24,7 +24,7 @@ import next from '../../assets/next.svg'
 
 const CommandMerge = () => {
   const { CommandMergeId } = useParams()
-
+  const [activeIndex, setActiveIndex] = useState(0); // Используем useState для хранения индекса активного элемента
   const location = useLocation()
   const dataCommand = location.state?.data
 
@@ -32,10 +32,7 @@ const CommandMerge = () => {
   const data = useContext(ApiDataContext);
   const navigate = useNavigate()
 
-  const decode = decode_positions(
-    dataCommand?.suggested_team.game_profiles.map((profile) => 
-      profile.positions_code)
-  );
+
   function findUserByName(users, heroes) {
     const heroesUrl = [];
     for (let j = 0; j < heroes.length; j++) {
@@ -51,17 +48,7 @@ const CommandMerge = () => {
 
   const [position, setPosition] = useState([]);
   const [heroesName, setHeroesName] = useState([])
-  useEffect(()=>{
-    const heroArray = dataCommand?.suggested_team.game_profiles.map((profile)=>
-      profile.heroes
-    )
-    
-    for (let i = 0; i < heroArray?.length; i++) {
-      const element = heroArray[i];
-      setHeroesName(heroesName.concat(element))
-    }
-  },[])
-  const heroesUrl = findUserByName(heroes, heroesName)
+  const [heroesUrl, setheroesUrl] = useState([])
 
 
   useEffect(()=>{
@@ -69,7 +56,7 @@ const CommandMerge = () => {
     deny()
   }},[dataCommand?.remaining_time]
 )
-
+console.log(dataCommand?.suggested_team.game_profiles)
 function findUrlByName(profile, heroes) {
   for (var i = 0; i < profile.length; i++) {
     if (profile[i].name === heroes) {
@@ -227,41 +214,79 @@ function deny() {
 }
 function decode_positions(code) {
   const positions = [];
-  for (let j = 0; j < code?.length; j++) {
+
     for (let i = 1; i <= 5; ++i) {
-      if (code[j] & (1 << (i - 1))) {
+      if (code?.positions_code & (1 << (i - 1))) {
         positions.push(i);
       }
-    }
+
     
   }
 
   return positions;
 }
-useEffect(() => {
-  for (let i = 0; i < decode.length; i++) {
-    const element = decode[i];
-    switch (element) {
-      case 1:
-        position.push(carry);
-        break;
-      case 2:
-        position.push(mid);
-        break;
-      case 3:
-        position.push(hard);
-        break;
-      case 4:
-        position.push(semiSup);
-        break;
-      case 5:
-        position.push(support);
-        break;
-      default:
-        break;
+
+
+const handleSlide = (direction) => {
+  setPosition([])
+  if (direction === 'next') {
+    if (activeIndex < dataCommand.suggested_team.game_profiles.length - 1) {
+      setActiveIndex((currentIndex) => (currentIndex + 1) %  position.length);  
+    }else{
+      setActiveIndex(0)
     }
+ // Перемещаемся к следующему элементу
+  } else if (direction === 'prev') {
+    if (activeIndex > 0) {
+      setActiveIndex((currentIndex) => ((currentIndex - 1 + position.length) %  position.length));
+    }else{
+      setActiveIndex(dataCommand?.suggested_team.game_profiles.length - 1)
+    }
+
   }
-}, []);
+  setPos()
+
+
+};
+useEffect(()=>{
+  setPos()
+},[])
+
+
+function setPos() {
+
+  const heroArray = dataCommand?.suggested_team.game_profiles[activeIndex]
+
+  setheroesUrl(findUserByName(heroes, heroArray.heroes))
+
+  const decode = decode_positions(
+    dataCommand?.suggested_team.game_profiles[activeIndex])
+    for (let i = 0; i < decode.length; i++) {
+      const element = decode[i];
+      switch (element) {
+        case 1:
+          setPosition(oldpos => [...oldpos, carry]);
+          break;
+        case 2:
+          setPosition(oldpos => [...oldpos, mid]);
+          break;
+        case 3:
+          setPosition(oldpos => [...oldpos, hard]);
+          break;
+        case 4:
+          setPosition(oldpos => [...oldpos, semiSup]);
+          break;
+        case 5:
+          setPosition(oldpos => [...oldpos, support]);
+          break;
+        default:
+          break;
+      }
+
+  }
+}
+
+
 
   const maxRankUrl = findUrlByName(ranks,peopleNumberToRank(findMaxRank()))
   const minRankUrl = findUrlByName(ranks, peopleNumberToRank(findMinRank()))
@@ -269,7 +294,7 @@ useEffect(() => {
   return (
     <div className="FindCommandContainer">
       <h1 className="FindCommandH1">Команда найдена</h1>
-      <div className="mergeHeader"><img src={prev} className='prev' /><p className="FindCommandName">{dataCommand?.suggested_team.name}</p><img src={next} className='next' /></div>
+      <div className="mergeHeader"><img src={prev} className='prev' onClick={() => handleSlide('prev')} /><p className="FindCommandNameMerge">{dataCommand?.suggested_team.name}</p><img onClick={() => handleSlide('next')} src={next} className='next' /></div>
       <div className="FindCommandContent">
         <div className="FindCommandBlock">
           <img src={people} className="FindCommandPeople" />-
@@ -291,8 +316,8 @@ useEffect(() => {
         </div>
         <div className="CommandMergeHeroes">
         <div className="CommandMergePositionsContainer">
-          {heroesUrl.map((url)=>
-            <img src={url} className='CommandMergePosition'/>
+          {heroesUrl.map((url, id)=>
+            <img src={url} className='CommandMergePosition' key={id}/>
         )}</div>
         </div>
         <div className="CommandMergePositions">
