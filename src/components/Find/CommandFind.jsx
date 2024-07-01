@@ -15,7 +15,7 @@ import gosearch from "../../assets/gosearch.svg";
 import add from "../../assets/add.svg";
 import sharebutton from "../../assets/sharebutton.svg";
 import axios from "axios";
-import { ApiDataContext } from "../../context/ApiDataContext";
+import { ApiDataContext, TransparencyContext } from "../../context/ApiDataContext";
 import Member from "../Command/Member";
 import { heroes } from "../../utils/dotaHero";
 import { ranks } from "../../utils/Ranks";
@@ -25,6 +25,7 @@ import { useSse } from "../hook/UseSse";
 
 
 const CommandFind = (profile) => {
+  const {event, setEvent} = useContext(TransparencyContext)
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState(
@@ -253,7 +254,7 @@ const CommandFind = (profile) => {
             <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
           ))}
           <div className="pagButtons">
-            <a className="pagA" href={`/FindCommand/${profile.command._id}`}><img src={gosearch}  className="pagButton"/></a>
+            <a className="pagA" ><img src={gosearch} onClick={start_search} className="pagButton"/></a>
             <img
               src={sharebutton}
               className="pagButtonfind"

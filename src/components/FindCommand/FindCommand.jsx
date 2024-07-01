@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 import { ApiDataContext } from "../../context/ApiDataContext";
 import axios from "axios";
 import { ranks } from "../../utils/Ranks";
-import {useSse} from "../hook/UseSse";
+import { useSse } from "../hook/UseSse";
+
 
 const FindCommand = () => {
   const { CommandId } = useParams();
@@ -17,15 +18,8 @@ const FindCommand = () => {
 
   const {start_search, closeSSE, confirm} = useSse(CommandId)
 
-  useEffect(()=>{
-    window.addEventListener("beforeunload", closeSSE());
-  },[])
   
-  useEffect(()=>{
-    if (!confirm) {
-      start_search()
-    }
-  },[data])
+ 
 
   useEffect(() => {
     if (data) {
@@ -211,6 +205,7 @@ const FindCommand = () => {
       }
     }
   }
+
   const minRank = peopleNumberToRank(findMinRank());
   const maxRank = peopleNumberToRank(findMaxRank());
   const minRankUrl = findUrlByName(ranks, minRank);

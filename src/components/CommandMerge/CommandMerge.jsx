@@ -18,7 +18,7 @@ import { heroes } from '../../utils/dotaHero';
 
 const CommandMerge = () => {
   const { CommandMergeId } = useParams()
- const {closeSSE} = useSse()
+
   const location = useLocation()
   const dataCommand = location.state.data
 
@@ -259,7 +259,7 @@ useEffect(() => {
 
   const maxRankUrl = findUrlByName(ranks,peopleNumberToRank(findMaxRank()))
   const minRankUrl = findUrlByName(ranks, peopleNumberToRank(findMinRank()))
-
+  console.log(dataCommand.suggested_team)
   return (
     <div className="FindCommandContainer">
       <h1 className="FindCommandH1">Команда найдена</h1>

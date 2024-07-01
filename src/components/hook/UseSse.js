@@ -13,7 +13,6 @@ export const useSse = (searchID) => {
   const [confirm, setConfirm] = useState(false)
   const navigate = useNavigate();
 
-
   function start_search() {
     if (data && !confirm) {
       const event_sourse = new EventSource(
