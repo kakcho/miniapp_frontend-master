@@ -43,6 +43,7 @@ export const useSse = (searchID) => {
       })
       event_sourse.addEventListener("error", () => {
         navigate(`/Find`)
+        event_sourse.close();
       });
       setEvent(event_sourse);
 
