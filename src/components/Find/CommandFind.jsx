@@ -22,6 +22,7 @@ import { ranks } from "../../utils/Ranks";
 
 import { ChangeModal } from "./ChangeModal";
 import { useSse } from "../hook/UseSse";
+import { initUtils } from "@tma.js/sdk";
 
 
 const CommandFind = (profile) => {
@@ -159,13 +160,13 @@ const CommandFind = (profile) => {
     });
   },[data])
 
-  const shareData = {
-    title: "YOUNITE",
-    text: "Вас пригласили в команду!",
-    url: `https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`,
-  };
+
+
+  const utils = initUtils();
   const handleShare = () => {
-    navigator.share(shareData);
+    utils.openTelegramLink(
+      `https://t.me/share/url?url=https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`, 'З'
+    );
   };
   function handleRemove() {
 
