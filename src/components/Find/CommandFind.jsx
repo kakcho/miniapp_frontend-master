@@ -211,20 +211,20 @@ const CommandFind = (profile) => {
         });
     }
   }
-  console.log(profile.command)
+
   const [openChangeModal,setOpenChangeModal] = useState(false)
   const {start_search, closeSSE, confirm} = useSse(profile.command._id)
   return (
     <div className="command">
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
 
-      <div className={`command-container ${profile.command.search ? 'inFind' : ''}`} inFind onClick={() => setOpenChangeModal(false)}>
+      <div className={`command-container ${profile.command.status=="active" ? 'inFind' : ''}`} inFind onClick={() => setOpenChangeModal(false)}>
         <div className="command-containerHeader">
         <div className="nicknameCommand">
           {profile.command.name}{" "}
           {profile.command.is_owner && <img src={owner} />}{" "}
         </div>
-        {profile.command.search && <div className="inFindTitle">В поиске</div>}
+        {profile.command.status=="active" && <div className="inFindTitle">В поиске</div>}
         <div className="imagesPag">
           <div className="numberPlayer">
             {1 + profile.command.members_game_profiles.length}
@@ -235,16 +235,16 @@ const CommandFind = (profile) => {
         </div>
       </div>
       {open && (
-        <div className={`pagConteiner ${profile.command.search ? 'inFind' : ''}`}>
+        <div className={`pagConteiner ${profile.command.status=="active" ? 'inFind' : ''}`}>
           <div className="description">
             <div className="descriptionTitle">
               Описание
-              <img src={pen} alt="" onClick={() => setEdit(true)} />
+              {isOwner && <img src={pen} alt="" onClick={() => setEdit(true)} />}
             </div>
 
             <input
               className="descriptionContent"
-              disabled={!edit}
+              disabled={!(edit && isOwner)}
               value={descriptionValue}
               onChange={(e) => {
                 setDescriptionValue(e.target.value);
@@ -252,7 +252,7 @@ const CommandFind = (profile) => {
               autoFocus={edit}
               onBlur={handleBLur}
             />
-            {edit && <hr className="descriptionHR" />}
+            {edit && isOwner && <hr className="descriptionHR" />}
           </div>
           <div className="teammates" >
             <div className="teammateRank">
