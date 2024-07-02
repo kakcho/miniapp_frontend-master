@@ -231,14 +231,14 @@ const handleSlide = (direction) => {
   setPosition([])
   if (direction === 'next') {
     if (activeIndex < dataCommand.suggested_team.game_profiles.length - 1) {
-      setActiveIndex((currentIndex) => (currentIndex + 1) %  position.length);  
+      setActiveIndex((currentIndex) => (currentIndex + 1));  
     }else{
       setActiveIndex(0)
     }
  // Перемещаемся к следующему элементу
   } else if (direction === 'prev') {
     if (activeIndex > 0) {
-      setActiveIndex((currentIndex) => ((currentIndex - 1 + position.length) %  position.length));
+      setActiveIndex((currentIndex) => ((currentIndex - 1 + position.length)));
     }else{
       setActiveIndex(dataCommand?.suggested_team.game_profiles.length - 1)
     }
