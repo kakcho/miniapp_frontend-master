@@ -178,9 +178,11 @@ const CreateProfile = () => {
    }
   if (!loading) {
     return (
-      <div className="createProfile profile">
+      <div className="profile">
+
 
         <Header title={"Профиль"} />
+        <div className="profileRow">
         <input
           type="text"
           name="nickname"
@@ -192,7 +194,7 @@ const CreateProfile = () => {
           required
           onBlur={handleBlur}
         />
-        <div className="popup" style={{overflow: 'hidden'}} onClick={handleClick}>
+        <div className="popup" style={{position: isPopupOpen ? 'fixed' : ''}} onClick={handleClick}>
           <label className="helpLable">Страна</label>
           <div className="country-item contary">{selectedCountry}</div>
           <img src={popupOpen} className="popupOpen" />
@@ -203,7 +205,7 @@ const CreateProfile = () => {
             {countries.map((country) => (
               <div
                 key={country.value}
-                country={country}
+
                 onClick={() => {handleSelect(country)}}
                 className="country-item"
               >
@@ -211,13 +213,24 @@ const CreateProfile = () => {
               </div>
             ))}
           </div>
-        </div>
-        <div className="popup rank" onClick={handleClickRank} >
+        </div></div>
+        <div className="profileRow2">
+       
+        <input
+          type="text"
+          placeholder="Steam id"
+          className="steam-id-input"
+          required
+          value={userData?.steam_id}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />{" "}
+         <div className="popup rank" onClick={handleClickRank} style={{position: isPopupOpenRank ? 'fixed' : ''}} >
           <label className="helpLable">Ранг</label>
-          <div className="country-item">
+
             <img src={selectedRank} className="rankImg" />
-          </div>
-          <img src={popupOpen} className="popupOpen" />
+
+          <img src={popupOpen} className="popupOpenRank" />
           <div
             className="popup__content"
             style={{ display: isPopupOpenRank ? "block" : "none" }}
@@ -234,15 +247,7 @@ const CreateProfile = () => {
             ))}
           </div>
         </div>
-        <input
-          type="text"
-          placeholder="Steam id"
-          className="steam-id-input"
-          required
-          value={userData?.steam_id}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />{" "}
+        </div>
         <div className="row">
           <input
             type="text"
@@ -277,6 +282,7 @@ const CreateProfile = () => {
         <GameProfileInfo  profile={profile} key={id}/>
        ))}
         </div>
+
         <a href="createprofilegame" className="addComand"><img src={addcomand} className="addComand" /></a>
         <Bar />
       </div>

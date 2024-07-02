@@ -1,5 +1,5 @@
 .nickname {
-    margin-top: 100px;
+
     border-radius: 50px;
     border-style: none;
     height: 40px;
@@ -27,12 +27,11 @@
     width: 90px;
     border: #8E8BFF 1px solid;
     border-radius: 12px;
-    top: 100px;
-    min-height: 50px;
-    background-color: white;
-    position: absolute;
-    right: 10px;
     display: flex;
+    min-height: 50px;
+    left: 234px;
+    background-color: white;
+    margin-left: 40px;
     min-height: 50px;
     align-items: center;
     overflow: auto;
@@ -42,23 +41,30 @@
 }
 
 .country-item {
-    margin-top: 10px;
+    margin-top: 5px;
     font-weight: bold;  
     color: black;
 }
 
 
+.popupOpenFix {
+    margin-left: 60px;
+    position: absolute;
+    margin-top: 25px;
+}
 
 .popupOpen {
     margin-left: 60px;
-    position: absolute;
-    margin-top: 18px;
+    margin-top: -15px;
+}
+.popupOpenRank{
+    margin-left: 60px; 
+    margin-top: -25px;
 }
 
 .helpLable {
     font-size: 8pt;
-    top: -2px;
-    position: absolute;
+
     margin-left: -40px;
 }
 
@@ -69,7 +75,7 @@
 
 .popup__content {
     z-index: 10;
-
+    margin-top: 20px;
 }
 
 .pickedCountry {
@@ -82,7 +88,7 @@
 
 }
 .contary{
-    margin-top: 15px;
+    margin-top: 5px;
 }
 .steam-id{
     position: absolute;
@@ -90,20 +96,19 @@
     top: 185px;
 }
 .steam-id-input{
-    margin-top: 45px;
+    height: 20px;
     border: none;
     background-color: transparent;
     font-size: 12pt;
     margin-left: 30px;
     border-bottom: solid #45444F;
-    width: calc(100% - 150px);
+    width: 200px;
 }
 .steam-id-input{
     outline: none;
 }
 .ageCreate{
-    position: absolute;
-    right: 30px;
+    position: relative;
     border: none;
     background-color: transparent;
     font-size: 12pt;
@@ -126,6 +131,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: end;
 }
 input:focus{
     outline: none;
@@ -145,4 +151,15 @@ input:focus{
     font-weight: 500;
     color: white;
     
+}
+.profileRow{
+    display: flex;
+    height: 50px;
+    margin-top: 100px;
+}
+.profileRow2{
+    display: flex;
+    min-height: 60px;
+
+    align-items: end;
 }

@@ -49,12 +49,15 @@ const AddStud = () => {
   }, [selectedHero]);
 
   useEffect(() => {
-    if (gameData.name && gameData.positions_code != 0) {
+    console.log(gameData.rank)
+    if (gameData.name && gameData.positions_code && gameData.rank) {
       setButACtive(false);
     } else {
       setButACtive(true);
     }
-  }, [gameData.name, gameData.positions_code]);
+  }, [gameData.name, gameData.positions_code, gameData.rank]);
+
+
   const handleSelectImage = (id) => {
     if (selectedImages.includes(id)) {
       // Если изображение уже выбрано, удаляем его из списка выбранных
@@ -82,12 +85,17 @@ const AddStud = () => {
     setSearchTerm(event.target.value);
   };
   const [searchResults, setSearchResults] = React.useState([]);
+
+
   React.useEffect(() => {
     const results = heroes.filter((heroes) =>
       heroes.localized_name.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
   }, [searchTerm]);
+
+
+
   const [isOpen, setIsOpen] = useState(false);
   const code_positions = (positions) => {
     let result = 0;
@@ -120,6 +128,7 @@ const AddStud = () => {
     setSelectedRank(rank);
     setGameData({ ...gameData, rank: rank.name });
   }
+
   return (
     <div className="createProfile">
 
@@ -137,9 +146,7 @@ const AddStud = () => {
         />
         <div className="rankStud" onClick={handleClickRank}>
           <label className="helpLable">Ранг</label>
-          <div className="country-item">
             <img src={selectedRank?.url} className="rankImg" />
-          </div>
           <img src={popupOpen} className="popupOpen" />
           <div
             className="popup__content"

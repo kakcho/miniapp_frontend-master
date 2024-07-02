@@ -14,8 +14,9 @@ import axios from "axios";
 import { ranks } from "../../utils/Ranks";
 import { ChangeModal } from "../Find/ChangeModal";
 import UserModal from "./UserModal";
+import logout from '../../assets/Logout.svg'
 
-const Member = ({ profile, id, setOpenModal, find }) => {
+const Member = ({isOwner ,profile, id, setOpenModal, find }) => {
   const data = useContext(ApiDataContext);
   const decode = decode_positions(profile.positions_code);
   const [position, setPosition] = useState([]);
@@ -67,7 +68,6 @@ const Member = ({ profile, id, setOpenModal, find }) => {
           break;
       }
     }
-    console.log(position)
   }, [data]);
 
   function handleRemove() {
@@ -100,6 +100,22 @@ const Member = ({ profile, id, setOpenModal, find }) => {
     }
   }
 
+  function handleLeave() {
+    axios
+    .post(
+      `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${
+        id
+      }/leave`, null,
+      {
+        headers: {
+          Authorization: `Bearer ${data?.access}`,
+        },
+      }
+    )
+    .then(function (response) {
+      window.location.reload();
+    });
+  }
   const rankUrl = findUserByName(ranks, profile.rank);
 
   const [openModalInfo, setOpenModalInfo] = useState(false);
@@ -129,8 +145,11 @@ const Member = ({ profile, id, setOpenModal, find }) => {
           </div>
           <div className="redact">
             {profile.is_you ? (
-              <img src={pen} onClick={() => setOpenModal(true)} />
-            ) : (
+              <>
+              <img src={pen} onClick={() => setOpenModal(true)} className="redactImg"/>
+              <img src={logout}  className="redactImg" onClick={()=> handleLeave()}/> 
+              </>
+            ) : isOwner && (
               <img src={trash} onClick={handleRemove} />
             )}
           </div>

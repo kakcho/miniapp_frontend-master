@@ -19,7 +19,7 @@ import { ApiDataContext, TransparencyContext } from "../../context/ApiDataContex
 import Member from "../Command/Member";
 import { heroes } from "../../utils/dotaHero";
 import { ranks } from "../../utils/Ranks";
-
+import logout from '../../assets/Logout.svg'
 import { ChangeModal } from "./ChangeModal";
 import { useSse } from "../hook/UseSse";
 import { initUtils } from "@tma.js/sdk";
@@ -32,11 +32,34 @@ const CommandFind = (profile) => {
   const [descriptionValue, setDescriptionValue] = useState(
     profile.command.description
   );
+  const [isOwner, setIsOwner] = useState()
   const data = useContext(ApiDataContext);
   const decode = decode_positions(
     profile.command.owner_game_profile.positions_code
   );
   const [position, setPosition] = useState([]);
+
+  useEffect(()=>{
+    setIsOwner(profile.command.owner_game_profile.is_you)
+  },[])
+
+
+  function handleLeave(params) {
+    axios
+    .post(
+      `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${
+        profile.command._id
+      }/leave`, null,
+      {
+        headers: {
+          Authorization: `Bearer ${data?.access}`,
+        },
+      }
+    )
+    .then(function (response) {
+      window.location.reload();
+    });
+  }
 
   function handleDelete() {
     axios
@@ -239,7 +262,7 @@ const CommandFind = (profile) => {
                   <img src={owner} alt="" />{" "}
                 </div>
                 <div className="redact">
-                  {profile.command.owner_game_profile.is_you ? <img src={pen} onClick={()=>{setOpenChangeModal(!openChangeModal)}} /> : <img src={trash} onClick={handleRemove}/>}
+                  {isOwner ? <><img src={pen} onClick={()=>{setOpenChangeModal(!openChangeModal)}} /> </> : profile.command.owner_game_profile.is_you && <><img src={pen} onClick={()=>{setOpenChangeModal(!openChangeModal)}} /><img src={logout}  /> </>}
                 </div>
               </div>
               <img src={line} className="teammatesHr" />
@@ -255,9 +278,9 @@ const CommandFind = (profile) => {
             </div>
           </div>
           {profile.command.members_game_profiles.map((member, id) => (
-            <Member profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
+            <Member isOwner={isOwner} profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
           ))}
-          <div className="pagButtons">
+         {isOwner && <div className="pagButtons">
             <a className="pagA" ><img src={gosearch} onClick={start_search} className="pagButton"/></a>
             <img
               src={sharebutton}
@@ -266,7 +289,7 @@ const CommandFind = (profile) => {
             />
             <a href={`/addStud/${profile.command._id}`} className="pagA"><img src={add} className="pagButtonfind" /></a>
             <img src={trash} className="trash" onClick={handleDelete} />
-          </div>
+          </div>}
         </div>
       )}
     </div>

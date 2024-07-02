@@ -112,6 +112,7 @@ const CreateProfile = () => {
     <div className="createProfile">
       <Header title={"Заполните свой профиль"} />
       {star && <p className="star nick">*</p>}
+      <div className="profileRow">
       <input
         type="text"
         name="nickname"
@@ -124,7 +125,7 @@ const CreateProfile = () => {
         }}
         required
       />
-      <div className="popup" onClick={handleClick}>
+      <div className="popup" onClick={handleClick} style={{position: isPopupOpen ? 'fixed' : ''}}>
         <label className="helpLable">Страна</label>
         <div className="country-item contary">{selectedCountry}</div>
         <img src={popupOpen} className="popupOpen" />
@@ -144,12 +145,22 @@ const CreateProfile = () => {
           ))}
         </div>
       </div>
-      <div className="popup rank" onClick={handleClickRank}>
+
+      </div>
+      <div className="profileRow2">
+      <input
+        type="text"
+        placeholder="Steam id"
+        className="steam-id-input"
+        required
+        value={steamId}
+        onChange={handleChange}
+      />{" "}
+      <div className="popup rank" onClick={handleClickRank} style={{position: isPopupOpenRank ? 'fixed' : ''}}>
         <label className="helpLable">Ранг</label>
-        <div className="country-item">
-          <img src={selectedRank.url} className="rankImg" />
-        </div>
-        <img src={popupOpen} className="popupOpen" />
+        <img src={selectedRank.url} className="rankImg" />
+        <img src={popupOpen} className="popupOpenRank" />
+
         <div
           className="popup__content"
           style={{ display: isPopupOpenRank ? "block" : "none" }}
@@ -166,14 +177,8 @@ const CreateProfile = () => {
           ))}
         </div>
       </div>
-      <input
-        type="text"
-        placeholder="Steam id"
-        className="steam-id-input"
-        required
-        value={steamId}
-        onChange={handleChange}
-      />{" "}
+
+      </div>
       {starSteam && <p className="star steam-id">*</p>}
       <div className="row">
         <input
