@@ -165,7 +165,7 @@ const CommandFind = (profile) => {
   const utils = initUtils();
   const handleShare = () => {
     utils.openTelegramLink(
-      `https://t.me/share/url?url=https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`, 'З'
+      `https://t.me/share/url?url=https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`
     );
   };
   function handleRemove() {
