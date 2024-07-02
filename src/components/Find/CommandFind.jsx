@@ -168,7 +168,7 @@ const CommandFind = (profile) => {
  
   const [token, setToken] = useState()
   useEffect(()=> {
-    axios({
+    if(isOwner){axios({
       method: "get",
       url: `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/invite_token`,
       headers: {
@@ -179,7 +179,7 @@ const CommandFind = (profile) => {
       },
     }).then(function (response) {
       setToken(response.data.response);
-    });
+    });}
   },[data])
 
 
@@ -211,18 +211,20 @@ const CommandFind = (profile) => {
         });
     }
   }
-
+  console.log(profile.command)
   const [openChangeModal,setOpenChangeModal] = useState(false)
   const {start_search, closeSSE, confirm} = useSse(profile.command._id)
   return (
     <div className="command">
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
 
-      <div className="command-container" onClick={() => setOpenChangeModal(false)}>
+      <div className={`command-container ${profile.command.search ? 'inFind' : ''}`} inFind onClick={() => setOpenChangeModal(false)}>
+        <div className="command-containerHeader">
         <div className="nicknameCommand">
           {profile.command.name}{" "}
           {profile.command.is_owner && <img src={owner} />}{" "}
         </div>
+        {profile.command.search && <div className="inFindTitle">В поиске</div>}
         <div className="imagesPag">
           <div className="numberPlayer">
             {1 + profile.command.members_game_profiles.length}
@@ -230,9 +232,10 @@ const CommandFind = (profile) => {
           <img src={people} alt="" className="people" />
           <img src={pag} className="pag" onClick={handleOpen} />
         </div>
+        </div>
       </div>
       {open && (
-        <div className="pagConteiner">
+        <div className={`pagConteiner ${profile.command.search ? 'inFind' : ''}`}>
           <div className="description">
             <div className="descriptionTitle">
               Описание
