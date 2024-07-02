@@ -36,7 +36,7 @@
     overflow: auto;
     max-height: 300px;
     flex-direction: column;
-    z-index: 5;
+    z-index: 500;
 }
 .close{
     width: 100%;

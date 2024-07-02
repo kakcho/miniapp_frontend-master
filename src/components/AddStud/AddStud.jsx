@@ -13,9 +13,11 @@ import { ApiDataContext } from "../../context/ApiDataContext";
 import "./AddStud.css";
 import { useParams } from "react-router-dom";
 
+
 const AddStud = () => {
   const [isPopupOpenRank, setIsPopupOpenRank] = useState(false);
-  const [selectedRank, setSelectedRank] = useState();
+  const [selectedRank, setSelectedRank] = useState(ranks[0]);
+  console.log(selectedRank)
   const [selectedImages, setSelectedImages] = useState([]);
   const [gameNick, setGameNick] = useState();
   const { teamId } = useParams();

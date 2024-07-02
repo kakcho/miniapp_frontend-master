@@ -332,11 +332,11 @@ function setPos() {
       <textarea disabled className="CommandMergeDescription" value={'Играю на саппорте fdghiojludfhgiobpfdjlhgfdksnbhjdfgljghlfdjhglkjjdfljkhgl;sdfhgljkdfkljghfl jkdhgjnlkgdfjljkglkfjglijfdligjdflkgjlkifdjgklidfjklgjdfkljgkfdgklj  gkfjgfdkjgklfdj g'}>
 
       </textarea>
-      <div className="CommandMergeButtons">
 
-          <div className="CommandMergeButton">        <img src={refresh} onClick={deny} className='CommandMergeButtonAdd' /> Следующий</div>
-          <div className="CommandMergeButton" >Принять <img src={add} onClick={approve} className='CommandMergeButtonAdd'/></div>
-      </div>
+        
+        { <div className={`CommandMergeButtons`}><div className={`CommandMergeButton`}>        <img src={refresh} onClick={deny} className='CommandMergeButtonAdd' /> Следующий</div>
+        <div className={`CommandMergeButton ${dataCommand.reacted ? 'opacity' : ''}`} >Принять <img src={add} onClick={approve} className='CommandMergeButtonAdd'/></div></div>}
+
       <div className="CommandMergeTime">{dataCommand?.remaining_time}</div>
     </div>
   )

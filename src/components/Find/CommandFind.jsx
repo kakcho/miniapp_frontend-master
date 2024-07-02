@@ -191,7 +191,7 @@ const CommandFind = (profile) => {
     <div className="command">
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
 
-      <div className="command-container">
+      <div className="command-container" onClick={() => setOpenChangeModal(false)}>
         <div className="nicknameCommand">
           {profile.command.name}{" "}
           {profile.command.is_owner && <img src={owner} />}{" "}
