@@ -24,10 +24,10 @@ import next from '../../assets/next.svg'
 
 const CommandMerge = () => {
   const { CommandMergeId } = useParams()
-  const [activeIndex, setActiveIndex] = useState(0); // Используем useState для хранения индекса активного элемента
+// Используем useState для хранения индекса активного элемента
   const location = useLocation()
   const dataCommand = location.state?.data
-
+  const [activeIndex, setActiveIndex] = useState(dataCommand.suggested_team.game_profiles.length - 1); 
 
   const data = useContext(ApiDataContext);
   const navigate = useNavigate()
@@ -238,7 +238,7 @@ const handleSlide = (direction) => {
  // Перемещаемся к следующему элементу
   } else if (direction === 'prev') {
     if (activeIndex > 0) {
-      setActiveIndex((currentIndex) => ((currentIndex - 1 + position.length)));
+      setActiveIndex((currentIndex) => ((currentIndex - 1)));
     }else{
       setActiveIndex(dataCommand?.suggested_team.game_profiles.length - 1)
     }

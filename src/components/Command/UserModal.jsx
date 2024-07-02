@@ -6,8 +6,9 @@ import copy from '../../assets/Copy.svg'
 
 
 const UserModal = ({setOpenModal, profile}) => {
-  const [steamValue, setSteamValue] = useState('232')
-  const [discordValue, setDiscrodValue] = useState('2312432')
+  console.log(profile)
+  const [steamValue, setSteamValue] = useState(profile.contact_data.steam_id)
+  const [discordValue, setDiscrodValue] = useState(profile.contact_data.discord_nickname)
   const handleCopySteam = () => {
     navigator.clipboard.writeText(steamValue);
 }  

@@ -26,7 +26,26 @@ import UserModal from "./UserModal";
 
 
 const CommandItem = (profile) => {
-
+   function handleBLur() {
+    setEdit(false);
+    axios
+      .post(
+        `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${
+          profile.command._id
+        }/set_description`,
+        {
+          description: descriptionValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${data?.access}`,
+          },
+        }
+      )
+    }
+  const [descriptionValue, setDescriptionValue] = useState(
+    profile.command.description
+  );
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
 
@@ -52,7 +71,7 @@ const CommandItem = (profile) => {
         }
       ).then(()=> {window.location.reload()})
   }
-
+  const [isOwner, setIsOwner] = useState(true)
   return (
     <>          
     <div className="command">
@@ -73,15 +92,21 @@ const CommandItem = (profile) => {
       </div>
       {open && (
         <div className="pagConteiner">
-          <div className="description">
+         <div className="description">
             <div className="descriptionTitle">
               Описание
+              {isOwner && <img src={pen} alt="" onClick={() => setEdit(true)} />}
             </div>
 
-            <textarea
+            <input
               className="descriptionContent"
-              disabled={true}
-              value={profile.command.description}
+              disabled={!(edit && isOwner)}
+              value={descriptionValue}
+              onChange={(e) => {
+                setDescriptionValue(e.target.value);
+              }}
+              autoFocus={edit}
+              onBlur={handleBLur}
             />
             {edit && <hr className="descriptionHR" />}
           </div>
@@ -92,7 +117,7 @@ const CommandItem = (profile) => {
 
 
             <div className="purpleCurcle">
-              <img src={exit} className="pagButton" onClick={handleLeave} />
+            <img src={exit} className="pagButton" onClick={handleLeave} />
             </div>
           </div>
 
