@@ -42,7 +42,6 @@ export const ChangeModal = ({ setOpenModal, name, id }) => {
           url: `${import.meta.env.VITE_BASE_API_URL}/api/game_profiles/all`,
         })
         .then((response) => {
-          console.log(response)
           setProfiles(response.data.response);
         });
 
@@ -55,7 +54,7 @@ export const ChangeModal = ({ setOpenModal, name, id }) => {
   },[profiles])
 
 
-console.log(selected)
+
  if(profiles){ return (
     <div className="changeModal" >
       <div className="blur">

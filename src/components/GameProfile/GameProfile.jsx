@@ -107,7 +107,7 @@ const GameProfile = () => {
     }
   }, [gameNick, selectedImages, selectedOptions]);
 
-  console.log(selectedImages)
+
 
   const handleSelectImage = (id) => {
     if (selectedImages.includes(id)) {
@@ -168,7 +168,6 @@ const GameProfile = () => {
         }
       )
       .then(function (response) {
-        console.log(response);
       });
   }
 

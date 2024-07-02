@@ -27,11 +27,11 @@ export const Modal = ({ setOpenModal, create }) => {
         Authorization: `Bearer ${data?.access}`
       }}
     ).then(function (response) {
-      console.log(response);
+
       location.reload()
     })
     .catch(function (error) {
-      console.log(error);
+
     });
     setOpenModal()
   }

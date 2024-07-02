@@ -87,7 +87,6 @@ const Member = ({ profile, id, setOpenModal, find }) => {
           }
         )
         .then((response) => {
-          console.log(response.data);
           window.location.reload();
         });
     }

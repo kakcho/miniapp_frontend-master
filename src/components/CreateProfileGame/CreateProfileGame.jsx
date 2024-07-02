@@ -38,7 +38,7 @@ const CreateProfileGame = () => {
   }, [selectedHero]);
 
   useEffect(() => {
-    console.log(gameData.name, gameData.positions_code)
+
     if (gameData.name && gameData.positions_code) {
       setButACtive(false);
     } else {
@@ -96,7 +96,7 @@ const CreateProfileGame = () => {
         },
       }
     ).then(function (response) {
-    console.log(response);
+
   })
   }
 

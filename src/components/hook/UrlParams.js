@@ -32,7 +32,6 @@ export function handleUrlParams() {
             Authorization: `Bearer ${data.access}`
           }
     }).then((res)=>{
-        console.log(res)
         navigate("/Find")
     })
 

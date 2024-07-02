@@ -36,7 +36,6 @@ const Command = () => {
     }
   }, [data, openModal]);
 
-    console.log(command)
 
   function handleClick(event) {
       setOpenModal(false)

@@ -54,8 +54,7 @@ const CommandFind = (profile) => {
         window.location.reload();
       });
   }
-  console.log(profile.command)
-  
+
 
   useEffect(() => {
     for (let i = 0; i < decode.length; i++) {
@@ -162,12 +161,16 @@ const CommandFind = (profile) => {
 
 
 
-  const utils = initUtils();
+
+  
   const handleShare = () => {
-    utils.openTelegramLink(
+    window.Telegram.WebApp.openTelegramLink(
       `https://t.me/share/url?url=https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`
     );
   };
+
+
+
   function handleRemove() {
 
     if (data) {

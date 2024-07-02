@@ -56,7 +56,7 @@ const CommandMerge = () => {
     deny()
   }},[dataCommand?.remaining_time]
 )
-console.log(dataCommand?.suggested_team.game_profiles)
+
 function findUrlByName(profile, heroes) {
   for (var i = 0; i < profile.length; i++) {
     if (profile[i].name === heroes) {
