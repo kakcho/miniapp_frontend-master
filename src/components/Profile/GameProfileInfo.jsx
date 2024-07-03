@@ -28,7 +28,7 @@ const GameProfileInfo = ({ profile,}) => {
         }
       )
       .then(function (response) {
-        console.log(response);
+
         window.location.reload();
       });
 

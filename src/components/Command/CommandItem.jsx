@@ -26,36 +26,46 @@ import UserModal from "./UserModal";
 
 
 const CommandItem = (profile) => {
-   function handleBLur() {
-    setEdit(false);
-    axios
-      .post(
-        `${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${
-          profile.command._id
-        }/set_description`,
-        {
-          description: descriptionValue,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${data?.access}`,
-          },
-        }
-      )
-    }
+  
   const [descriptionValue, setDescriptionValue] = useState(
     profile.command.description
   );
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
 
+
+
   const data = useContext(ApiDataContext);
 
 
- 
+
   function handleOpen() {
     setOpen(!open);
   }
+
+  function handleName() {
+    axios.patch(`${import.meta.env.VITE_BASE_API_URL}/api/final_teams/${
+      profile.command._id
+    }/name?name=${name}`, null,{
+      headers: {
+        Authorization: `Bearer ${data?.access}`,
+      },
+    } )
+  }
+
+  function handleDescription() {
+    setEdit(false)
+    axios.patch(`${import.meta.env.VITE_BASE_API_URL}/api/final_teams/${
+      profile.command._id
+    }/description?description=${descriptionValue}`, 
+    null, {
+      headers: {
+        Authorization: `Bearer ${data?.access}`,
+      },
+    } )
+  }
+
+
 
 
   const [openModal, setOpenModal] = useState(false)
@@ -72,17 +82,22 @@ const CommandItem = (profile) => {
       ).then(()=> {window.location.reload()})
   }
   const [isOwner, setIsOwner] = useState(true)
+  const [editName, setEditName] = useState(true)
+  const [name, setName] = useState(profile.command.name)
+  console.log(name)
   return (
     <>          
     <div className="command">
 
               {openModal && <UserModal profile={profile.command} setOpenModal={setOpenModal}/>}
       <div className="command-container">
-        <div className="nicknameCommand">
-          {profile.command.name}{" "}
-          {profile.command.is_owner && <img src={owner} />}{" "}
-        </div>
-        <div className="imagesPag">
+        <input className="nicknameCommand" value={name} onChange={(e) =>{setName(e.target.value)}} onBlur={handleName}/>
+
+
+
+
+
+        <div className="imagesPag" >
           <div className="numberPlayer">
             {profile.command.game_profiles.length}
           </div>
@@ -106,7 +121,7 @@ const CommandItem = (profile) => {
                 setDescriptionValue(e.target.value);
               }}
               autoFocus={edit}
-              onBlur={handleBLur}
+              onBlur={handleDescription}
             />
             {edit && <hr className="descriptionHR" />}
           </div>

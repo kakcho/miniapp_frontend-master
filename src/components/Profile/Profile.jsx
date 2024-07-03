@@ -74,7 +74,6 @@ const CreateProfile = () => {
         });
     }
   }, [data]);
-  console.log(user)
   function handleSelectRank(rank) {
     setSelectedRank(rank.url);
     setUserData({...userData, game_data:{rank: rank.name}})

@@ -27,7 +27,7 @@ const handleCopyDiscord = () => {
             }}
           />
         </div>
-        <h3 className="userModalContentTitle">Name</h3>
+        <h3 className="userModalContentTitle">{profile.name}</h3>
         {profile.description && <div className="userModalDescription">
             <p className="userModalDescriptionP">{profile.description}</p>
             

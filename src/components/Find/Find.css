@@ -29,6 +29,9 @@
     font-weight: 700;
     margin-left: 20px;
     margin-right: auto;
+    border: none;
+    font-size: 14px;
+    background-color: transparent;
 }
 
 .imagesPag {
