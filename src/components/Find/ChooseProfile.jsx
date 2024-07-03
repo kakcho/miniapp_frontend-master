@@ -32,7 +32,7 @@ const ChooseProfile = ({token, setOpenModal}) => {
         headers: {
             Authorization: `Bearer ${data.access}`
           }
-    }).then(()=>  navigate(location.pathname, {state: {search: false}}))
+    }).then(()=>  {navigate(location.pathname, {state: {search: false}}); indow.location.reload()})
     setOpenModal(false)
     
   }
