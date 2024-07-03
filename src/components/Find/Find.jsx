@@ -22,7 +22,7 @@ const Find = () => {
   const location = useLocation()
   const [search, setSearch] = useState(location.state?.search)
   const token = location.state?.token
-
+  console.log(search)
 
 
 
