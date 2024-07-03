@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import dwn from "../../assets/Arrowdwn.svg";
 import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const ChooseProfile = ({token, setOpenModal}) => {
@@ -11,7 +12,8 @@ const ChooseProfile = ({token, setOpenModal}) => {
   const [selected, setSelected] = useState(profiles ? profiles[0]?.name : '');
 
   const data = useContext(ApiDataContext);
-
+  const location = useLocation()
+  const navigate = useNavigate();
 
 
   function findUserByName(users, name) {
@@ -30,7 +32,7 @@ const ChooseProfile = ({token, setOpenModal}) => {
         headers: {
             Authorization: `Bearer ${data.access}`
           }
-    })
+    }).then(()=>  navigate(location.pathname, {state: {search: false}}))
     setOpenModal(false)
     
   }

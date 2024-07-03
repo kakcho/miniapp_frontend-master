@@ -20,12 +20,16 @@ const Find = () => {
   const [command, setCommand] = useState()
   const [profiles, setProfiles] = useState()
   const location = useLocation()
-  const search = location.state?.search
+  const [search, setSearch] = useState(location.state?.search)
   const token = location.state?.token
   const [openChoose, setOpenChoose] = useState(false)
+
+  
   useEffect(()=>{
-    setOpenChoose(search)
+    setSearch(openChoose)
   },[search])
+
+
   useEffect(() => {
     if (data) {
       axios
@@ -41,7 +45,7 @@ const Find = () => {
           setCommand(response.data);
         });
     }
-  }, [data, openChoose]);
+  }, [data]);
 
   useEffect(() => {
     if (data) {
@@ -66,7 +70,7 @@ const Find = () => {
 
   return (
     <>
-    <div className='findContainer' onClick={()=> {setOpenModal(false); setOpenChoose(false)}} >
+    <div className='findContainer' onClick={()=> {setOpenModal(false); setSearch(false)}} >
       <div >
       <Header title={'Поиск'}/>
       <div className="sup Finder">Ваши команды</div>
@@ -83,7 +87,7 @@ const Find = () => {
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
-    {search && openChoose && <ChooseProfile token={token} setOpenModal={setOpenChoose}/>}
+    {search && openChoose && <ChooseProfile token={token} setOpenModal={setSearch}/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )
