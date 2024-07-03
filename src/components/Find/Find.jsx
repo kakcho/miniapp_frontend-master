@@ -17,7 +17,7 @@ const Find = () => {
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
   const [profiles, setProfiles] = useState()
-
+console.log(location.search)
   useEffect(() => {
     if (data) {
       axios

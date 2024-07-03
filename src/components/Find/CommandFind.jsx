@@ -178,15 +178,17 @@ const CommandFind = (profile) => {
         search_team_id: profile.command._id,
       },
     }).then(function (response) {
+      console.log(response.data.response)
       setToken(response.data.response);
     });}
-  },[data])
+  },[data, isOwner])
 
 
 
 
   
   const handleShare = () => {
+    console.log(token)
     window.Telegram.WebApp.openTelegramLink(
       `https://t.me/share/url?url=https://t.me/younitelmg_bot/younite?startapp=join_dota2_${token}`
     );
