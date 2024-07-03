@@ -10,6 +10,7 @@ import axios from 'axios'
 import UserModal from '../Command/UserModal'
 import  {ChangeModal} from './ChangeModal'
 import { useSse } from '../hook/UseSse'
+import ChooseProfile from './ChooseProfile'
 
 
 const Find = () => {
@@ -75,7 +76,7 @@ console.log(location.search)
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
-    {location.search && <ChangeModal/>}
+    {location.search && <ChooseProfile/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )
