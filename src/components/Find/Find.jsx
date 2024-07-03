@@ -21,6 +21,7 @@ const Find = () => {
   const [profiles, setProfiles] = useState()
   const location = useLocation()
   const search = location.state?.search
+  const token = location.state?.token
   useEffect(() => {
     if (data) {
       axios
@@ -58,7 +59,7 @@ const Find = () => {
   function handleClick() {
     setOpenModal(!openModal)
   }
-  
+  const [openChoose, setOpenChoose] = useState(true)
   return (
     <>
     <div className='findContainer' onClick={()=> setOpenModal(false)}>
@@ -78,7 +79,7 @@ const Find = () => {
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
-    {search && <ChooseProfile/>}
+    {search && openChoose && <ChooseProfile token={token} setOpenModal={setOpenModal}/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )

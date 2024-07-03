@@ -11,7 +11,7 @@ export const ChangeModal = ({ setOpenModal,id }) => {
 
   const data = useContext(ApiDataContext);
 
-console.log()
+
 
   function findUserByName(users, name) {
     for (var i = 0; i < users?.length; i++) {

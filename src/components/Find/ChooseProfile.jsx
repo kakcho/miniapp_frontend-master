@@ -4,7 +4,7 @@ import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
 
 
-const ChooseProfile = () => {
+const ChooseProfile = ({token, setOpenModal}) => {
    const [isOpen, setIsOpen] = useState(false);
   const [profiles, setProfiles] = useState()
 
@@ -21,7 +21,7 @@ const ChooseProfile = () => {
       }
     }
   }
-  const token = location.search.split("_").at(-1 )
+
   function handleChangeProfile() {
     axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/join`,{
         invite_token: token,
@@ -31,6 +31,7 @@ const ChooseProfile = () => {
             Authorization: `Bearer ${data.access}`
           }
     })
+    setOpenModal(false)
   }
 
   useEffect(() => {
@@ -98,7 +99,7 @@ const ChooseProfile = () => {
           <div className="GameNot">
             <p className="modalP ">У вас нет игрового профиля</p>
             <a href="/createprofilegame" className="a">
-              <button className="modal-button" onClick={()=> setOpenModal()} >
+              <button className="modal-button" onClick={()=> setOpenModal(false)} >
                 Создать
               </button>
             </a>
