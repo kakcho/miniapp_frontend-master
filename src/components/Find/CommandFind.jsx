@@ -43,6 +43,9 @@ const CommandFind = (profile) => {
     setIsOwner(profile.command.owner_game_profile.is_you)
   },[])
 
+  const youProfile = profile.command.members_game_profiles.find(person => person.is_you)
+
+ const memberProfiles = profile.command.members_game_profiles.filter(obj => !obj.is_you);
 
   function handleLeave(params) {
     axios
@@ -178,7 +181,6 @@ const CommandFind = (profile) => {
         search_team_id: profile.command._id,
       },
     }).then(function (response) {
-      console.log(response.data.response)
       setToken(response.data.response);
     });}
   },[data, isOwner])
@@ -256,7 +258,32 @@ const CommandFind = (profile) => {
             />
             {edit && isOwner && <hr className="descriptionHR" />}
           </div>
-          <div className="teammates" >
+        {isOwner ?  <div className="teammates" >
+            <div className="teammateRank">
+              <img src={UserRank} alt="" className="teammateRankImg"/>
+            </div>
+            <div className="teammateInfo">
+              <div className="">
+                <div className="teammateNameYou" >
+                  Вы
+                  <img src={owner} alt="" />{" "}
+                </div>
+                <div className="redact">
+                  {isOwner ? <><img src={pen} onClick={()=>{setOpenChangeModal(!openChangeModal)}} /> </> : profile.command.owner_game_profile.is_you && <><img src={pen} onClick={()=>{setOpenChangeModal(!openChangeModal)}} /><img src={logout}  /> </>}
+                </div>
+              </div>
+              <img src={line} className="teammatesHr" />
+              <div className="teammeteHeroes" >
+                {heroesUrl.map((url) => (
+                  <img src={url} className="teammeteHeroe" />
+                ))}
+                {heroesUrl[0] && <img src={linetop} alt="" />}
+                {position.map((url) => (
+                  <img src={url} className="teammeteHeroe" />
+                ))}
+              </div>
+            </div>
+          </div>: <><Member isYou={true}  isOwner={isOwner} profile={youProfile} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/> <div className="teammates" >
             <div className="teammateRank">
               <img src={UserRank} alt="" className="teammateRankImg"/>
             </div>
@@ -282,8 +309,9 @@ const CommandFind = (profile) => {
               </div>
             </div>
           </div>
-          {profile.command.members_game_profiles.map((member, id) => (
-            <Member isOwner={isOwner} profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
+          </>}
+          {memberProfiles.map((member, id) => (
+            <Member isYou={false} isOwner={isOwner} profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
           ))}
          {isOwner && <div className="pagButtons">
             <a className="pagA" ><img src={gosearch} onClick={start_search} className="pagButton"/></a>

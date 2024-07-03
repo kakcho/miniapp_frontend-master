@@ -114,6 +114,13 @@
     margin: 5px;
 }
 
+.teammateNameYou{
+    float: left;
+    font-weight: 600;
+    margin: 5px;
+    color: #8E8BFF;
+}
+
 .redact {
     display: flex;
     float: right;

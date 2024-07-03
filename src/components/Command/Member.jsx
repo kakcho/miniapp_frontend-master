@@ -16,7 +16,7 @@ import { ChangeModal } from "../Find/ChangeModal";
 import UserModal from "./UserModal";
 import logout from '../../assets/Logout.svg'
 
-const Member = ({isOwner ,profile, id, setOpenModal, find }) => {
+const Member = ({isYou ,isOwner ,profile, id, setOpenModal, find }) => {
   const data = useContext(ApiDataContext);
   const decode = decode_positions(profile.positions_code);
   const [position, setPosition] = useState([]);
@@ -135,14 +135,21 @@ const Member = ({isOwner ,profile, id, setOpenModal, find }) => {
       </div>
       <div className="teammateInfo">
         <div className="">
-          <div
+         {!isYou ? <div
             className="teammateName"
             onClick={() => {
               setOpenModalInfo(true);
             }}
           >
-            {profile.name}{" "}
-          </div>
+            {profile.name}
+          </div>: <div
+            className="teammateNameYou"
+            onClick={() => {
+              setOpenModalInfo(true);
+            }}
+          >
+            Вы
+          </div>}
           <div className="redact">
             {profile.is_you ? (
               <>
