@@ -30,7 +30,7 @@ const ChooseProfile = ({token, setOpenModal}) => {
         headers: {
             Authorization: `Bearer ${data.access}`
           }
-    }).then(()=>        window.location.reload())
+    })
     setOpenModal(false)
     
   }
