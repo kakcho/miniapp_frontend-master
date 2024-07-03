@@ -79,7 +79,7 @@ const Find = () => {
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
-    {search && openChoose && <ChooseProfile token={token} setOpenModal={setOpenModal}/>}
+    {search && openChoose && <ChooseProfile token={token} setOpenModal={setOpenChoose}/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )
