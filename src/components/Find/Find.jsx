@@ -40,7 +40,7 @@ const Find = () => {
           setCommand(response.data);
         });
     }
-  }, [data, openModal]);
+  }, [data, openChoose]);
 
   useEffect(() => {
     if (data) {
