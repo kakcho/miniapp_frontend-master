@@ -22,6 +22,7 @@ const Find = () => {
   const location = useLocation()
   const search = location.state?.search
   const token = location.state?.token
+  const [openChoose, setOpenChoose] = useState(false)
   useEffect(()=>{
     setOpenChoose(search)
   },[search])
@@ -62,7 +63,7 @@ const Find = () => {
   function handleClick() {
     setOpenModal(!openModal)
   }
-  const [openChoose, setOpenChoose] = useState(false)
+
   return (
     <>
     <div className='findContainer' onClick={()=> {setOpenModal(false); setOpenChoose(false)}} >
