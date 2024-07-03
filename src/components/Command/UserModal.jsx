@@ -35,12 +35,12 @@ const handleCopyDiscord = () => {
         <div className="userModalInfoContainer">
         <div className="userModalInfo">
             <img src={discord} className="userModalIcon" />
-            <div className="userModalInfoP" >{steamValue}</div>
+            <div className="userModalInfoP" >{discordValue}</div>
             <a className="userModalInfoCopy"><img src={copy} onClick={handleCopySteam}   className="userModalInfoCopy"/></a>
             </div>
             <div className="userModalInfo">
             <img src={steam} className="userModalIcon" />
-            <p className="userModalInfoP" >{discordValue}</p>
+            <p className="userModalInfoP" >{steamValue}</p>
             <a className="userModalInfoCopy"><img src={copy}  className="userModalInfoCopy"onClick={handleCopyDiscord} /></a> 
             </div>
       </div>

@@ -26,7 +26,7 @@ import { initUtils } from "@tma.js/sdk";
 
 
 const CommandFind = (profile) => {
-  const {event, setEvent} = useContext(TransparencyContext)
+
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState(

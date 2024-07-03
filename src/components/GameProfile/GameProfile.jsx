@@ -184,7 +184,7 @@ const GameProfile = () => {
           id="gameProfileName"
           className="inputGameProfile"
           value={gameNick}
-          onChange={(e) => setGameNick(e.target.value)}
+          onChange={(e) => {e.target.value.length <= 20 && setGameNick(e.target.value)}}
         />
         <label className="sup">
           Игровые позиции <p className="star">*</p>

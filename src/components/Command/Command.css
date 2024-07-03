@@ -94,7 +94,8 @@
     color: black;
     font-weight: 600;
     font-size: 14px;
-   
+   max-width: 70%;
+   overflow: auto;
 }
 .userModalInfoCopy{
     margin-left: auto;

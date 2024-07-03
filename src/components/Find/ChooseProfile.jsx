@@ -3,15 +3,16 @@ import dwn from "../../assets/Arrowdwn.svg";
 import axios from "axios";
 import { ApiDataContext } from "../../context/ApiDataContext";
 
-export const ChangeModal = ({ setOpenModal,id }) => {
-  const [isOpen, setIsOpen] = useState(false);
+
+const ChooseProfile = () => {
+   const [isOpen, setIsOpen] = useState(false);
   const [profiles, setProfiles] = useState()
 
   const [selected, setSelected] = useState(profiles ? profiles[0]?.name : '');
 
   const data = useContext(ApiDataContext);
 
-console.log()
+
 
   function findUserByName(users, name) {
     for (var i = 0; i < users?.length; i++) {
@@ -20,13 +21,15 @@ console.log()
       }
     }
   }
+  const token = location.search.split("_").at(-1 )
   function handleChangeProfile() {
-    axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/${id}/change_game_profile`,{
-      game_profile_id: findUserByName(profiles, selected)._id
-    },{ headers: {
-      Authorization: `Bearer ${data?.access}`,
-    }}).then(()=>{
-      window.location.reload();
+    axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/search_teams/join`,{
+        invite_token: token,
+        game_profile_id: findUserByName(profiles, selected)._id
+    },{
+        headers: {
+            Authorization: `Bearer ${data.access}`
+          }
     })
   }
 
@@ -53,7 +56,7 @@ console.log()
     }
   },[profiles])
 
-
+console.log(selected)
 
  if(profiles){ return (
     <div className="changeModal" >
@@ -81,7 +84,13 @@ console.log()
               ))}
             </select>
 
-           
+            <img
+              src={dwn}
+              className="dwn"
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            />
             <button className="modal-button" onClick={handleChangeProfile}>
               Поменять игровой профиль
             </button>
@@ -101,4 +110,6 @@ console.log()
       </div>
     </div>
   );}
-};
+}
+
+export default ChooseProfile

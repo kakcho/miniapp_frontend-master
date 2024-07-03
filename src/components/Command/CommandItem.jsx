@@ -84,7 +84,7 @@ const CommandItem = (profile) => {
   const [isOwner, setIsOwner] = useState(true)
   const [editName, setEditName] = useState(true)
   const [name, setName] = useState(profile.command.name)
-  console.log(name)
+
   return (
     <>          
     <div className="command">

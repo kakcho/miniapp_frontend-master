@@ -175,6 +175,13 @@ const CreateProfile = () => {
       } 
     }
    }
+   function handleChangeDiscrod(e) {
+    if (e.target.value.length <= 32) {
+      setUserData({...userData, discord_nickname: e.target.value})
+    }
+
+   }
+
   if (!loading) {
     return (
       <div className="profile">
@@ -189,7 +196,7 @@ const CreateProfile = () => {
           className="nickname"
           placeholder={`Никнейм`}
           value={userData?.game_data.nickname}
-          onChange={(e) => {setUserData({...userData, game_data:{nickname: e.target.value}})}}
+          onChange={(e) => {e.target.value.length <= 20 && setUserData({...userData, game_data:{nickname: e.target.value}})}}
           required
           onBlur={handleBlur}
         />
@@ -253,7 +260,7 @@ const CreateProfile = () => {
             placeholder="Никнейм в Discord"
             className="steam-id-input"
             value={userData?.discord_nickname}
-            onChange={(e) => {setUserData({...userData, discord_nickname: e.target.value})}}
+            onChange={handleChangeDiscrod}
             onBlur={handleBlur}
           />
           <input
@@ -271,7 +278,7 @@ const CreateProfile = () => {
           className="bioCreate"
           value={userData?.game_data.bio}
           onBlur={handleBlur}
-          onChange={(e) => {setUserData({...userData, game_data:{bio: e.target.value}})}}
+          onChange={(e) => {e.target.value.length <= 300 &&setUserData({...userData, game_data:{bio: e.target.value}})}}
         />
         <a></a>
 

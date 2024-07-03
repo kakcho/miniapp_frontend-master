@@ -55,7 +55,7 @@ const Find = () => {
   function handleClick() {
     setOpenModal(!openModal)
   }
-
+  
   return (
     <>
     <div className='findContainer' onClick={()=> setOpenModal(false)}>
@@ -75,6 +75,7 @@ const Find = () => {
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
+    {location.search && <ChangeModal/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )

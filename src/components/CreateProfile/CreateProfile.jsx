@@ -108,6 +108,14 @@ const CreateProfile = () => {
     }
     
    }
+
+  function handleChangeDiscord(e) {
+    if (e.target.value.length <= 32) {
+      setDiscordNickname(e.target.value);
+    }
+
+  
+  }
  return (
     <div className="createProfile">
       <Header title={"Заполните свой профиль"} />
@@ -120,7 +128,7 @@ const CreateProfile = () => {
         className="nickname"
         placeholder={`Никнейм`}
         value={nickname}
-        onChange={(e) => {
+        onChange={(e) => {e.target.value.length <= 20 &&
           setNickname(e.target.value);
         }}
         required
@@ -186,9 +194,7 @@ const CreateProfile = () => {
           placeholder="Никнейм в Discord"
           className="steam-id-input"
           value={discordNickname}
-          onChange={(e) => {
-            setDiscordNickname(e.target.value);
-          }}
+          onChange={handleChangeDiscord}
         />
         <input
           type="text"
@@ -203,7 +209,7 @@ const CreateProfile = () => {
         placeholder="Коротко о себе"
         className="bioCreate"
         value={bio}
-        onChange={(e) => {
+        onChange={(e) => {e.target.value.length <= 300
           setBio(e.target.value);
         }}
       />
