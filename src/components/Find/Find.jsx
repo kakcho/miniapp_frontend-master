@@ -65,7 +65,7 @@ const Find = () => {
   const [openChoose, setOpenChoose] = useState(false)
   return (
     <>
-    <div className='findContainer' onClick={()=> setOpenModal(false)}>
+    <div className='findContainer' onClick={()=> {setOpenModal(false); setOpenChoose(false)}} >
       <div >
       <Header title={'Поиск'}/>
       <div className="sup Finder">Ваши команды</div>
