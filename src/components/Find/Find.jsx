@@ -11,6 +11,7 @@ import UserModal from '../Command/UserModal'
 import  {ChangeModal} from './ChangeModal'
 import { useSse } from '../hook/UseSse'
 import ChooseProfile from './ChooseProfile'
+import { useLocation } from 'react-router-dom'
 
 
 const Find = () => {
@@ -18,7 +19,8 @@ const Find = () => {
   const data = useContext(ApiDataContext);
   const [command, setCommand] = useState()
   const [profiles, setProfiles] = useState()
-console.log(location.search)
+  const location = useLocation()
+  const search = location.state?.search
   useEffect(() => {
     if (data) {
       axios
@@ -76,7 +78,7 @@ console.log(location.search)
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
-    {location.search && <ChooseProfile/>}
+    {search && <ChooseProfile/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )
