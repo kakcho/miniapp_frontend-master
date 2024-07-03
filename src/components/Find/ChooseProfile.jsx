@@ -56,7 +56,7 @@ const ChooseProfile = () => {
     }
   },[profiles])
 
-console.log(selected)
+
 
  if(profiles){ return (
     <div className="changeModal" >
