@@ -22,12 +22,9 @@ const Find = () => {
   const location = useLocation()
   const [search, setSearch] = useState(location.state?.search)
   const token = location.state?.token
-  const [openChoose, setOpenChoose] = useState(false)
 
-  
-  useEffect(()=>{
-    setSearch(openChoose)
-  },[search])
+
+
 
 
   useEffect(() => {
@@ -87,7 +84,7 @@ const Find = () => {
 
     </div>
     <img src={add} className='addComandIcon' onClick={handleClick}/>
-    {search && openChoose && <ChooseProfile token={token} setOpenModal={setSearch}/>}
+    {search && <ChooseProfile token={token} setOpenModal={setSearch}/>}
     {openModal && <Modal setOpenModal={handleClick} create={profiles?.response}/>}
     </>
   )
