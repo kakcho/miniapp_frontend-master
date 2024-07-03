@@ -59,7 +59,7 @@ const Find = () => {
   function handleClick() {
     setOpenModal(!openModal)
   }
-  const [openChoose, setOpenChoose] = useState(true)
+  const [openChoose, setOpenChoose] = useState(search)
   return (
     <>
     <div className='findContainer' onClick={()=> setOpenModal(false)}>
