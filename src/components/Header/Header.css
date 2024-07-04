@@ -1,8 +1,9 @@
 .header{
-
+    display: flex;
     position: absolute;
     width: 100vw;
     justify-content: center;
+    top: 0;
 }
 .popupIcon{
     position: absolute;

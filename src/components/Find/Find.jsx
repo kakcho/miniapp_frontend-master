@@ -67,9 +67,10 @@ const Find = () => {
 
   return (
     <>
+          <Header title={'Поиск'}/>
     <div className='findContainer' onClick={()=> {setOpenModal(false); setSearch(false)}} >
       <div >
-      <Header title={'Поиск'}/>
+
       <div className="sup Finder">Ваши команды</div>
       <div className="containerCommandBLock" >
       {command?.response.map((profile)=>(

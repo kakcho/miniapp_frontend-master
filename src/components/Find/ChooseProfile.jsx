@@ -96,11 +96,11 @@ const ChooseProfile = ({token, setOpenModal}) => {
               }}
             />
             <button className="modal-button" onClick={handleChangeProfile}>
-              Поменять игровой профиль
+              Вступить в команду
             </button>
           </>): (
           <div className="GameNot">
-            <p className="modalP ">У вас нет игрового профиля</p>
+            <p className="modalP ">Создайте игровой профиль чтобы вступить в команду</p>
             <a href="/createprofilegame" className="a">
               <button className="modal-button" onClick={()=> setOpenModal(false)} >
                 Создать
