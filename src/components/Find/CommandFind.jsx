@@ -23,10 +23,11 @@ import logout from '../../assets/Logout.svg'
 import { ChangeModal } from "./ChangeModal";
 import { useSse } from "../hook/UseSse";
 import { initUtils } from "@tma.js/sdk";
+import Error from "./Error";
 
 
 const CommandFind = (profile) => {
-
+  const [errorModal, setErrorModal] = useState(false)
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState(
@@ -46,6 +47,56 @@ const CommandFind = (profile) => {
   const youProfile = profile.command.members_game_profiles.find(person => person.is_you)
 
  const memberProfiles = profile.command.members_game_profiles.filter(obj => !obj.is_you);
+
+ function peopleRankToNumber(rank) {
+  if (rank === "Unranked") return 1;
+
+  if (rank === "Herald_1") return 2;
+  if (rank === "Herald_2") return 3;
+  if (rank === "Herald_3") return 4;
+  if (rank === "Herald_4") return 5;
+  if (rank === "Herald_5") return 6;
+
+  if (rank === "Guardian_1") return 7;
+  if (rank === "Guardian_2") return 8;
+  if (rank === "Guardian_3") return 9;
+  if (rank === "Guardian_4") return 10;
+  if (rank === "Guardian_5") return 11;
+
+  if (rank === "Crusader_1") return 12;
+  if (rank === "Crusader_2") return 13;
+  if (rank === "Crusader_3") return 14;
+  if (rank === "Crusader_4") return 15;
+  if (rank === "Crusader_5") return 16;
+
+  if (rank === "Archon_1") return 17;
+  if (rank === "Archon_2") return 18;
+  if (rank === "Archon_3") return 19;
+  if (rank === "Archon_4") return 20;
+  if (rank === "Archon_5") return 21;
+
+  if (rank === "Legend_1") return 22;
+  if (rank === "Legend_1") return 23;
+  if (rank === "Legend_1") return 24;
+  if (rank === "Legend_1") return 25;
+  if (rank === "Legend_1") return 26;
+
+  if (rank === "Ancient_1") return 27;
+  if (rank === "Ancient_2") return 28;
+  if (rank === "Ancient_3") return 29;
+  if (rank === "Ancient_4") return 30;
+  if (rank === "Ancient_5") return 31;
+
+  if (rank === "Divine_1") return 32;
+  if (rank === "Divine_2") return 33;
+  if (rank === "Divine_3") return 34;
+  if (rank === "Divine_4") return 35;
+  if (rank === "Divine_5") return 36;
+
+  if (rank === "Immortal") return 37;
+}
+
+
 
   function handleLeave(params) {
     axios
@@ -218,8 +269,24 @@ const CommandFind = (profile) => {
 
   const [openChangeModal,setOpenChangeModal] = useState(false)
   const {start_search, closeSSE, confirm} = useSse(profile.command._id)
+
+  function start() {
+    const allRanks = [...profile.command.members_game_profiles.map((p)=>p.rank), profile.command.owner_game_profile.rank]
+    const sortRanks = allRanks.map((p)=> peopleRankToNumber(p)).sort((a, b) => a - b)
+    const difference =  sortRanks[sortRanks.length - 1]- sortRanks[0];
+    if (difference > 11) {
+      setErrorModal(true)
+    }else{
+      start_search()
+    }
+
+  }
+
+
+
   return (
     <div className="command">
+                  {errorModal && <Error setOpen={setErrorModal}/>}
       {openChangeModal && <ChangeModal name={profile.command.name} setOpenModal={setOpenChangeModal} id={profile.command._id}/>}
 
       <div className={`command-container ${profile.command.status=="active" ? 'inFind' : ''}`} inFind onClick={() => setOpenChangeModal(false)}>
@@ -314,7 +381,7 @@ const CommandFind = (profile) => {
             <Member isYou={false} isOwner={isOwner} profile={member} id={profile.command._id}  setOpenModal={setOpenChangeModal} find={true}/>
           ))}
          {isOwner && <div className="pagButtons">
-            <a className="pagA" ><img src={gosearch} onClick={start_search} className="pagButton"/></a>
+            <a className="pagA" ><img src={gosearch} onClick={start} className="pagButton"/></a>
             <img
               src={sharebutton}
               className="pagButtonfind"
